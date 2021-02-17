@@ -1,4 +1,4 @@
 # Lost-and-Found-IPB
 
-ini nabil mencoba membuat readme
-ini alvin yang akan memuji waifunya
+ini nabil mencoba membuat readme 
+dan ini alvin yang akan memuji waifunya

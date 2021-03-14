@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Lost and Found IPB</string>
+    <string name="txtTogether">Together, We Help Each Other.</string>
+    <string name="txtUsername">E-mail/Username</string>
+    <string name="txtPassword">Password</string>
+    <string name="btnLogin">Log In</string>
+    <string name="txtForgot">Forgot your Password?</string>
+    <string name="txtDont">Don't have an account? Register here</string>
+    <string name="txtOr">OR</string>
 </resources>

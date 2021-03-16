@@ -18,4 +18,8 @@
     <string name="back_to">Back to</string>
     <string name="login">Login</string>
     <string name="page">page</string>
+    <string name="logo">Logo</string>
+    <string name="eye">Show password</string>
+    <string name="google">Sign in with Google</string>
+    <string name="facebook">Sign in with Facebook</string>
 </resources>

@@ -160,27 +160,27 @@
 
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButtonGroup"
+            android:id="@+id/register_groupbtn_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:singleSelection="true">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/register_btn_student"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/student" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/register_btn_lecturer"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lecturer" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/register_btn_staff"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"

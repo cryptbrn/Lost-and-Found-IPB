@@ -5,4 +5,6 @@
     <color name="colorPrimary">#020C67</color>
     <color name="colorPrimaryDark">#020845</color>
     <color name="colorAccent">#FA9746</color>
+    <color name="grayBotNavItem">#BBBBBB</color>
+
 </resources>

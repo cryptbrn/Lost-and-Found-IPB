@@ -1,7 +1,8 @@
-package com.example.lostandfoundipb
+package com.example.lostandfoundipb.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.lostandfoundipb.R
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.startActivity
 

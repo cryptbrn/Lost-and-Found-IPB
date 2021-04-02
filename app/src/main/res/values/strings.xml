@@ -21,8 +21,9 @@
     <string name="page">page</string>
     <string name="logo">Logo</string>
     <string name="eye">Show password</string>
-    <string name="google">Sign in with Google</string>
-    <string name="facebook">Sign in with Facebook</string>
-    <string name="twitter">Sign in with Twitter</string>
     <string name="imgLogin">Login background image</string>
+    <string name="home">Home</string>
+    <string name="found">Found</string>
+    <string name="lost">Lost</string>
+    <string name="profile">Profile</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.lostandfoundipb
+package com.example.lostandfoundipb.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

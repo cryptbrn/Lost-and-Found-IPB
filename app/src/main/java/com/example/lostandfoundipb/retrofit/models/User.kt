@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 object User {
     @Parcelize
     data class Result(
-            val success: Boolean,
+            var success: Boolean,
             val message: String,
             val token: String,
             val user: User
@@ -14,7 +14,37 @@ object User {
 
     @Parcelize
     data class User(
-        val x:String
+        val id: String,
+        val name: String,
+        val username: String,
+        val telephone: String,
+        val role: String,
+        val email: String,
+        val picture: String,
+        val staff: Staff.Staff?,
+        val lecturer: Lecturer.Lecturer?,
+        val student: Student.Student?
     ):Parcelable
+
+    @Parcelize
+    data class SignUp(
+        val name: String,
+        val username: String,
+        val email: String,
+        val telephone: String,
+        val password: String,
+        val role: String,
+        val nim: String?,
+        val nip: String?,
+        val faculty: String?,
+        val department: String?,
+        val unit: String?,
+        val batch: Int?
+        ): Parcelable
+
+
+
+
+
 
 }

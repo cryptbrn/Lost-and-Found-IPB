@@ -4,23 +4,43 @@ package com.example.lostandfoundipb.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.example.lostandfoundipb.R
+import com.example.lostandfoundipb.Utils.SessionManagement
+import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.fragments.FoundFragment
 import com.example.lostandfoundipb.ui.fragments.HomeFragment
 import com.example.lostandfoundipb.ui.fragments.ProfileFragment
 import com.example.lostandfoundipb.ui.fragments.LostFragment
+import com.example.lostandfoundipb.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 class MainActivity : AppCompatActivity() {
     private val homeFragment: Fragment = HomeFragment()
     private val foundFragment: Fragment = FoundFragment()
     private val lostFragment: Fragment = LostFragment()
     private val profileFragment: Fragment = ProfileFragment()
+    lateinit var session: SessionManagement
+    private lateinit var viewModel: MainViewModel
+    private val apiService by lazy {
+        this.let { ApiService.create(this) }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        session = SessionManagement(this)
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        Log.d("test token",session.token)
+        authUser()
 
         navigation.setOnNavigationItemSelectedListener { item ->
             clearFragmentStack()
@@ -52,5 +72,26 @@ class MainActivity : AppCompatActivity() {
         for ( i in 0..fm.backStackEntryCount){
             fm.popBackStack()
         }
+    }
+
+    fun authUser(){
+        viewModel.auth(apiService)
+        viewModel.authString.observe({lifecycle},{s ->
+            if(s == "Success"){
+                viewModel.authResult.observe({lifecycle},{
+                    if(it.success){
+                        session.createSession(it.user)
+                    }
+                    else{
+                        toast(it.message)
+                    }
+                })
+            }
+            else{
+                s.let {
+                    toast(it)
+                }
+            }
+        })
     }
 }

@@ -11,7 +11,7 @@ fun telephoneValidator(phone: String): Boolean{
     val phoneRegex = Pattern.compile(
             "08[0-9]{7,11}"
     )
-    return phone.length >= 10 && !phoneRegex.matcher(phone).matches()
+    return phone.length >= 10 && phoneRegex.matcher(phone).matches()
 }
 
 fun emailValidator(email: String?): Boolean {

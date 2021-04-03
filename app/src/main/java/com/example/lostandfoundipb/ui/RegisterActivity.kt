@@ -3,15 +3,23 @@ package com.example.lostandfoundipb.ui
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.emailValidator
 import com.example.lostandfoundipb.Utils.passwordValidator
 import com.google.android.material.button.MaterialButtonToggleGroup
 import kotlinx.android.synthetic.main.activity_register.*
 import com.example.lostandfoundipb.Utils.telephoneValidator
+import com.example.lostandfoundipb.retrofit.ApiService
+import com.example.lostandfoundipb.retrofit.models.User
+import com.example.lostandfoundipb.ui.viewmodel.RegisterViewModel
+import okhttp3.RequestBody
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -28,11 +36,17 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var batch: String
     lateinit var nip: String
     lateinit var unit: String
+    lateinit var register: User.SignUp
 
+    lateinit var viewModel: RegisterViewModel
+    private val apiService by lazy {
+        this.let { ApiService.create(this) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
         setGroup()
         onClick()
     }
@@ -119,7 +133,7 @@ class RegisterActivity : AppCompatActivity() {
         name = register_name.text.toString()
         username = register_username.text.toString()
         email = register_email.text.toString()
-        telephone = register_email.text.toString()
+        telephone = register_telephone.text.toString()
         password = register_password.text.toString()
         confirmPassword = register_confirm_password.text.toString()
         nim = register_nim.text.toString()
@@ -147,7 +161,7 @@ class RegisterActivity : AppCompatActivity() {
             cancel = true
         }
         else if (!TextUtils.isEmpty(email) && !emailValidator(email)) {
-            register_email.error = "Format email salah"
+            register_email.error = getString(R.string.email_error)
             focusView = register_email
             cancel = true
         }
@@ -157,7 +171,7 @@ class RegisterActivity : AppCompatActivity() {
             focusView = register_telephone
             cancel = true
         }
-        else if (!TextUtils.isEmpty(telephone) && telephoneValidator(telephone)) {
+        else if (!telephoneValidator(telephone)) {
             register_telephone.error = getString(R.string.phone_format_error)
             focusView = register_telephone
             cancel = true
@@ -168,7 +182,7 @@ class RegisterActivity : AppCompatActivity() {
             focusView = register_password
             cancel = true
         }
-        else if (!TextUtils.isEmpty(password) && !passwordValidator(password)) {
+        else if (!passwordValidator(password)) {
             register_password.error = getString(R.string.password_error)
             focusView = register_password
             cancel = true
@@ -179,7 +193,7 @@ class RegisterActivity : AppCompatActivity() {
             focusView = register_confirm_password
             cancel = true
         }
-        else if (!TextUtils.isEmpty(confirmPassword) && !passwordValidator(confirmPassword)) {
+        else if (!passwordValidator(confirmPassword)) {
             register_confirm_password.error = getString(R.string.password_error)
             focusView = register_confirm_password
             cancel = true
@@ -193,6 +207,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if(role.isBlank()){
             toast("Please choose a role")
+            cancel = true
         }
         else if(role=="student"){
             if (TextUtils.isEmpty(nim)) {
@@ -246,7 +261,7 @@ class RegisterActivity : AppCompatActivity() {
                 cancel = true
             }
 
-            if (TextUtils.isEmpty(faculty)) {
+            if (TextUtils.isEmpty(unit)) {
                 register_unit.error = getString(R.string.error_empty)
                 focusView = register_unit
                 cancel = true
@@ -256,7 +271,16 @@ class RegisterActivity : AppCompatActivity() {
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            toast("success")
+            if(role=="student"){
+                register = User.SignUp(name,username,email,telephone,password,role,nim,"",faculty,department,"",batch.toInt())
+            }
+            else if(role=="lecturer"){
+                register = User.SignUp(name,username,email,telephone,password,role,"",nip,faculty,department,"",null)
+            }
+            else if(role=="staff"){
+                register = User.SignUp(name,username,email,telephone,password,role,"",nip,"","",unit,null)
+            }
+            attemptRegister(register)
         }
 
 
@@ -265,6 +289,56 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun attemptRegister(register: User.SignUp) {
+        showProgress(true)
+        viewModel.register(apiService, register)
+        viewModel.registerString.observe({lifecycle},{s ->
+            if(s == "Success"){
+                viewModel.registerResult.observe({lifecycle},{
+                    if(it.success){
+                        alert(it.message){
+                            yesButton {
+                                startActivity<LoginActivity>()
+                                finish()
+                            }
+                        }.show()
+                    }
+                    else{
+                        alert(it.message){
+                            yesButton {  }
+                        }.show()
+                        showProgress(false)
+                    }
+                })
+            }
+            else{
+                s.let {
+                    alert(it){
+                        yesButton {  }
+                    }.show()
+                }
+                showProgress(false)
+            }
+        })
+
+    }
+
+    private fun showProgress(show: Boolean){
+        register_progress.visibility = if(show) View.VISIBLE else View.GONE
+        disableTouch(show)
+    }
+
+    fun disableTouch(status: Boolean){
+        if(status){
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+        } else {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        }
     }
 
 }

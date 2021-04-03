@@ -36,4 +36,6 @@
     <string name="telephone">Telephone</string>
     <string name="error_empty">This field is required</string>
     <string name="password_not_match">Password doesn\'t match</string>
+    <string name="phone_format_error">Telephone not valid</string>
+    <string name="password_error">Password is too short</string>
 </resources>

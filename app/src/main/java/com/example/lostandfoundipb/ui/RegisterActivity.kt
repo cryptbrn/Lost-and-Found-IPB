@@ -2,12 +2,14 @@ package com.example.lostandfoundipb.ui
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lostandfoundipb.R
+import com.example.lostandfoundipb.Utils.emailValidator
+import com.example.lostandfoundipb.Utils.passwordValidator
 import com.google.android.material.button.MaterialButtonToggleGroup
 import kotlinx.android.synthetic.main.activity_register.*
+import com.example.lostandfoundipb.Utils.telephoneValidator
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -90,7 +92,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun onClick(){
         register_tv_login.setOnClickListener {
-            startActivity<RegisterActivity>()
+            startActivity<LoginActivity>()
+            finish()
         }
         register_btn_register.setOnClickListener{
             checkRegister()
@@ -143,9 +146,19 @@ class RegisterActivity : AppCompatActivity() {
             focusView = register_email
             cancel = true
         }
+        else if (!TextUtils.isEmpty(email) && !emailValidator(email)) {
+            register_email.error = "Format email salah"
+            focusView = register_email
+            cancel = true
+        }
 
         if (TextUtils.isEmpty(telephone)) {
             register_telephone.error = getString(R.string.error_empty)
+            focusView = register_telephone
+            cancel = true
+        }
+        else if (!TextUtils.isEmpty(telephone) && telephoneValidator(telephone)) {
+            register_telephone.error = getString(R.string.phone_format_error)
             focusView = register_telephone
             cancel = true
         }
@@ -155,9 +168,19 @@ class RegisterActivity : AppCompatActivity() {
             focusView = register_password
             cancel = true
         }
+        else if (!TextUtils.isEmpty(password) && !passwordValidator(password)) {
+            register_password.error = getString(R.string.password_error)
+            focusView = register_password
+            cancel = true
+        }
 
         if (TextUtils.isEmpty(confirmPassword)) {
             register_confirm_password.error = getString(R.string.error_empty)
+            focusView = register_confirm_password
+            cancel = true
+        }
+        else if (!TextUtils.isEmpty(confirmPassword) && !passwordValidator(confirmPassword)) {
+            register_confirm_password.error = getString(R.string.password_error)
             focusView = register_confirm_password
             cancel = true
         }
@@ -169,7 +192,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         if(role.isBlank()){
-            toast("Please choose role")
+            toast("Please choose a role")
         }
         else if(role=="student"){
             if (TextUtils.isEmpty(nim)) {

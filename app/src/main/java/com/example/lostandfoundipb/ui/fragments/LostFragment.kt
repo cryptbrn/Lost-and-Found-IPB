@@ -14,6 +14,7 @@ class LostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_lost,container,false)
+        requireActivity().setTitle(getString(R.string.lost))
 
         return view
     }

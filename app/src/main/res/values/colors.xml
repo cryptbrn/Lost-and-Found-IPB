@@ -7,6 +7,7 @@
     <color name="colorAccent">#FA9746</color>
     <color name="grayBotNavItem">#BBBBBB</color>
     <color name="colorBlackDisabled">#3e161616</color>
+    <color name="grey">#E5E5E5</color>
 
 
 </resources>

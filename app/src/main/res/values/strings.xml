@@ -39,4 +39,21 @@
     <string name="phone_format_error">Telephone not valid</string>
     <string name="password_error">Password is too short</string>
     <string name="email_error">Email format is wrong</string>
+    <string name="account">Account</string>
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="account_deactivation">Deactivation Account</string>
+    <string name="myitem_found">Item That I Found</string>
+    <string name="myitem_lost">My Lost Item</string>
+
+    <string name="about">About</string>
+    <string name="help_center">Help Center</string>
+    <string name="terms_and_condition">Terms and Condition</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about_app">About App</string>
+    <string name="version_0_0_1_alpha">Version 0.0.1 (Alpha)</string>
+    <string name="sign_out">Signout</string>
+    <string name="signout_message">Are you sure want to signout ?</string>
+    <string name="logout_confirmation">Are you sure to logout</string>
 </resources>

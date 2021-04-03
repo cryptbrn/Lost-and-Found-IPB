@@ -14,7 +14,7 @@ class FoundFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_found,container,false)
-
+        requireActivity().setTitle(getString(R.string.found))
         return view
     }
 }

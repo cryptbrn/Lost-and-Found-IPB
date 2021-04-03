@@ -15,6 +15,7 @@ class HomeFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home,container,false)
+        requireActivity().setTitle(getString(R.string.home))
 
         return view
     }

@@ -34,6 +34,10 @@ interface ApiService {
     fun auth():
             Observable<User.Result>
 
+    @POST("logout")
+    fun logout():
+            Observable<Confirmation.Result>
+
 
     companion object{
         lateinit var session: SessionManagement

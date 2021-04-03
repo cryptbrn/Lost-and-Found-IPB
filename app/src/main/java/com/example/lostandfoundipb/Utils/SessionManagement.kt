@@ -1,8 +1,10 @@
 package com.example.lostandfoundipb.Utils
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import com.example.lostandfoundipb.retrofit.models.User
+import com.example.lostandfoundipb.ui.LoginActivity
 
 class SessionManagement (var context: Context){
 
@@ -49,6 +51,26 @@ class SessionManagement (var context: Context){
         }
 
 
+    val user: HashMap<String,String>
+        get() {
+            val  user = HashMap<String , String>()
+            user[KEY_EMAIL] = pref.getString(KEY_EMAIL, "").toString()
+            user[KEY_ID] = pref.getString(KEY_ID, "").toString()
+            user[KEY_NAME] = pref.getString(KEY_NAME, "").toString()
+            user[KEY_USERNAME] = pref.getString(KEY_USERNAME, "").toString()
+            user[KEY_TELEPHONE] = pref.getString(KEY_TELEPHONE, "").toString()
+            user[KEY_ROLE] = pref.getString(KEY_ROLE, "").toString()
+            user[KEY_PICTURE] = pref.getString(KEY_PICTURE, "").toString()
+            user[KEY_NIP] = pref.getString(KEY_NIP, "").toString()
+            user[KEY_BATCH] = pref.getString(KEY_BATCH, "").toString()
+            user[KEY_UNIT] = pref.getString(KEY_UNIT, "").toString()
+            user[KEY_FACULTY] = pref.getString(KEY_FACULTY, "").toString()
+            user[KEY_DEPARTMENT] = pref.getString(KEY_DEPARTMENT, "").toString()
+            user[KEY_NIM] = pref.getString(KEY_NIM, "").toString()
+            return user
+        }
+
+
     fun createLogin(token: String, password: String){
         editor.putBoolean(IS_LOGIN,true)
         editor.putString(KEY_TOKEN,token)
@@ -78,7 +100,7 @@ class SessionManagement (var context: Context){
         }
         else if (user.role=="staff"){
             editor.putString(KEY_NIP, user.staff?.nip)
-            editor.putString(KEY_FACULTY, user.staff?.unit)
+            editor.putString(KEY_UNIT, user.staff?.unit)
         }
 
         editor.commit()
@@ -86,5 +108,31 @@ class SessionManagement (var context: Context){
     }
 
     fun checkLogin(): Boolean = this.isLoggedIn
+    fun clearSession() {
+        editor.remove(IS_LOGIN)
+        editor.remove(KEY_TOKEN)
+        editor.remove(KEY_PASS)
+        editor.remove(KEY_ID)
+        editor.remove(KEY_NAME)
+        editor.remove(KEY_USERNAME)
+        editor.remove(KEY_TELEPHONE)
+        editor.remove(KEY_ROLE)
+        editor.remove(KEY_EMAIL)
+        editor.remove(KEY_PICTURE)
+        editor.remove(KEY_NIM)
+        editor.remove(KEY_FACULTY)
+        editor.remove(KEY_DEPARTMENT)
+        editor.remove(KEY_BATCH)
+        editor.remove(KEY_NIP)
+        editor.remove(KEY_UNIT)
+        editor.commit()
+    }
+
+    fun logout(){
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
 
 }

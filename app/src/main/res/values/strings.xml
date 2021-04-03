@@ -26,4 +26,14 @@
     <string name="found">Found</string>
     <string name="lost">Lost</string>
     <string name="profile">Profile</string>
+    <string name="role">Role</string>
+    <string name="nim">NIM</string>
+    <string name="nip">NIP</string>
+    <string name="faculty">Faculty</string>
+    <string name="department">Department</string>
+    <string name="unit">Unit</string>
+    <string name="batch">Batch</string>
+    <string name="telephone">Telephone</string>
+    <string name="error_empty">This field is required</string>
+    <string name="password_not_match">Password doesn\'t match</string>
 </resources>

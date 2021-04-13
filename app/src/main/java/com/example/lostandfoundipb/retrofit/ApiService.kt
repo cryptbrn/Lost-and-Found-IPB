@@ -3,6 +3,7 @@ package com.example.lostandfoundipb.retrofit
 import android.content.Context
 import com.example.lostandfoundipb.BuildConfig
 import com.example.lostandfoundipb.Utils.SessionManagement
+import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import com.example.lostandfoundipb.retrofit.models.User
 import okhttp3.RequestBody

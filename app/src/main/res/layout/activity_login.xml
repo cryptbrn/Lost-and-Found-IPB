@@ -177,6 +177,13 @@
                 app:layout_constraintStart_toEndOf="@id/txtDont"
                 app:layout_constraintTop_toBottomOf="@+id/txtForgot" />
         </LinearLayout>
+        <TextView
+            android:id="@+id/url_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Development ID"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"/>
 
 
 

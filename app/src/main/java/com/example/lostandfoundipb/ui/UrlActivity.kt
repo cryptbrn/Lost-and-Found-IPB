@@ -19,7 +19,7 @@ class UrlActivity : AppCompatActivity() {
             url = url_et.text.toString()
 
             if (!TextUtils.isEmpty(url)) {
-                BASE_URL ="https://$url.ngrok.io/api/"
+                BASE_URL =url+"api/"
                 toast("Url Changed")
             }
             toast(BASE_URL)

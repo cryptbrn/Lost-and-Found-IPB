@@ -31,13 +31,10 @@ class ProfileFragment : Fragment() {
 
     lateinit var profileImg: CircleImageView
     lateinit var profileName: TextView
+    lateinit var profileUsername: TextView
     lateinit var profileEmail: TextView
-    lateinit var profileLost: TextView
-    lateinit var profileFound: TextView
     lateinit var userData: HashMap<String, String>
-    lateinit var logoutBotton: Button
-    var lost:Int = 0
-    var found:Int = 0
+    lateinit var logoutBotton: TextView
 
 
 
@@ -61,10 +58,9 @@ class ProfileFragment : Fragment() {
     private fun init(view: View?) {
         profileImg = view!!.profile_iv_user
         profileName = view.profile_tv_name
+        profileUsername = view.profile_tv_username
         profileEmail = view.profile_tv_mail
-        profileLost = view.profile_lost
-        profileFound = view.profile_found
-        logoutBotton = view.profile_btn_sign_out
+        logoutBotton = view.tv_logout
         onClick()
         setView()
     }
@@ -75,8 +71,7 @@ class ProfileFragment : Fragment() {
         if (userData["picture"].toString() != "") setImage(userData["picture"].toString())
         profileName.text = userData["name"]
         profileEmail.text = userData["email"]
-        profileFound.text = found.toString()
-        profileLost.text = lost.toString()
+        profileUsername.text = userData["username"]
     }
 
     private fun setImage(url: String) {

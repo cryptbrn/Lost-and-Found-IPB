@@ -14,7 +14,7 @@ class SessionManagement (var context: Context){
         val KEY_ID = "id"
         val KEY_EMAIL = "email"
         val KEY_NAME = "name"
-        val KEY_USERNAME = "name"
+        val KEY_USERNAME = "username"
         val KEY_TELEPHONE = "phone"
         val KEY_ROLE = "role"
         val KEY_NIM = "nim"

@@ -23,7 +23,7 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
-class LoginActivity : AppCompatActivity() {
+class   LoginActivity : AppCompatActivity() {
     lateinit var email: String
     lateinit var username: String
     lateinit var password: String

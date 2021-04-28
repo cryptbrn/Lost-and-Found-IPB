@@ -10,8 +10,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.formatDate
 import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
+import com.example.lostandfoundipb.retrofit.Global.Companion.URL_POST
 import com.example.lostandfoundipb.retrofit.models.Post
+import com.example.lostandfoundipb.ui.PostDetailActivity
 import kotlinx.android.synthetic.main.item_post.view.*
+import org.jetbrains.anko.startActivity
 
 class PostAdapter (private val posts: List<Post.Post>,
                    private val context: Context)
@@ -22,7 +25,7 @@ class PostAdapter (private val posts: List<Post.Post>,
 
         viewHolder.itemView.layout_post.setOnClickListener {
             val position = viewHolder.adapterPosition
-//            viewGroup.context?.startActivity<OrderReviewActivity>("reviews" to review[position])
+            viewGroup.context?.startActivity<PostDetailActivity>("post" to posts[position])
         }
         return viewHolder
     }
@@ -65,9 +68,9 @@ class PostViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(vie
 
     private fun setImage(url: String, context: Context) {
         Glide.with(context)
-                .load(URL_PICT+url)
+                .load(URL_POST+url)
                 .apply(RequestOptions().placeholder(R.drawable.ic_baseline_image_24))
-                .apply(RequestOptions().circleCrop())
+                .apply(RequestOptions().centerCrop())
                 .into(picture)
     }
 }

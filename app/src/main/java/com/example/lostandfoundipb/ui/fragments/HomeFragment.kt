@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -16,10 +17,13 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.adapters.PostAdapter
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Post
+import com.example.lostandfoundipb.ui.EditProfileActivity
 import com.example.lostandfoundipb.ui.MainActivity
+import com.example.lostandfoundipb.ui.PostDetailActivity
 import com.example.lostandfoundipb.ui.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 
@@ -30,6 +34,7 @@ class HomeFragment : Fragment(){
     lateinit var username: TextView
     lateinit var lostRv: RecyclerView
     lateinit var foundRv: RecyclerView
+    lateinit var myPost: Button
     private var lost: MutableList<Post.Post> = mutableListOf()
     private var found: MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
@@ -54,7 +59,12 @@ class HomeFragment : Fragment(){
         init(view)
         getPost()
 
+        onClick()
         return view
+    }
+
+    private fun onClick() {
+        myPost.setOnClickListener { }
     }
 
     @SuppressLint("SetTextI18n")
@@ -71,6 +81,8 @@ class HomeFragment : Fragment(){
 
         foundRv.layoutManager = LinearLayoutManager(context)
         lostRv.layoutManager = LinearLayoutManager(context)
+
+        myPost = view.home_btn_my_post
 
         username = view.home_username
         username.text = getString(R.string.home_hallo) + session.user["name"]

@@ -40,12 +40,16 @@ interface ApiService {
     fun logout():
             Observable<Confirmation.Result>
 
+    @Multipart
     @POST("user")
-    fun editProfile(@Body body: User.Update):
+    fun editProfile(@PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
             Observable<Confirmation.Result>
 
+    @Multipart
     @POST("user")
-    fun editProfilePicture(@Part body: MultipartBody.Part)
+    fun editProfile(@Part picture: MultipartBody.Part,
+                    @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
+            Observable<Confirmation.Result>
 
 
     companion object{

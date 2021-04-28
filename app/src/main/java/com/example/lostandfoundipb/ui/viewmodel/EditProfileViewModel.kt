@@ -13,6 +13,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class EditProfileViewModel : ViewModel() {
     private var disposable: Disposable? = null
@@ -32,7 +34,7 @@ class EditProfileViewModel : ViewModel() {
     private val auth_string = MutableLiveData<String>()
     val authString: LiveData<String> = auth_string
 
-    fun editProfile(apiService: ApiService, update: User.Update){
+    fun editProfile(apiService: ApiService, update: Map<String, @JvmSuppressWildcards RequestBody>){
         mainScope.launch {
             disposable = apiService.editProfile(update)
                 .subscribeOn(Schedulers.io())
@@ -43,6 +45,20 @@ class EditProfileViewModel : ViewModel() {
                 }, { error ->
                     edit_detail_string.value= error.toString()
                 })
+        }
+    }
+
+    fun editProfile(apiService: ApiService, picture: MultipartBody.Part, update: Map<String, @JvmSuppressWildcards RequestBody>){
+        mainScope.launch {
+            disposable = apiService.editProfile(picture,update)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ result ->
+                        edit_detail_result.value = result
+                        edit_detail_string.value = "Success"
+                    }, { error ->
+                        edit_detail_string.value= error.toString()
+                    })
         }
     }
 

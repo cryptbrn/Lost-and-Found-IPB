@@ -13,14 +13,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
+import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
 import com.example.lostandfoundipb.ui.EditProfileActivity
-import com.example.lostandfoundipb.ui.EditProfileDetailActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -85,7 +85,7 @@ class ProfileFragment : Fragment() {
 
     private fun setImage(url: String) {
         Glide.with(requireActivity())
-            .load(url)
+            .load(URL_PICT+url)
             .apply(RequestOptions().placeholder(R.drawable.ic_account_circle))
             .apply(RequestOptions().circleCrop())
             .into(profileImg)

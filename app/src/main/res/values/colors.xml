@@ -4,10 +4,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#020C67</color>
     <color name="colorPrimaryDark">#020845</color>
-    <color name="colorAccent">#FA9746</color>
+    <color name="colorAccent">#FB8B24</color>
     <color name="grayBotNavItem">#BBBBBB</color>
     <color name="colorBlackDisabled">#3e161616</color>
     <color name="grey">#E5E5E5</color>
+    <color name="mediumDarkGrey">#5E5B5B</color>
+    <color name="green">#119D65</color>
+    <color name="red">#CD201F</color>
 
 
 </resources>

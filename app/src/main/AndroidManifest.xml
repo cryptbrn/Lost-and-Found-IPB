@@ -13,8 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LostAndFoundIPB">
-        <activity android:name=".ui.EditProfilePictureActivity"></activity>
-        <activity android:name=".ui.EditProfileDetailActivity" />
         <activity android:name=".ui.EditProfileActivity" />
         <activity android:name=".ui.UrlActivity" />
         <activity

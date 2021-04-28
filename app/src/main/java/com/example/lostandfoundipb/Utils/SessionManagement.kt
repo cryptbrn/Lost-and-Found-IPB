@@ -15,7 +15,7 @@ class SessionManagement (var context: Context){
         val KEY_EMAIL = "email"
         val KEY_NAME = "name"
         val KEY_USERNAME = "username"
-        val KEY_TELEPHONE = "phone"
+        val KEY_TELEPHONE = "telephone"
         val KEY_ROLE = "role"
         val KEY_NIM = "nim"
         val KEY_NIP = "nip"
@@ -87,23 +87,73 @@ class SessionManagement (var context: Context){
         editor.putString(KEY_EMAIL, user.email)
         editor.putString(KEY_PICTURE, user.picture)
 
-        if(user.role=="student"){
-            editor.putString(KEY_NIM, user.student?.nim)
-            editor.putString(KEY_FACULTY, user.student?.faculty)
-            editor.putString(KEY_DEPARTMENT, user.student?.department)
-            editor.putString(KEY_BATCH, user.student?.batch.toString())
-        }
-        else if (user.role=="lecturer"){
-            editor.putString(KEY_NIP, user.lecturer?.nip)
-            editor.putString(KEY_FACULTY, user.lecturer?.faculty)
-            editor.putString(KEY_DEPARTMENT, user.lecturer?.department)
-        }
-        else if (user.role=="staff"){
-            editor.putString(KEY_NIP, user.staff?.nip)
-            editor.putString(KEY_UNIT, user.staff?.unit)
+        when (user.role) {
+            "student" -> {
+                editor.putString(KEY_NIM, user.student?.nim)
+                editor.putString(KEY_FACULTY, user.student?.faculty)
+                editor.putString(KEY_DEPARTMENT, user.student?.department)
+                editor.putString(KEY_BATCH, user.student?.batch.toString())
+            }
+            "lecturer" -> {
+                editor.putString(KEY_NIP, user.lecturer?.nip)
+                editor.putString(KEY_FACULTY, user.lecturer?.faculty)
+                editor.putString(KEY_DEPARTMENT, user.lecturer?.department)
+            }
+            "staff" -> {
+                editor.putString(KEY_NIP, user.staff?.nip)
+                editor.putString(KEY_UNIT, user.staff?.unit)
+            }
         }
 
         editor.commit()
+
+    }
+
+    fun updateUser(user: User.User){
+        editor.remove(KEY_NAME)
+        editor.remove(KEY_USERNAME)
+        editor.remove(KEY_TELEPHONE)
+
+        when (user.role) {
+            "student" -> {
+                editor.remove(KEY_NIM)
+                editor.remove(KEY_FACULTY)
+                editor.remove(KEY_DEPARTMENT)
+                editor.remove(KEY_BATCH)
+            }
+            "lecturer" -> {
+                editor.remove(KEY_NIP)
+                editor.remove(KEY_FACULTY)
+                editor.remove(KEY_DEPARTMENT)
+            }
+            "staff" -> {
+                editor.remove(KEY_NIP)
+                editor.remove(KEY_UNIT)
+            }
+        }
+        editor.commit()
+
+        editor.putString(KEY_NAME, user.name)
+        editor.putString(KEY_USERNAME, user.username)
+        editor.putString(KEY_TELEPHONE, user.telephone)
+
+        when (user.role) {
+            "student" -> {
+                editor.putString(KEY_NIM, user.student?.nim)
+                editor.putString(KEY_FACULTY, user.student?.faculty)
+                editor.putString(KEY_DEPARTMENT, user.student?.department)
+                editor.putString(KEY_BATCH, user.student?.batch.toString())
+            }
+            "lecturer" -> {
+                editor.putString(KEY_NIP, user.lecturer?.nip)
+                editor.putString(KEY_FACULTY, user.lecturer?.faculty)
+                editor.putString(KEY_DEPARTMENT, user.lecturer?.department)
+            }
+            "staff" -> {
+                editor.putString(KEY_NIP, user.staff?.nip)
+                editor.putString(KEY_UNIT, user.staff?.unit)
+            }
+        }
 
     }
 

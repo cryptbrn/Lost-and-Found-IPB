@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -14,14 +13,16 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
+import com.example.lostandfoundipb.ui.EditProfileActivity
+import com.example.lostandfoundipb.ui.EditProfileDetailActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.ProfileViewModel
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import org.jetbrains.anko.noButton
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
@@ -29,12 +30,15 @@ class ProfileFragment : Fragment() {
 
     lateinit var session: SessionManagement
 
-    lateinit var profileImg: CircleImageView
+    lateinit var profileImg: ImageView
     lateinit var profileName: TextView
     lateinit var profileUsername: TextView
     lateinit var profileEmail: TextView
+    lateinit var profilePhone: TextView
+    lateinit var profileRole: TextView
     lateinit var userData: HashMap<String, String>
     lateinit var logoutBotton: TextView
+    lateinit var editProfile: TextView
 
 
 
@@ -60,7 +64,10 @@ class ProfileFragment : Fragment() {
         profileName = view.profile_tv_name
         profileUsername = view.profile_tv_username
         profileEmail = view.profile_tv_mail
+        profilePhone = view.profile_tv_phone
+        profileRole = view.profile_tv_role
         logoutBotton = view.tv_logout
+        editProfile = view.tv_edit
         onClick()
         setView()
     }
@@ -72,6 +79,8 @@ class ProfileFragment : Fragment() {
         profileName.text = userData["name"]
         profileEmail.text = userData["email"]
         profileUsername.text = userData["username"]
+        profileRole.text = userData["role"]
+        profilePhone.text = userData["telephone"]
     }
 
     private fun setImage(url: String) {
@@ -93,6 +102,7 @@ class ProfileFragment : Fragment() {
             }.show()
 
         }
+        editProfile.setOnClickListener { startActivity<EditProfileActivity>() }
     }
 
     private fun logout(){

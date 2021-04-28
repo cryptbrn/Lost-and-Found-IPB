@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/circle_border">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <ImageView
                         android:src="@drawable/ic_account_circle"
                         android:id="@+id/profile_iv_user"
                         android:layout_width="120dp"
@@ -155,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
+                android:paddingBottom="40dp"
                 android:paddingHorizontal="30dp">
 
                 <TextView
@@ -250,7 +251,7 @@
                         android:id="@+id/tv_deactivation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/edit_profile"
+                        android:text="@string/account_deactivation"
                         android:textSize="18sp"
                         android:paddingTop="3dp"
                         android:textStyle="bold"

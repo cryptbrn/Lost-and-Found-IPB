@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".ui.EditProfileDetailActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingBottom="50dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:layout_marginHorizontal="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/telephone"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/edit_profile_tv_nim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nim"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="30dp"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_profile_layout_nim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_nim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/edit_profile_tv_nip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nip"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_profile_layout_nip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_nip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/edit_profile_tv_faculty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/faculty"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_profile_layout_faculty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_faculty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/edit_profile_tv_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/department"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_profile_layout_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_department"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/edit_profile_tv_batch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/batch"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_profile_layout_batch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_batch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/edit_profile_tv_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unit"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_profile_layout_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/edit_profile_btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rounded_darkblue"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="80dp"
+                android:text="@string/save"/>
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/edit_profile_detail_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackDisabled"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

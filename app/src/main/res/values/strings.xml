@@ -42,6 +42,8 @@
     <string name="account">Account</string>
 
     <string name="edit_profile">Edit Profile</string>
+    <string name="edit_profile_detail">Edit Profile Detail</string>
+    <string name="edit_profile_picture">Edit Profile Picture</string>
     <string name="change_password">Change Password</string>
     <string name="account_deactivation">Deactivation Account</string>
     <string name="myitem_found">Item That I Found</string>
@@ -57,10 +59,14 @@
     <string name="signout_message">Are you sure want to signout ?</string>
     <string name="logout_confirmation">Are you sure to logout</string>
     <string name="post_history"><u>Post History</u></string>
-    
+
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+
     <string name="btnMencari">Saya ingin mencari barang</string>
     <string name="btnMengembalikan">Saya ingin mengembalikan barang yang ditemukan</string>
     <string name="btnMemposting">Saya ingin memposting pencarian/penemuan barang</string>
     <string name="txtKosong">You don\'t have any post for now. Stay hydrated and have a wonderful day\!</string>
     <string name="imgKosong">Image</string>
+
 </resources>

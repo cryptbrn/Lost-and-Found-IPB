@@ -9,6 +9,7 @@ import com.example.lostandfoundipb.retrofit.models.User
 import okhttp3.RequestBody
 import io.reactivex.Observable
 import okhttp3.Interceptor
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -38,6 +39,13 @@ interface ApiService {
     @POST("logout")
     fun logout():
             Observable<Confirmation.Result>
+
+    @POST("user")
+    fun editProfile(@Body body: User.Update):
+            Observable<Confirmation.Result>
+
+    @POST("user")
+    fun editProfilePicture(@Part body: MultipartBody.Part)
 
 
     companion object{

@@ -42,6 +42,17 @@ object User {
         val batch: Int?
         ): Parcelable
 
+    @Parcelize
+    data class Update(
+        val id: Int,
+        val name: String,
+        val username: String,
+        val telephone: String,
+        val staff: Staff.Staff?,
+        val lecturer: Lecturer.Lecturer?,
+        val student: Student.Student?
+    ): Parcelable
+
 
 
 

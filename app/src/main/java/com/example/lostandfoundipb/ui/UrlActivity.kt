@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
+import com.example.lostandfoundipb.retrofit.Global.Companion.URL_POST
 import kotlinx.android.synthetic.main.activity_url.*
 import org.jetbrains.anko.toast
 
@@ -22,6 +23,7 @@ class UrlActivity : AppCompatActivity() {
             if (!TextUtils.isEmpty(url)) {
                 BASE_URL =url+"api/"
                 URL_PICT = url+"storage/user_picture/"
+                URL_POST = url+"storage/item_picture/"
                 toast("Url Changed")
             }
             toast(BASE_URL)

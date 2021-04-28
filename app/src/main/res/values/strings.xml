@@ -71,5 +71,17 @@
     <string name="btnMemposting">Saya ingin memposting pencarian/penemuan barang</string>
     <string name="txtKosong">You don\'t have any post for now. Stay hydrated and have a wonderful day\!</string>
     <string name="imgKosong">Image</string>
+    <string name="what_happened">What happened?</string>
+    <string name="i_found_something">I found something</string>
+    <string name="i_lost_something">I lost something</string>
+    <string name="my_post">My Post</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="home_hallo">Hallo, \</string>
 
 </resources>

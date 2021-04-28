@@ -7,6 +7,7 @@ class Global : Application(){
     companion object {
         var BASE_URL = "https://f72820c6b260.ngrok.io/api/"
         var URL_PICT = "https://f72820c6b260.ngrok.io/storage/user_picture/"
+        var URL_POST = "https://f72820c6b260.ngrok.io/storage/item_picture/"
     }
 }
 

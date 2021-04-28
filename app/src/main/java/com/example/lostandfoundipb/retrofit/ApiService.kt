@@ -5,6 +5,7 @@ import com.example.lostandfoundipb.BuildConfig
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.models.Confirmation
+import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.retrofit.models.User
 import okhttp3.RequestBody
 import io.reactivex.Observable
@@ -50,6 +51,10 @@ interface ApiService {
     fun editProfile(@Part picture: MultipartBody.Part,
                     @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
             Observable<Confirmation.Result>
+
+    @GET("post")
+    fun getPost():
+            Observable<Post.Result>
 
 
     companion object{

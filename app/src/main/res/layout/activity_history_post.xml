@@ -15,32 +15,22 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/edit_text_background">
+
             <SearchView
-                android:id="@+id/found_sv"
-                android:layout_width="wrap_content"
+                android:id="@+id/history_sv"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:queryHint="Search Post"
-                android:iconifiedByDefault="false"
-                app:layout_constraintEnd_toStartOf="@id/found_filter" />
-
-            <ImageView
-                android:id="@+id/found_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_filter_alt_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="20dp"/>
+                android:iconifiedByDefault="false"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/found_swipe_refresh"
+            android:id="@+id/history_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/found_rv"
+                android:id="@+id/history_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="18dp"/>
@@ -53,7 +43,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/found_progress"
+        android:id="@+id/history_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"

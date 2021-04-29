@@ -321,7 +321,7 @@ class EditProfileActivity : AppCompatActivity() {
             if(s == "Success"){
                 viewModel.authResult.observe({lifecycle},{
                     if(it.success){
-                        session.createSession(it.user)
+                        session.updateUser(it.user)
                         showProgress(false)
                         startActivity<MainActivity>("goto" to "profile")
                         finish()

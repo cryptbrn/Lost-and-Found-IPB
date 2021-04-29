@@ -68,7 +68,7 @@ class HomeFragment : Fragment(){
 
     @SuppressLint("SetTextI18n")
     private fun init(view: View) {
-
+        activity!!.title = getString(R.string.app_name)
         progress = view.home_progress
         foundRv = view.home_found_rv
         lostRv = view.home_lost_rv

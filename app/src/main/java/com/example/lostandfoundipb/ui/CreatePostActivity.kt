@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.widget.Spinner
@@ -59,6 +60,8 @@ class CreatePostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_post)
+        supportActionBar?.title = getString(R.string.create_post)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         init()
         onClick()
     }
@@ -282,6 +285,16 @@ class CreatePostActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun showProgress(show: Boolean){

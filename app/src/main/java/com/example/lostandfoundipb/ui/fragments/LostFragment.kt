@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +31,9 @@ class LostFragment : Fragment(){
     lateinit var adapterPost: PostAdapter
     lateinit var lostRv: RecyclerView
     private var lost: MutableList<Post.Post> = mutableListOf()
+    private var lostAll : MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
+    lateinit var lostSv: SearchView
     private lateinit var refresh: SwipeRefreshLayout
     private val apiService by lazy {
         context?.let { ApiService.create(it) }
@@ -53,18 +56,45 @@ class LostFragment : Fragment(){
 
     @SuppressLint("SetTextI18n")
     private fun init(view: View) {
+        activity!!.title = getString(R.string.lost)
+        lostSv = view.lost_sv
         progress = view.lost_progress
         lostRv = view.lost_rv
         refresh = view.findViewById(R.id.lost_swipe_refresh)
         adapterPost = PostAdapter(lost, this.context!!)
         lostRv.adapter = adapterPost
         lostRv.layoutManager = LinearLayoutManager(context)
-
+        search()
         refresh.onRefresh {
             refresh.isRefreshing = false
             getPost()
         }
 
+    }
+
+
+    private fun search() {
+        lostSv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                showProgress(true)
+                lost.clear()
+                for (data in lostAll){
+                    if(data.title.toLowerCase().contains(query.toString())||
+                        data.description.toLowerCase().contains(query.toString())||
+                        data.item.name.toLowerCase().contains(query.toString())){
+                        lost.add(data)
+                    }
+                }
+                adapterPost.notifyDataSetChanged()
+                showProgress(false)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                return true
+            }
+        })
     }
 
     private fun getPost(){
@@ -75,9 +105,11 @@ class LostFragment : Fragment(){
                 viewModel.postResult.observe({lifecycle},{
                     if(it.success){
                         lost.clear()
+                        lostAll.clear()
                         for (data in it.post!!){
                             if(!data.is_deleted){
                                 if(!data.status){
+                                    lostAll.add(data)
                                     lost.add(data)
                                 }
                             }

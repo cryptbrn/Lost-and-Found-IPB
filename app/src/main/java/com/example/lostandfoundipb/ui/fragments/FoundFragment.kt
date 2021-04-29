@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,8 @@ class FoundFragment : Fragment(){
     lateinit var adapterPost: PostAdapter
     lateinit var foundRv: RecyclerView
     private var found: MutableList<Post.Post> = mutableListOf()
+    private var foundAll: MutableList<Post.Post> = mutableListOf()
+    lateinit var foundSv: SearchView
     lateinit var session: SessionManagement
     private lateinit var refresh: SwipeRefreshLayout
     private val apiService by lazy {
@@ -51,18 +54,45 @@ class FoundFragment : Fragment(){
 
     @SuppressLint("SetTextI18n")
     private fun init(view: View) {
+        activity!!.title = getString(R.string.found)
+        foundSv = view.found_sv
         progress = view.found_progress
         foundRv = view.found_rv
         refresh = view.findViewById(R.id.found_swipe_refresh)
         adapterPost = PostAdapter(found, this.context!!)
         foundRv.adapter = adapterPost
         foundRv.layoutManager = LinearLayoutManager(context)
-
+        search()
         refresh.onRefresh {
             refresh.isRefreshing = false
             getPost()
         }
 
+    }
+
+
+    private fun search() {
+        foundSv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                showProgress(true)
+                found.clear()
+                for (data in foundAll){
+                    if(data.title.toLowerCase().contains(query.toString())||
+                        data.description.toLowerCase().contains(query.toString())||
+                        data.item.name.toLowerCase().contains(query.toString())){
+                        found.add(data)
+                    }
+                }
+                adapterPost.notifyDataSetChanged()
+                showProgress(false)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                return true
+            }
+        })
     }
 
     private fun getPost(){
@@ -73,9 +103,11 @@ class FoundFragment : Fragment(){
                 viewModel.postResult.observe({lifecycle},{
                     if(it.success){
                         found.clear()
+                        foundAll.clear()
                         for (data in it.post!!){
                             if(!data.is_deleted){
                                 if(data.status){
+                                    foundAll.add(data)
                                     found.add(data)
                                 }
                             }

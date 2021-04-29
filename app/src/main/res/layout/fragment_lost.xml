@@ -16,6 +16,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/edit_text_background">
             <SearchView
+                android:id="@+id/lost_sv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:queryHint="Search Post"

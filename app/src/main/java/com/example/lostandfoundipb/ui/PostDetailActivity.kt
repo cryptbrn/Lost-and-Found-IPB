@@ -3,6 +3,7 @@ package com.example.lostandfoundipb.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.WindowManager
@@ -100,6 +101,16 @@ class PostDetailActivity : AppCompatActivity() {
         detail_person_name.text = person.name
         person.picture.let { setImagePerson(it) }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun onClick() {

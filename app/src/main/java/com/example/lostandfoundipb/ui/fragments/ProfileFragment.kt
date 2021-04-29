@@ -15,6 +15,7 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
 import com.example.lostandfoundipb.ui.EditProfileActivity
+import com.example.lostandfoundipb.ui.HistoryPostActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -39,6 +40,7 @@ class ProfileFragment : Fragment() {
     lateinit var userData: HashMap<String, String>
     lateinit var logoutBotton: TextView
     lateinit var editProfile: TextView
+    lateinit var postHistory: TextView
 
 
 
@@ -68,6 +70,7 @@ class ProfileFragment : Fragment() {
         profileRole = view.profile_tv_role
         logoutBotton = view.tv_logout
         editProfile = view.tv_edit
+        postHistory = view.profile_tv_history
         onClick()
         setView()
     }
@@ -103,6 +106,7 @@ class ProfileFragment : Fragment() {
 
         }
         editProfile.setOnClickListener { startActivity<EditProfileActivity>() }
+        postHistory.setOnClickListener { startActivity<HistoryPostActivity>() }
     }
 
     private fun logout(){

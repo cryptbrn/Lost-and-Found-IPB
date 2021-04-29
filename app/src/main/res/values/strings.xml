@@ -84,5 +84,19 @@
     <string name="sat">Sat</string>
     <string name="home_hallo">Hallo, \</string>
     <string name="category_1">Category :</string>
+    <string name="edit_post">Edit Post</string>
+    <string name="change_status">Change Status</string>
+    <string name="discoverer">Discoverer</string>
+    <string name="item_found_location">Item Found Location</string>
+    <string name="item_found_date">Item Found Date</string>
+    <string name="at_discoverer">At Discoverer</string>
+    <string name="at_ukk">At UKK (Campus Security Unit)</string>
+    <string name="claimed">Claimed</string>
+    <string name="searcher">Searcher</string>
+    <string name="item_last_location">Item Last Location</string>
+    <string name="item_lost_date">Item Lost Date</string>
+    <string name="item_not_found">Item not found</string>
+    <string name="item_found">Item Found</string>
+    <string name="description">Description</string>
 
 </resources>

@@ -56,6 +56,10 @@ interface ApiService {
     fun getPost():
             Observable<Post.Result>
 
+    @GET
+    fun getPerson(@Url url: String):
+            Observable<User.Result>
+
 
     companion object{
         lateinit var session: SessionManagement

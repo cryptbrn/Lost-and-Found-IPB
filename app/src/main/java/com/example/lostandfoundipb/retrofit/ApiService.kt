@@ -66,6 +66,10 @@ interface ApiService {
              @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
             Observable<Confirmation.Result>
 
+    @DELETE
+    fun deletePost(@Url url:String):
+            Observable<Confirmation.Result>
+
 
     companion object{
         lateinit var session: SessionManagement

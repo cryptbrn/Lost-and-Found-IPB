@@ -2,6 +2,7 @@ package com.example.lostandfoundipb.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.WindowManager
@@ -19,7 +20,10 @@ import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.retrofit.models.User
 import com.example.lostandfoundipb.ui.viewmodel.PostDetailViewModel
 import kotlinx.android.synthetic.main.activity_post_detail.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 
 class PostDetailActivity : AppCompatActivity() {
@@ -99,7 +103,42 @@ class PostDetailActivity : AppCompatActivity() {
     }
 
     private fun onClick() {
+        if(post.user_id.toString()==session.user["id"]){
+            detail_btn_right.setOnClickListener {
+                Log.d("MASUK", "MASUK NIH")
+                alert ("Are you sure want to delete this post") {
+                    positiveButton("Yes") { deletePost() }
+                    negativeButton("No") { }
+                }.show()
+            }
+        }
 
+    }
+
+    private fun deletePost() {
+        showProgress(true)
+        viewModel.deletePost(apiService, post.id.toString())
+        viewModel.deleteString.observe({lifecycle},{s ->
+            if(s == "Success"){
+                viewModel.deleteResult.observe({lifecycle},{
+                    if(it.success){
+                        startActivity<MainActivity>("goto" to "home")
+                        finish()
+                        showProgress(false)
+                    }
+                    else{
+                        toast(it.message)
+                        showProgress(false)
+                    }
+                })
+            }
+            else{
+                s.let {
+                    toast(it)
+                }
+                showProgress(false)
+            }
+        })
     }
 
     @SuppressLint("SetTextI18n")

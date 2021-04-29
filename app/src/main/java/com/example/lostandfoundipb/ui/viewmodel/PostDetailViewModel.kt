@@ -1,10 +1,12 @@
 package com.example.lostandfoundipb.ui.viewmodel
 
+import android.telecom.Conference
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
+import com.example.lostandfoundipb.retrofit.models.Confirmation
 import com.example.lostandfoundipb.retrofit.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -37,6 +39,26 @@ class PostDetailViewModel: ViewModel() {
                     }, { error ->
                         person_string.value= error.toString()
                     })
+        }
+    }
+
+    private val delete_result = MutableLiveData<Confirmation.Result>()
+    val deleteResult: LiveData<Confirmation.Result> = delete_result
+
+    private val delete_string = MutableLiveData<String>()
+    val deleteString: LiveData<String> = delete_string
+
+    fun deletePost(apiService: ApiService, id: String){
+        mainScope.launch {
+            disposable = apiService.deletePost(BASE_URL+"post/"+id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    delete_result.value = result
+                    delete_string.value = "Success"
+                }, { error ->
+                    delete_string.value= error.toString()
+                })
         }
     }
 

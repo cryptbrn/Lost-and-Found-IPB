@@ -76,9 +76,12 @@ class LostFragment : Fragment(){
                     if(it.success){
                         lost.clear()
                         for (data in it.post!!){
-                            if(!data.status){
-                                lost.add(data)
+                            if(!data.is_deleted){
+                                if(!data.status){
+                                    lost.add(data)
+                                }
                             }
+
                         }
                         adapterPost.notifyDataSetChanged()
                         showProgress(false)

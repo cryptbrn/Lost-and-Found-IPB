@@ -101,16 +101,19 @@ class HomeFragment : Fragment(){
                         lost.clear()
                         found.clear()
                         for (data in it.post!!){
-                            if(data.status){
-                                if(found.size<3){
-                                    found.add(data)
+                            if(!data.is_deleted){
+                                if(data.status){
+                                    if(found.size<3){
+                                        found.add(data)
+                                    }
+                                }
+                                else{
+                                    if(lost.size<3){
+                                        lost.add(data)
+                                    }
                                 }
                             }
-                            else{
-                                if(lost.size<3){
-                                    lost.add(data)
-                                }
-                            }
+
                         }
                         if(found.size < 1){
                             home_recently_found.visibility = View.GONE

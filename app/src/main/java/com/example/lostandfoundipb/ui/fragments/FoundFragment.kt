@@ -74,9 +74,12 @@ class FoundFragment : Fragment(){
                     if(it.success){
                         found.clear()
                         for (data in it.post!!){
-                            if(data.status){
-                                found.add(data)
+                            if(!data.is_deleted){
+                                if(data.status){
+                                    found.add(data)
+                                }
                             }
+
                         }
                         adapterPost.notifyDataSetChanged()
                         showProgress(false)

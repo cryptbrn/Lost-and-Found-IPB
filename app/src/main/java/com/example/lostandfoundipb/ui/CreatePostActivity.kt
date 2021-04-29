@@ -261,6 +261,7 @@ class CreatePostActivity : AppCompatActivity() {
                 viewModel.createPostResult.observe({lifecycle},{
                     if(it.success){
                         startActivity<MainActivity>("goto" to "home")
+                        finish()
                         showProgress(false)
                     }
                     else{

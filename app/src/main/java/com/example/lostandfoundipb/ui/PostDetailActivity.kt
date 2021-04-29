@@ -53,13 +53,14 @@ class PostDetailActivity : AppCompatActivity() {
             detail_person_tv.visibility = GONE
             detail_person_layout.visibility = GONE
             detail_btn_left.text = getString(R.string.edit_post)
-            detail_btn_right.text = getString(R.string.change_status)
+            detail_btn_right.text = getString(R.string.delete_post)
             detail_btn_right.setPadding(0,0,0,0)
             detail_btn_left.setPadding(0,0,0,0)
             detail_btn_right.compoundDrawablePadding = 0
             detail_btn_left.compoundDrawablePadding = 0
             detail_btn_left.setCompoundDrawables(null,null,null,null)
             detail_btn_right.setCompoundDrawables(null,null,null,null)
+            detail_btn_right.setBackgroundResource(R.drawable.rounded_red)
         }
         else {
             getPersonData(post.user_id.toString())
@@ -106,7 +107,6 @@ class PostDetailActivity : AppCompatActivity() {
         if(post.status){
             detail_person_tv.text = getString(R.string.discoverer)
             detail_location_tv.text = getString(R.string.item_found_location)
-            detail_date_tv.text = getString(R.string.item_found_date)
             when (post.type) {
                 0 -> {
                     detail_status_btn.text = getString(R.string.at_discoverer)
@@ -127,7 +127,6 @@ class PostDetailActivity : AppCompatActivity() {
         else {
             detail_person_tv.text = getString(R.string.searcher)
             detail_location_tv.text = getString(R.string.item_last_location)
-            detail_date_tv.text = getString(R.string.item_lost_date)
             when (post.type) {
                 0 -> {
                     detail_status_btn.text = getString(R.string.item_not_found)

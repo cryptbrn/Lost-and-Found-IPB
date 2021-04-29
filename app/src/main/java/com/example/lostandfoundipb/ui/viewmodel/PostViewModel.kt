@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class PostViewModel : ViewModel() {
     private var disposable: Disposable? = null
     private var job = Job()
     private var mainScope = CoroutineScope(job + Dispatchers.Main)

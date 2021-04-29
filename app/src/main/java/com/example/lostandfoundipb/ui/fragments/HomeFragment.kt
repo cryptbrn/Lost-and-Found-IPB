@@ -17,10 +17,9 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.adapters.PostAdapter
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Post
-import com.example.lostandfoundipb.ui.EditProfileActivity
+import com.example.lostandfoundipb.ui.CreatePostActivity
 import com.example.lostandfoundipb.ui.MainActivity
-import com.example.lostandfoundipb.ui.PostDetailActivity
-import com.example.lostandfoundipb.ui.viewmodel.HomeViewModel
+import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -41,7 +40,7 @@ class HomeFragment : Fragment(){
     private val apiService by lazy {
         context?.let { ApiService.create(it) }
     }
-    private lateinit var viewModel : HomeViewModel
+    private lateinit var viewModel : PostViewModel
 
 
 
@@ -55,7 +54,7 @@ class HomeFragment : Fragment(){
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home,container,false)
         session = SessionManagement(requireContext())
-        viewModel = ViewModelProviders.of(requireActivity()).get(HomeViewModel::class.java)
+        viewModel = ViewModelProviders.of(requireActivity()).get(PostViewModel::class.java)
         init(view)
         getPost()
 
@@ -64,11 +63,12 @@ class HomeFragment : Fragment(){
     }
 
     private fun onClick() {
-        myPost.setOnClickListener { }
+        myPost.setOnClickListener { startActivity<CreatePostActivity>()}
     }
 
     @SuppressLint("SetTextI18n")
     private fun init(view: View) {
+
         progress = view.home_progress
         foundRv = view.home_found_rv
         lostRv = view.home_lost_rv
@@ -102,24 +102,25 @@ class HomeFragment : Fragment(){
                         found.clear()
                         for (data in it.post!!){
                             if(data.status){
-                                found.add(data)
+                                if(found.size<3){
+                                    found.add(data)
+                                }
                             }
                             else{
-                                lost.add(data)
+                                if(lost.size<3){
+                                    lost.add(data)
+                                }
                             }
                         }
-
                         if(found.size < 1){
                             home_recently_found.visibility = View.GONE
                         }
                         if(lost.size < 1){
                             home_recently_lost.visibility = View.GONE
                         }
-
                         adapterPostLost.notifyDataSetChanged()
                         adapterPostFound.notifyDataSetChanged()
                         showProgress(false)
-
                     }
                     else{
                         toast(it.message.toString())

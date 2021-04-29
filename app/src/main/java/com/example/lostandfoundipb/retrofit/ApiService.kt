@@ -60,6 +60,12 @@ interface ApiService {
     fun getPerson(@Url url: String):
             Observable<User.Result>
 
+    @Multipart
+    @POST("post/create-new")
+    fun post(@Part picture: MultipartBody.Part,
+             @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
+            Observable<Confirmation.Result>
+
 
     companion object{
         lateinit var session: SessionManagement

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lostandfoundipb.retrofit.ApiService
+import com.example.lostandfoundipb.retrofit.Global
 import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import com.example.lostandfoundipb.retrofit.models.User
@@ -15,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 
 class PostDetailViewModel: ViewModel() {
     private var disposable: Disposable? = null
@@ -27,6 +29,19 @@ class PostDetailViewModel: ViewModel() {
 
     private val person_string = MutableLiveData<String>()
     val personString: LiveData<String> = person_string
+
+    private val delete_result = MutableLiveData<Confirmation.Result>()
+    val deleteResult: LiveData<Confirmation.Result> = delete_result
+
+    private val delete_string = MutableLiveData<String>()
+    val deleteString: LiveData<String> = delete_string
+
+    private val edit_post_result = MutableLiveData<Confirmation.Result>()
+    val editPostResult: LiveData<Confirmation.Result> = edit_post_result
+
+    private val edit_post_string = MutableLiveData<String>()
+    val editPostString: LiveData<String> = edit_post_string
+
 
     fun getPerson(apiService: ApiService, id: String){
         mainScope.launch {
@@ -42,12 +57,6 @@ class PostDetailViewModel: ViewModel() {
         }
     }
 
-    private val delete_result = MutableLiveData<Confirmation.Result>()
-    val deleteResult: LiveData<Confirmation.Result> = delete_result
-
-    private val delete_string = MutableLiveData<String>()
-    val deleteString: LiveData<String> = delete_string
-
     fun deletePost(apiService: ApiService, id: String){
         mainScope.launch {
             disposable = apiService.deletePost(BASE_URL+"post/"+id)
@@ -58,6 +67,20 @@ class PostDetailViewModel: ViewModel() {
                     delete_string.value = "Success"
                 }, { error ->
                     delete_string.value= error.toString()
+                })
+        }
+    }
+
+    fun editPost(apiService: ApiService, update: Map<String, @JvmSuppressWildcards RequestBody>, id: String){
+        mainScope.launch {
+            disposable = apiService.editPost(Global.BASE_URL +"post-status/"+id, update)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    edit_post_result.value = result
+                    edit_post_string.value = "Success"
+                }, { error ->
+                    edit_post_string.value= error.toString()
                 })
         }
     }

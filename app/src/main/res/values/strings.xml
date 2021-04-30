@@ -98,12 +98,21 @@
     <string name="description">Description</string>
     <string name="post_date">Post Date</string>
     <string name="create_post">Create Post</string>
+    <string name="edit_post_detail">Edit Post Detail</string>
+    <string name="edit_post_status">Edit Post Status</string>
+    <string name="choose_action">Choose Action</string>
+    <string name="item_still_not_found">Item still not found</string>
+    <string name="item_at_discoverer">Item at Discover</string>
+    <string name="item_at_ukk">Item at UKK (Unit Keamanan Kampus)</string>
+    <string name="item_claimed">Item Claimed</string>
+    <string name="choose_status">Select Status</string>
 
     <string-array name="type_post">
         <item>-- Select Type --</item>
         <item>Found</item>
         <item>Lost</item>
     </string-array>
+
 
     <string-array name="item_category">
         <item>-- Select Category --</item>

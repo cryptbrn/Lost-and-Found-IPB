@@ -122,6 +122,9 @@ class PostDetailActivity : AppCompatActivity() {
                     negativeButton("No") { }
                 }.show()
             }
+            detail_btn_left.setOnClickListener {
+                startActivity<EditPostActivity>("post" to post)
+            }
         }
 
     }

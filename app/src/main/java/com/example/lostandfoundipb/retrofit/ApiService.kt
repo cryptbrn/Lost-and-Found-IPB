@@ -70,6 +70,19 @@ interface ApiService {
     fun deletePost(@Url url:String):
             Observable<Confirmation.Result>
 
+    @Multipart
+    @POST
+    fun editPost(@Url url: String,
+                 @Part picture: MultipartBody.Part,
+                 @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
+            Observable<Confirmation.Result>
+
+    @Multipart
+    @POST
+    fun editPost(@Url url: String,
+                 @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
+            Observable<Confirmation.Result>
+
 
     companion object{
         lateinit var session: SessionManagement

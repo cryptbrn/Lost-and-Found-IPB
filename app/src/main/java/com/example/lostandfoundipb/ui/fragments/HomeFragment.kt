@@ -77,8 +77,14 @@ class HomeFragment : Fragment(){
         myPost.setOnClickListener { startActivity<HistoryPostActivity>() }
         btnLost.setOnClickListener { showDialogCategory(getString(R.string.dialog_home_title_lost), false) }
         btnFound.setOnClickListener { showDialogCategory(getString(R.string.dialog_home_title_found), true) }
-        btnLostAll.setOnClickListener { startActivity<MainActivity>("goto" to "lost") }
-        btnFoundAll.setOnClickListener { startActivity<MainActivity>("goto" to "found") }
+        btnLostAll.setOnClickListener {
+            startActivity<MainActivity>("goto" to "lost")
+            activity!!.finish()
+        }
+        btnFoundAll.setOnClickListener {
+            startActivity<MainActivity>("goto" to "found")
+            activity!!.finish()
+        }
     }
 
     private fun showDialogCategory(title: String, type:Boolean) {

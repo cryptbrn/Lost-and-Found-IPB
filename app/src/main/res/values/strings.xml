@@ -106,6 +106,18 @@
     <string name="item_at_ukk">Item at UKK (Unit Keamanan Kampus)</string>
     <string name="item_claimed">Item Claimed</string>
     <string name="choose_status">Select Status</string>
+    <string name="dialog_home_title_lost">What type of item did you lost?</string>
+    <string name="dialog_home_title_found">What type of item did you find ?</string>
+    <string name="see_existing_posts">See Existing Posts</string>
+    <string name="create_a_new_post">Create a New Post</string>
+    <string name="what_do_you_wanna_do">What do you wanna do?</string>
+    <string name="search_post">Search Post</string>
+    <string name="important_documents">Important Documents</string>
+    <string name="gadgets_amp_electronics">Gadgets &amp; Electronics</string>
+    <string name="lunch_box_amp_bottles">Lunch Box &amp; Bottles</string>
+    <string name="clothes_amp_accessories">Clothes &amp; Accessories</string>
+    <string name="stationary_amp_module_book">Stationary &amp; Module Book</string>
+    <string name="others">Others</string>
 
     <string-array name="type_post">
         <item>-- Select Type --</item>
@@ -120,7 +132,7 @@
         <item>Gadgets &amp; Electronics</item>
         <item>Lunch Box &amp; Bottles</item>
         <item>Clothes &amp; Accessories</item>
-        <item>Stationary</item>
+        <item>Stationary &amp; Module Book</item>
         <item>Others</item>
     </string-array>
 

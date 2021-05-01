@@ -48,6 +48,9 @@ class CreatePostActivity : AppCompatActivity() {
     lateinit var itemCategory: Spinner
     lateinit var viewModel: CreatePostViewModel
 
+    var mType: Int = 0
+    var mCategory = 0
+
 
     companion object {
         private val REQUEST_IMAGE_CAPTURE = 1
@@ -62,8 +65,16 @@ class CreatePostActivity : AppCompatActivity() {
         setContentView(R.layout.activity_form_post)
         supportActionBar?.title = getString(R.string.create_post)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        mType = intent.getIntExtra("type",0)
+        mCategory = intent.getIntExtra("category",0)
         init()
+        setData()
         onClick()
+    }
+
+    private fun setData() {
+        typePost.setSelection(mType)
+        itemCategory.setSelection(mCategory)
     }
 
     private fun init(){

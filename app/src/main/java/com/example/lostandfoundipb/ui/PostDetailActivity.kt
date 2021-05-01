@@ -1,7 +1,6 @@
 package com.example.lostandfoundipb.ui
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -52,12 +51,9 @@ class PostDetailActivity : AppCompatActivity() {
         session = SessionManagement(this)
         supportActionBar?.title = post.title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         setData()
         onClick()
         checkUser()
-
-
     }
 
     private fun checkUser() {
@@ -128,18 +124,11 @@ class PostDetailActivity : AppCompatActivity() {
                     negativeButton("No") { }
                 }.show()
             }
-            detail_btn_left.setOnClickListener {
-                chooseAction()
-
-            }
+            detail_btn_left.setOnClickListener { chooseAction() }
         }
         else{
-            detail_btn_right.setOnClickListener {
-                openWhatsapp()
-            }
-            detail_btn_left.setOnClickListener{
-                openDialer()
-            }
+            detail_btn_right.setOnClickListener { openWhatsapp() }
+            detail_btn_left.setOnClickListener{ openDialer() }
         }
 
     }

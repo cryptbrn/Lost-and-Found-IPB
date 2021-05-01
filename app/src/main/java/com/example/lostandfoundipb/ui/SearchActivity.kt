@@ -2,11 +2,9 @@ package com.example.lostandfoundipb.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.widget.LinearLayout
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
@@ -19,20 +17,20 @@ import com.example.lostandfoundipb.adapters.PostAdapter
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
-import kotlinx.android.synthetic.main.activity_history_post.*
-import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
+import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.toast
 
-class HistoryPostActivity : AppCompatActivity() {
-    lateinit var progress: LinearLayout
+class SearchActivity : AppCompatActivity() {
     lateinit var adapterPost: PostAdapter
     lateinit var postRv: RecyclerView
     private var post: MutableList<Post.Post> = mutableListOf()
     private var postAll: MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
     private lateinit var refresh: SwipeRefreshLayout
-    lateinit var historySv: SearchView
+    var type: Boolean = false
+    lateinit var category: String
+    lateinit var searchSv: SearchView
     lateinit var searchQuery: String
     private val apiService by lazy {
         ApiService.create(this)
@@ -41,10 +39,12 @@ class HistoryPostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_history_post)
+        setContentView(R.layout.activity_search)
+        type = intent.getBooleanExtra("type",false)
+        category = intent.getStringExtra("category")!!
         session = SessionManagement(this)
         viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
-        supportActionBar?.title = getString(R.string.post_history)
+        supportActionBar?.title = getString(R.string.search_post)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         init()
         getPost()
@@ -53,10 +53,9 @@ class HistoryPostActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun init() {
-        historySv = findViewById(R.id.history_sv)
-        progress = findViewById(R.id.history_progress)
-        postRv = findViewById(R.id.history_rv)
-        refresh = findViewById(R.id.history_swipe_refresh)
+        searchSv = findViewById(R.id.search_sv)
+        postRv = findViewById(R.id.search_rv)
+        refresh = findViewById(R.id.search_swipe_refresh)
         adapterPost = PostAdapter(post, this)
         postRv.adapter = adapterPost
         postRv.layoutManager = LinearLayoutManager(this)
@@ -81,7 +80,7 @@ class HistoryPostActivity : AppCompatActivity() {
     }
 
     private fun search() {
-        historySv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchSv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 showProgress(true)
                 post.clear()
@@ -115,9 +114,20 @@ class HistoryPostActivity : AppCompatActivity() {
                         post.clear()
                         postAll.clear()
                         for (data in it.post!!) {
-                            if (!data.is_deleted && data.user_id.toString()==session.user["id"]) {
-                                    postAll.add(data)
-                                    post.add(data)
+                            if (!data.is_deleted) {
+                                if(type){
+                                    if(!data.status && data.item.category==category){
+                                        postAll.add(data)
+                                        post.add(data)
+                                    }
+                                }
+                                else {
+                                    if(data.status && data.item.category==category){
+                                        postAll.add(data)
+                                        post.add(data)
+                                    }
+                                }
+
                             }
 
                         }
@@ -139,7 +149,7 @@ class HistoryPostActivity : AppCompatActivity() {
     }
 
     private fun showProgress(show: Boolean){
-        history_progress.visibility = if(show) View.VISIBLE else View.GONE
+        search_progress.visibility = if(show) View.VISIBLE else View.GONE
         disableTouch(show)
     }
 

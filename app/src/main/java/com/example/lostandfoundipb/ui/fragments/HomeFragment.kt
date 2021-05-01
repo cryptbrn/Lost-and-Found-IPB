@@ -11,11 +11,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
@@ -27,7 +25,6 @@ import com.example.lostandfoundipb.ui.HistoryPostActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.SearchActivity
 import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
-import kotlinx.android.synthetic.main.dialog_home.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -48,6 +45,7 @@ class HomeFragment : Fragment(){
     lateinit var btnLostAll: Button
     private var lost: MutableList<Post.Post> = mutableListOf()
     private var found: MutableList<Post.Post> = mutableListOf()
+    private var post: MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
     private val apiService by lazy {
         context?.let { ApiService.create(it) }
@@ -200,9 +198,12 @@ class HomeFragment : Fragment(){
 
                         lost.clear()
                         found.clear()
-                        for (data in it.post!!) {
+                        post.clear()
+                        post.addAll(it.post!!)
+                        post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                        for (data in post) {
                             if (!data.is_deleted) {
-                                if (data.status) {
+                                if (data.type) {
                                     if (found.size < 3) {
                                         found.add(data)
                                     }

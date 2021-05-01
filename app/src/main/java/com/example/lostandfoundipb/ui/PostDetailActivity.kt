@@ -175,13 +175,13 @@ class PostDetailActivity : AppCompatActivity() {
         lateinit var checked:String
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle(getString(R.string.choose_status))
-        if(post.status){
+        if(post.type){
             val items = arrayOf(
                 getString(R.string.item_at_discoverer), getString(R.string.item_at_ukk), getString(
                     R.string.item_claimed
                 )
             )
-            val checkedItem = post.type
+            val checkedItem = post.status
             alertDialog.setSingleChoiceItems(items, checkedItem) { _, which ->
                 when (which) {
                     0 -> checked = 0.toString()
@@ -195,7 +195,7 @@ class PostDetailActivity : AppCompatActivity() {
                 getString(R.string.item_still_not_found),
                 getString(R.string.item_found)
             )
-            val checkedItem = post.type
+            val checkedItem = post.status
             alertDialog.setSingleChoiceItems(items, checkedItem) { _, which ->
                 when (which) {
                     0 -> checked = 0.toString()
@@ -227,7 +227,7 @@ class PostDetailActivity : AppCompatActivity() {
             if (s == "Success") {
                 viewModel.editPostResult.observe({ lifecycle }, {
                     if (it.success) {
-                        if (post.status) {
+                        if (post.type) {
                             when (type.toInt()) {
                                 0 -> {
                                     detail_status_btn.text = getString(R.string.at_discoverer)
@@ -299,10 +299,10 @@ class PostDetailActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setData() {
-        if(post.status){
+        if(post.type){
             detail_person_tv.text = getString(R.string.discoverer)
             detail_location_tv.text = getString(R.string.item_found_location)
-            when (post.type) {
+            when (post.status) {
                 0 -> {
                     detail_status_btn.text = getString(R.string.at_discoverer)
                     detail_status_btn.setBackgroundResource(R.drawable.rounded_red)
@@ -322,7 +322,7 @@ class PostDetailActivity : AppCompatActivity() {
         else {
             detail_person_tv.text = getString(R.string.searcher)
             detail_location_tv.text = getString(R.string.item_last_location)
-            when (post.type) {
+            when (post.status) {
                 0 -> {
                     detail_status_btn.text = getString(R.string.item_not_found)
                     detail_status_btn.setBackgroundResource(R.drawable.rounded_red)

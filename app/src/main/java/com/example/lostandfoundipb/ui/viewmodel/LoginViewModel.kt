@@ -31,7 +31,6 @@ class LoginViewModel : ViewModel() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ result ->
-                        result.success = true
                         login_result.value = result
                         login_string.value = "Success"
                     }, { error ->

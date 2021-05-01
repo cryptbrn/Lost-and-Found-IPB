@@ -30,6 +30,7 @@ class HistoryPostActivity : AppCompatActivity() {
     lateinit var postRv: RecyclerView
     private var post: MutableList<Post.Post> = mutableListOf()
     private var postAll: MutableList<Post.Post> = mutableListOf()
+    private var postData: MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
     private lateinit var refresh: SwipeRefreshLayout
     lateinit var historySv: SearchView
@@ -114,7 +115,10 @@ class HistoryPostActivity : AppCompatActivity() {
                     if (it.success) {
                         post.clear()
                         postAll.clear()
-                        for (data in it.post!!) {
+                        postData.clear()
+                        postData.addAll(it.post!!)
+                        postData.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                        for (data in postData) {
                             if (!data.is_deleted && data.user_id.toString()==session.user["id"]) {
                                     postAll.add(data)
                                     post.add(data)

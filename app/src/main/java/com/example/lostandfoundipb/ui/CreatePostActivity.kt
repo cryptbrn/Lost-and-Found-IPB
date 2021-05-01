@@ -48,7 +48,7 @@ class CreatePostActivity : AppCompatActivity() {
     lateinit var itemCategory: Spinner
     lateinit var viewModel: CreatePostViewModel
 
-    var mType: Int = 0
+    var mType = 0
     var mCategory = 0
 
 

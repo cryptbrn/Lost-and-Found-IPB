@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.formatDate
-import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
 import com.example.lostandfoundipb.retrofit.Global.Companion.URL_POST
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.PostDetailActivity
@@ -57,7 +56,7 @@ class PostViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(vie
         title.text = post.title
         description.text = post.description
         time.text = formatDate(post.updated_at, context)
-        if(post.status){
+        if(post.type){
             foundBadge.visibility = View.VISIBLE
         }
         else {

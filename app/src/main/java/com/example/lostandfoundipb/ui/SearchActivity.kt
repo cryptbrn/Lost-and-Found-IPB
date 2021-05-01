@@ -18,6 +18,7 @@ import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.activity_search.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.toast
 
@@ -26,12 +27,12 @@ class SearchActivity : AppCompatActivity() {
     lateinit var postRv: RecyclerView
     private var post: MutableList<Post.Post> = mutableListOf()
     private var postAll: MutableList<Post.Post> = mutableListOf()
+    private var postData: MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
     private lateinit var refresh: SwipeRefreshLayout
     var type: Boolean = false
     lateinit var category: String
     lateinit var searchSv: SearchView
-    lateinit var searchQuery: String
     private val apiService by lazy {
         ApiService.create(this)
     }
@@ -47,7 +48,14 @@ class SearchActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.search_post)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         init()
+        onClick()
         getPost()
+    }
+
+    private fun onClick() {
+        search_btn_create_new.setOnClickListener {
+            startActivity<CreatePostActivity>("type" to type, "category" to category)
+        }
     }
 
 
@@ -56,6 +64,7 @@ class SearchActivity : AppCompatActivity() {
         searchSv = findViewById(R.id.search_sv)
         postRv = findViewById(R.id.search_rv)
         refresh = findViewById(R.id.search_swipe_refresh)
+        search_tv_category.text = getString(R.string.filtered_by) + category + getString(R.string.quotes)
         adapterPost = PostAdapter(post, this)
         postRv.adapter = adapterPost
         postRv.layoutManager = LinearLayoutManager(this)
@@ -113,16 +122,19 @@ class SearchActivity : AppCompatActivity() {
                     if (it.success) {
                         post.clear()
                         postAll.clear()
-                        for (data in it.post!!) {
+                        postData.clear()
+                        postData.addAll(it.post!!)
+                        postData.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                        for (data in postData) {
                             if (!data.is_deleted) {
                                 if(type){
-                                    if(!data.status && data.item.category==category){
+                                    if(!data.type && data.item.category==category){
                                         postAll.add(data)
                                         post.add(data)
                                     }
                                 }
                                 else {
-                                    if(data.status && data.item.category==category){
+                                    if(data.type && data.item.category==category){
                                         postAll.add(data)
                                         post.add(data)
                                     }

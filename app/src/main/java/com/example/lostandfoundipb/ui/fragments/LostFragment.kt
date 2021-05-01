@@ -17,12 +17,13 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.adapters.PostAdapter
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Post
+import com.example.lostandfoundipb.ui.CreatePostActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
-import kotlinx.android.synthetic.main.fragment_found.view.*
-import kotlinx.android.synthetic.main.fragment_found.view.found_progress
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_lost.view.*
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 
@@ -32,8 +33,10 @@ class LostFragment : Fragment(){
     lateinit var lostRv: RecyclerView
     private var lost: MutableList<Post.Post> = mutableListOf()
     private var lostAll : MutableList<Post.Post> = mutableListOf()
+    private var post: MutableList<Post.Post> = mutableListOf()
     lateinit var session: SessionManagement
     lateinit var lostSv: SearchView
+    lateinit var createPost: FloatingActionButton
     private lateinit var refresh: SwipeRefreshLayout
     private val apiService by lazy {
         context?.let { ApiService.create(it) }
@@ -49,6 +52,7 @@ class LostFragment : Fragment(){
         session = SessionManagement(requireContext())
         viewModel = ViewModelProviders.of(requireActivity()).get(PostViewModel::class.java)
         init(view)
+        onClick()
         getPost()
         return view
     }
@@ -57,6 +61,7 @@ class LostFragment : Fragment(){
     @SuppressLint("SetTextI18n")
     private fun init(view: View) {
         activity!!.title = getString(R.string.lost)
+        createPost = view.lost_fab_create_post
         lostSv = view.lost_sv
         progress = view.lost_progress
         lostRv = view.lost_rv
@@ -70,6 +75,12 @@ class LostFragment : Fragment(){
             getPost()
         }
 
+    }
+
+    private fun onClick(){
+        createPost.setOnClickListener {
+            startActivity<CreatePostActivity>("type" to 2)
+        }
     }
 
 
@@ -106,9 +117,12 @@ class LostFragment : Fragment(){
                     if(it.success){
                         lost.clear()
                         lostAll.clear()
-                        for (data in it.post!!){
+                        post.clear()
+                        post.addAll(it.post!!)
+                        post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                        for (data in post){
                             if(!data.is_deleted){
-                                if(!data.status){
+                                if(!data.type){
                                     lostAll.add(data)
                                     lost.add(data)
                                 }

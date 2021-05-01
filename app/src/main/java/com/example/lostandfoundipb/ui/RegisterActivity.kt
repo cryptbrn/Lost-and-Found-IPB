@@ -293,11 +293,13 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun attemptRegister(register: User.SignUp) {
         showProgress(true)
+        var count=0
         viewModel.register(apiService, register)
         viewModel.registerString.observe({lifecycle},{s ->
             if(s == "Success"){
                 viewModel.registerResult.observe({lifecycle},{
                     if(it.success){
+                        count++
                         alert(it.message){
                             yesButton {
                                 startActivity<LoginActivity>()
@@ -306,19 +308,25 @@ class RegisterActivity : AppCompatActivity() {
                         }.show()
                     }
                     else{
-                        alert(it.message){
-                            yesButton {  }
-                        }.show()
+                        if(count<1){
+                            alert(it.message){
+                                yesButton {  }
+                            }.show()
+                        }
+                        count++
                         showProgress(false)
                     }
                 })
             }
             else{
-                s.let {
-                    alert(it){
-                        yesButton {  }
-                    }.show()
+                if(count<1){
+                    s.let {
+                        alert(it){
+                            yesButton {  }
+                        }.show()
+                    }
                 }
+                count++
                 showProgress(false)
             }
         })

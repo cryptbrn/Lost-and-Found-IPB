@@ -85,7 +85,7 @@ class EditPostActivity : AppCompatActivity() {
         form_post_desc.setText(post.description)
         form_post_name.setText(post.item.name)
         form_post_location.setText(post.item.location)
-        if(post.status){
+        if(post.type){
             typePost.setSelection(1)
         }
         else{

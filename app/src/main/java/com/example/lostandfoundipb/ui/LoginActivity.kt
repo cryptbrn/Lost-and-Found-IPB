@@ -3,6 +3,7 @@ package com.example.lostandfoundipb.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProviders
@@ -19,6 +20,8 @@ import com.example.lostandfoundipb.ui.viewmodel.RegisterViewModel
 import org.jetbrains.anko.startActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
@@ -47,10 +50,7 @@ class   LoginActivity : AppCompatActivity() {
 
     private fun onClick() {
         login_register.setOnClickListener { startActivity<RegisterActivity>() }
-        login_btn_login.setOnClickListener {
-            toast(BASE_URL)
-            checkLogin()
-        }
+        login_btn_login.setOnClickListener { checkLogin() }
         url_tv.setOnClickListener { startActivity<UrlActivity>()}
     }
 
@@ -96,31 +96,38 @@ class   LoginActivity : AppCompatActivity() {
 
     private fun attemptLogin(email: String, password: String) {
         showProgress(true)
+        var count = 0
         viewModel.login(apiService, email, password)
         viewModel.loginString.observe({lifecycle},{s ->
             if(s == "Success"){
                 viewModel.loginResult.observe({lifecycle},{
+                    Log.d("CEK", it.success.toString())
                     if(it.success){
                         showProgress(false)
+                        count++
                         session.createLogin(it.token, password)
                         startActivity<MainActivity>()
                         finish()
                     }
                     else{
-                        alert(it.message){
-                            yesButton {  }
-                        }.show()
+                        if(count<1){
+                            Log.d("MASUK GAGAL", "MASUK SINI ")
+                            toast(it.message)
+                        }
+                        count++
                         showProgress(false)
                     }
                 })
             }
             else{
-                s.let {
-                    alert(it){
-                        yesButton {  }
-                    }.show()
-                }
                 showProgress(false)
+                if(count<1){
+                    s.let {
+                        alert(it){
+                            yesButton {  }
+                        }.show()
+                    }
+                }
             }
         })
     }

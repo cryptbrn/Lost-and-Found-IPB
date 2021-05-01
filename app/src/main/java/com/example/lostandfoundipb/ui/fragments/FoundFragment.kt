@@ -17,10 +17,13 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.adapters.PostAdapter
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Post
+import com.example.lostandfoundipb.ui.CreatePostActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_found.view.*
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 
@@ -30,8 +33,10 @@ class FoundFragment : Fragment(){
     lateinit var foundRv: RecyclerView
     private var found: MutableList<Post.Post> = mutableListOf()
     private var foundAll: MutableList<Post.Post> = mutableListOf()
+    private var post: MutableList<Post.Post> = mutableListOf()
     lateinit var foundSv: SearchView
     lateinit var session: SessionManagement
+    lateinit var createPost: FloatingActionButton
     private lateinit var refresh: SwipeRefreshLayout
     private val apiService by lazy {
         context?.let { ApiService.create(it) }
@@ -47,6 +52,7 @@ class FoundFragment : Fragment(){
         session = SessionManagement(requireContext())
         viewModel = ViewModelProviders.of(requireActivity()).get(PostViewModel::class.java)
         init(view)
+        onClick()
         getPost()
         return view
     }
@@ -55,6 +61,7 @@ class FoundFragment : Fragment(){
     @SuppressLint("SetTextI18n")
     private fun init(view: View) {
         activity!!.title = getString(R.string.found)
+        createPost = view.found_fab_create_post
         foundSv = view.found_sv
         progress = view.found_progress
         foundRv = view.found_rv
@@ -68,6 +75,12 @@ class FoundFragment : Fragment(){
             getPost()
         }
 
+    }
+
+    private fun onClick(){
+        createPost.setOnClickListener {
+            startActivity<CreatePostActivity>("type" to 1)
+        }
     }
 
 
@@ -104,9 +117,12 @@ class FoundFragment : Fragment(){
                     if(it.success){
                         found.clear()
                         foundAll.clear()
-                        for (data in it.post!!){
+                        post.clear()
+                        post.addAll(it.post!!)
+                        post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                        for (data in post){
                             if(!data.is_deleted){
-                                if(data.status){
+                                if(data.type){
                                     foundAll.add(data)
                                     found.add(data)
                                 }

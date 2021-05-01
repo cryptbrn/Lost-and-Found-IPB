@@ -35,6 +35,29 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Button
+            android:id="@+id/search_btn_create_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/i_didnt_find_the_item"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:background="@drawable/rounded_red"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/search_tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginBottom="10dp"/>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/search_swipe_refresh"
             android:layout_width="match_parent"

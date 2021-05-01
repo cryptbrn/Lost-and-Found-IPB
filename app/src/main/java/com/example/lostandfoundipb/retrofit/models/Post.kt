@@ -24,8 +24,8 @@ object Post {
             var user_id: Int,
             var title: String,
             var description: String,
-            var type: Int,
-            var status: Boolean,
+            var status: Int,
+            var type: Boolean,
             var is_deleted: Boolean,
             var updated_at: String,
             var item: Item.Item

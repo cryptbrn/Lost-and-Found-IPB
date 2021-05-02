@@ -139,4 +139,6 @@
         <item>Others</item>
     </string-array>
 
+    <string name="tv_about_application">Lost and Found IPB merupakan sebuah aplikasi berbasis mobile yang berguna untuk mempertemukan orang-orang yang mengalami kehilangan barang dan orang-orang yang menemukan barang-barang tercecer yang terjadi di sekitar wilayah kampus IPB. Aplikasi ini akan memiliki fitur untuk memposting barang-barang yang hilang, memposting barang-barang tercecer yang ditemukan, memberikan komentar terhadap postingan tersebut, dan informasi dalam bentuk koordinat tempat barang itu ditemukan.</string>
+
 </resources>

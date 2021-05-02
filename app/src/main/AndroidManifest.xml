@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SearchActivity"></activity>
+        <activity android:name=".AboutApplicationActivity"></activity>
+        <activity android:name=".AboutAplicationActivity" />
+        <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.EditPostActivity" />
         <activity android:name=".ui.HistoryPostActivity" />
         <activity android:name=".ui.CreatePostActivity" />

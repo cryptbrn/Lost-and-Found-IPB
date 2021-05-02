@@ -1,5 +1,6 @@
 package com.example.lostandfoundipb.ui.fragments
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.lostandfoundipb.AboutApplicationActivity
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
@@ -18,10 +20,12 @@ import com.example.lostandfoundipb.ui.EditProfileActivity
 import com.example.lostandfoundipb.ui.HistoryPostActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.ProfileViewModel
+import kotlinx.android.synthetic.main.activity_about_application.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -41,6 +45,7 @@ class ProfileFragment : Fragment() {
     lateinit var logoutBotton: TextView
     lateinit var editProfile: TextView
     lateinit var postHistory: TextView
+    lateinit var aboutApplication: TextView
 
 
 
@@ -71,6 +76,7 @@ class ProfileFragment : Fragment() {
         logoutBotton = view.tv_logout
         editProfile = view.tv_edit
         postHistory = view.profile_tv_history
+        aboutApplication = view.tv_about_application
         onClick()
         setView()
     }
@@ -107,6 +113,7 @@ class ProfileFragment : Fragment() {
         }
         editProfile.setOnClickListener { startActivity<EditProfileActivity>() }
         postHistory.setOnClickListener { startActivity<HistoryPostActivity>() }
+        aboutApplication.setOnClickListener { startActivity<AboutApplicationActivity>() }
     }
 
     private fun logout(){

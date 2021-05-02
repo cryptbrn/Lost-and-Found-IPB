@@ -76,7 +76,7 @@ class ProfileFragment : Fragment() {
         logoutBotton = view.tv_logout
         editProfile = view.tv_edit
         postHistory = view.profile_tv_history
-        aboutApplication = view.tv_about_application
+        aboutApplication = view.profile_tv_about
         onClick()
         setView()
     }

@@ -18,7 +18,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
-import com.example.lostandfoundipb.retrofit.Global
+import com.example.lostandfoundipb.Utils.Global
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.viewmodel.EditPostViewModel
 import kotlinx.android.synthetic.main.activity_form_post.*

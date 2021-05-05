@@ -54,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setGroup() {
         val materialButtonToggleGroup = findViewById<MaterialButtonToggleGroup>(R.id.register_groupbtn_role)
-        materialButtonToggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        materialButtonToggleGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 if (checkedId == R.id.register_btn_student) {
                     role = "student"

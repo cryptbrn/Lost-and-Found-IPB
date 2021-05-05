@@ -3,9 +3,8 @@ package com.example.lostandfoundipb.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.lostandfoundipb.Utils.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.ApiService
-import com.example.lostandfoundipb.retrofit.Global
-import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import com.example.lostandfoundipb.retrofit.models.User
 import kotlinx.coroutines.launch
@@ -30,7 +29,7 @@ class PostDetailViewModel: ViewModel() {
     }
 
     fun editPost(api: ApiService, update: Map<String, @JvmSuppressWildcards RequestBody>, id: String) = viewModelScope.launch {
-        val response = api.editPost(Global.BASE_URL +"post-status/"+id, update)
+        val response = api.editPost(BASE_URL +"post-status/"+id, update)
         editPostResult.postValue(handlePostResponse(response)!!)
     }
 

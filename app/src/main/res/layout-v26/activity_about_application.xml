@@ -24,6 +24,7 @@
         android:text="@string/tv_about_application"
         android:textSize="14sp"
         android:padding="40dp"
+        android:justificationMode="inter_word"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

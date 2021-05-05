@@ -1,17 +1,15 @@
 package com.example.lostandfoundipb.retrofit
 
 import android.content.Context
-import com.example.lostandfoundipb.BuildConfig
+import com.example.lostandfoundipb.Utils.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.Utils.SessionManagement
-import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.retrofit.models.User
-import okhttp3.RequestBody
-import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit

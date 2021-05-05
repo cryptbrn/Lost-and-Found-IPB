@@ -20,7 +20,6 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.viewmodel.CreatePostViewModel
 import kotlinx.android.synthetic.main.activity_form_post.*
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

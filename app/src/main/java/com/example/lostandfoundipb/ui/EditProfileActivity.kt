@@ -14,15 +14,14 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
+import com.example.lostandfoundipb.Utils.Global.Companion.URL_PICT
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.Utils.telephoneValidator
 import com.example.lostandfoundipb.retrofit.ApiService
-import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
 import com.example.lostandfoundipb.retrofit.models.User
 import com.example.lostandfoundipb.ui.viewmodel.EditProfileViewModel
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_register.*
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

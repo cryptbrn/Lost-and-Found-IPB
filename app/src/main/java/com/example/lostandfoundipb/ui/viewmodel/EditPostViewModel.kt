@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lostandfoundipb.retrofit.ApiService
-import com.example.lostandfoundipb.retrofit.Global
+import com.example.lostandfoundipb.Utils.Global
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody

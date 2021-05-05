@@ -1,12 +1,9 @@
 package com.example.lostandfoundipb.ui
 
-
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.lostandfoundipb.R
@@ -14,16 +11,12 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.fragments.FoundFragment
 import com.example.lostandfoundipb.ui.fragments.HomeFragment
-import com.example.lostandfoundipb.ui.fragments.ProfileFragment
 import com.example.lostandfoundipb.ui.fragments.LostFragment
+import com.example.lostandfoundipb.ui.fragments.ProfileFragment
 import com.example.lostandfoundipb.ui.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import org.jetbrains.anko.yesButton
-import java.util.HashMap
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private val homeFragment: Fragment = HomeFragment()
@@ -89,6 +82,9 @@ class MainActivity : AppCompatActivity() {
                 session.createSession(result.user!!)
             }
             else{
+                session.clearSession()
+                session.logout()
+                finish()
                 toast(result.message!!)
             }
         })

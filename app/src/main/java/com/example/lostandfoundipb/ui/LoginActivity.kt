@@ -1,29 +1,20 @@
 package com.example.lostandfoundipb.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.Utils.emailValidator
 import com.example.lostandfoundipb.Utils.passwordValidator
 import com.example.lostandfoundipb.retrofit.ApiService
-import com.example.lostandfoundipb.retrofit.ApiService.Companion.session
-import com.example.lostandfoundipb.retrofit.Global.Companion.BASE_URL
-import com.example.lostandfoundipb.retrofit.models.User
 import com.example.lostandfoundipb.ui.viewmodel.LoginViewModel
-import com.example.lostandfoundipb.ui.viewmodel.RegisterViewModel
-import org.jetbrains.anko.startActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 import org.jetbrains.anko.alert
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.yesButton
 
 class   LoginActivity : AppCompatActivity() {
@@ -52,7 +43,6 @@ class   LoginActivity : AppCompatActivity() {
     private fun onClick() {
         login_register.setOnClickListener { startActivity<RegisterActivity>() }
         login_btn_login.setOnClickListener { checkLogin() }
-        url_tv.setOnClickListener { startActivity<UrlActivity>()}
     }
 
     private fun checkLogin() {

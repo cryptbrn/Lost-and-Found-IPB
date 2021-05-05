@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.ChangePasswordActivity"></activity>
-        <activity android:name=".AboutApplicationActivity" />
+        <activity android:name=".ui.AboutApplicationActivity" />
         <activity android:name=".AboutAplicationActivity" />
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.EditPostActivity" />

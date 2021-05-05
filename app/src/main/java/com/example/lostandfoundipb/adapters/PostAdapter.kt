@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.formatDate
-import com.example.lostandfoundipb.retrofit.Global.Companion.URL_POST
+import com.example.lostandfoundipb.Utils.Global.Companion.URL_POST
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.PostDetailActivity
 import kotlinx.android.synthetic.main.item_post.view.*
@@ -19,8 +19,10 @@ class PostAdapter (private val posts: List<Post.Post>,
                    private val context: Context)
     : RecyclerView.Adapter<PostViewHolder>(){
     override fun onCreateViewHolder(viewGroup: ViewGroup, int: Int): PostViewHolder {
-        val viewHolder = PostViewHolder(LayoutInflater.from(viewGroup.context)
-                .inflate(R.layout.item_post, viewGroup, false), context)
+        val viewHolder = PostViewHolder(
+            LayoutInflater.from(viewGroup.context)
+                    .inflate(R.layout.item_post, viewGroup, false)
+        )
 
         viewHolder.itemView.layout_post.setOnClickListener {
             val position = viewHolder.adapterPosition
@@ -35,12 +37,12 @@ class PostAdapter (private val posts: List<Post.Post>,
 
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bindItem(posts[position], position, itemCount, context)
+        holder.bindItem(posts[position], context)
     }
 
 }
 
-class PostViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(view){
+class PostViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
     private val title = view.post_title
     private val description = view.post_desc
@@ -50,7 +52,7 @@ class PostViewHolder(view: View, context: Context) : RecyclerView.ViewHolder(vie
     private val foundBadge = view.post_found
 
 
-    fun bindItem(post: Post.Post, position: Int, itemCount: Int, context: Context) {
+    fun bindItem(post: Post.Post, context: Context) {
         foundBadge.visibility = View.GONE
         lostBadge.visibility = View.GONE
         title.text = post.title

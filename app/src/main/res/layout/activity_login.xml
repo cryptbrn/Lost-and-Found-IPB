@@ -144,13 +144,26 @@
             android:background="@drawable/rounded_darkblue"
             android:layout_gravity="center_horizontal"/>
 
+        <TextView
+            android:id="@+id/login_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtForgot"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/btnLogin"
+            app:layout_constraintTop_toBottomOf="@+id/txtForgot" />
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp">
             <TextView
-                android:id="@+id/txtDont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtDont"
@@ -163,18 +176,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtRegister"
+                android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@id/txtDont"
-                app:layout_constraintTop_toBottomOf="@+id/txtForgot" />
+                android:textColor="@color/colorPrimary" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/url_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change Development ID"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"/>
 
 
 

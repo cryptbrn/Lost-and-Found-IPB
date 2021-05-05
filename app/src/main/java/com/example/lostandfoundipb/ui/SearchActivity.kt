@@ -116,7 +116,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun getPost(){
         showProgress(true)
-        viewModel.getPost(apiService!!)
+        viewModel.getPost(apiService)
     }
 
     private fun postResult(){

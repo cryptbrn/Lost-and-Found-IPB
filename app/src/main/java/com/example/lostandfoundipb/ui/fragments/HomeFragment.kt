@@ -184,8 +184,12 @@ class HomeFragment : Fragment(){
         myPost = view.home_btn_my_post
 
         username = view.home_username
-        username.text = getString(R.string.home_hallo) + session.user["name"]
-        username.requestFocus()
+        if(session.user["name"].isNullOrEmpty()){
+            username.text = getString(R.string.home_hallo)
+        }
+        else{
+            username.text = getString(R.string.home_hallo) + session.user["name"]
+        }
 
     }
 

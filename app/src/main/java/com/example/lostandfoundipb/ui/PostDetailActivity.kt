@@ -19,8 +19,8 @@ import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.Utils.formatDate
 import com.example.lostandfoundipb.retrofit.ApiService
-import com.example.lostandfoundipb.retrofit.Global.Companion.URL_PICT
-import com.example.lostandfoundipb.retrofit.Global.Companion.URL_POST
+import com.example.lostandfoundipb.Utils.Global.Companion.URL_PICT
+import com.example.lostandfoundipb.Utils.Global.Companion.URL_POST
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.retrofit.models.User
 import com.example.lostandfoundipb.ui.viewmodel.PostDetailViewModel

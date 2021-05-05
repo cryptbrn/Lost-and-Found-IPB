@@ -23,6 +23,7 @@ import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.viewmodel.EditPostViewModel
 import kotlinx.android.synthetic.main.activity_form_post.*
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.alert
@@ -70,6 +71,7 @@ class EditPostActivity : AppCompatActivity() {
         init()
         setData()
         onClick()
+        editPostResult()
     }
 
     private fun init(){
@@ -305,40 +307,32 @@ class EditPostActivity : AppCompatActivity() {
     private fun attemptPost(map: HashMap<String, RequestBody>) {
         showProgress(true)
 
-        val file = RequestBody.create(MediaType.parse("image/jpeg"), picture)
+        val file = RequestBody.create("image/jpeg".toMediaTypeOrNull(), picture)
         val pictureReq = MultipartBody.Part.createFormData("item[picture]", picture.name, file)
-        if(pictureReq.body().contentLength()<1){
+        if(pictureReq.body.contentLength()<1){
             viewModel.editPost(apiService,map,post.id.toString())
         }
         else{
             viewModel.editPost(apiService,pictureReq,map,post.id.toString())
         }
-        viewModel.editPostString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.editPostResult.observe({lifecycle},{
-                    if(it.success){
-                        startActivity<MainActivity>("goto" to "home")
-                        finish()
-                        showProgress(false)
-                    }
-                    else{
-                        alert(it.message){
-                            yesButton {  }
-                        }.show()
-                        showProgress(false)
-                    }
-                })
+
+
+    }
+
+    private fun editPostResult(){
+        viewModel.editPostResult.observe({lifecycle},{
+            if(it.success){
+                startActivity<MainActivity>("goto" to "home")
+                finish()
+                showProgress(false)
             }
             else{
-                s.let {
-                    alert(it){
-                        yesButton {  }
-                    }.show()
-                }
+                alert(it.message){
+                    yesButton {  }
+                }.show()
                 showProgress(false)
             }
         })
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

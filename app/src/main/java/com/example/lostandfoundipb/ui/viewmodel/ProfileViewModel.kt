@@ -3,6 +3,7 @@ package com.example.lostandfoundipb.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import com.example.lostandfoundipb.retrofit.models.User
@@ -13,40 +14,24 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class ProfileViewModel : ViewModel() {
-    private var disposable: Disposable? = null
-    private var job = Job()
-    private var mainScope = CoroutineScope(job + Dispatchers.Main)
+    val logoutResult = MutableLiveData<Confirmation.Result>()
+    lateinit var errorLogout: Confirmation.Result
 
+    fun logout(api: ApiService) = viewModelScope.launch {
+        val response = api.logout()
+        logoutResult.postValue(handleLogoutResponse(response)!!)
+    }
 
-    private val logout_result = MutableLiveData<Confirmation.Result>()
-    val logoutResult: LiveData<Confirmation.Result> = logout_result
-
-    private val logout_string = MutableLiveData<String>()
-    val logoutString: LiveData<String> = logout_string
-
-    fun logout(apiService: ApiService){
-        mainScope.launch {
-            disposable = apiService.logout()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                    logout_result.value = result
-                    logout_string.value = "Success"
-                }, { error ->
-                    logout_string.value= error.toString()
-                })
+    private fun handleLogoutResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
+        return if(response.isSuccessful){
+            response.body()
+        }
+        else{
+            errorLogout = Confirmation.Result(false,response.message())
+            errorLogout
         }
     }
-
-    fun onPaused(){
-        disposable?.dispose()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
-    }
-
 }

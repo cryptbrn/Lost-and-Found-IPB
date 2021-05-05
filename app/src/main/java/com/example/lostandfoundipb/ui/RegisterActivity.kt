@@ -48,6 +48,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
         setGroup()
+        registerResult()
         onClick()
     }
 
@@ -293,44 +294,27 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun attemptRegister(register: User.SignUp) {
         showProgress(true)
-        var count=0
         viewModel.register(apiService, register)
-        viewModel.registerString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.registerResult.observe({lifecycle},{
-                    if(it.success){
-                        count++
-                        alert(it.message){
-                            yesButton {
-                                startActivity<LoginActivity>()
-                                finish()
-                            }
-                        }.show()
+    }
+
+    private fun registerResult(){
+        viewModel.registerResult.observe({lifecycle},{result ->
+            if(result.success){
+                showProgress(false)
+                alert(result.message){
+                    yesButton {
+                        startActivity<LoginActivity>()
+                        finish()
                     }
-                    else{
-                        if(count<1){
-                            alert(it.message){
-                                yesButton {  }
-                            }.show()
-                        }
-                        count++
-                        showProgress(false)
-                    }
-                })
+                }.show()
             }
             else{
-                if(count<1){
-                    s.let {
-                        alert(it){
-                            yesButton {  }
-                        }.show()
-                    }
-                }
-                count++
+                alert(result.message){
+                    yesButton {  }
+                }.show()
                 showProgress(false)
             }
         })
-
     }
 
     private fun showProgress(show: Boolean){

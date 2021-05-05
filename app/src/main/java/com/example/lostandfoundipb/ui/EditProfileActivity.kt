@@ -23,6 +23,7 @@ import com.example.lostandfoundipb.ui.viewmodel.EditProfileViewModel
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_register.*
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.alert
@@ -70,6 +71,8 @@ class EditProfileActivity : AppCompatActivity() {
         setView()
         setData()
         onClick()
+        editProfileResult()
+        authResult()
     }
 
     private fun setView() {
@@ -280,35 +283,26 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun attemptEdit(form: HashMap<String, RequestBody>) {
         showProgress(true)
-        val file = RequestBody.create(MediaType.parse("image/jpeg"), picture)
+        val file = RequestBody.create("image/jpeg".toMediaTypeOrNull(), picture)
         val pictureReq = MultipartBody.Part.createFormData("picture", picture.name, file)
-        if(pictureReq.body().contentLength()>0){
+        if(pictureReq.body.contentLength()>0){
             viewModel.editProfile(apiService,pictureReq,form)
         }
         else{
             viewModel.editProfile(apiService, form)
         }
-        viewModel.editDetailString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.editDetailResult.observe({lifecycle},{
-                    if(it.success){
-                        auth()
-                        showProgress(false)
-                    }
-                    else{
-                        alert(it.message){
-                            yesButton {  }
-                        }.show()
-                        showProgress(false)
-                    }
-                })
+    }
+
+    private fun editProfileResult(){
+        viewModel.editDetailResult.observe({lifecycle},{
+            if(it.success){
+                auth()
+                showProgress(false)
             }
             else{
-                s.let {
-                    alert(it){
-                        yesButton {  }
-                    }.show()
-                }
+                alert(it.message){
+                    yesButton {  }
+                }.show()
                 showProgress(false)
             }
         })
@@ -317,30 +311,21 @@ class EditProfileActivity : AppCompatActivity() {
     private fun auth() {
         showProgress(true)
         viewModel.auth(apiService)
-        viewModel.authString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.authResult.observe({lifecycle},{
-                    if(it.success){
-                        session.updateUser(it.user)
-                        showProgress(false)
-                        startActivity<MainActivity>("goto" to "profile")
-                        finish()
-                    }
-                    else{
-                        alert(it.message){
-                            yesButton {  }
-                        }.show()
-                        showProgress(false)
-                    }
-                })
+    }
+
+    private fun authResult(){
+        viewModel.authResult.observe({lifecycle},{
+            if(it.success){
+                session.updateUser(it.user!!)
+                showProgress(false)
+                startActivity<MainActivity>("goto" to "profile")
+                finish()
             }
             else{
-                s.let {
-                    alert(it){
-                        yesButton {  }
-                    }.show()
-                    showProgress(false)
-                }
+                alert(it.message!!){
+                    yesButton {  }
+                }.show()
+                showProgress(false)
             }
         })
     }

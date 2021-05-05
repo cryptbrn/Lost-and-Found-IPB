@@ -49,6 +49,7 @@ class HistoryPostActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         init()
         getPost()
+        postResult()
     }
 
 
@@ -109,34 +110,27 @@ class HistoryPostActivity : AppCompatActivity() {
     private fun getPost(){
         showProgress(true)
         viewModel.getPost(apiService!!)
-        viewModel.postString.observe({ lifecycle }, { s ->
-            if (s == "Success") {
-                viewModel.postResult.observe({ lifecycle }, {
-                    if (it.success) {
-                        post.clear()
-                        postAll.clear()
-                        postData.clear()
-                        postData.addAll(it.post!!)
-                        postData.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
-                        for (data in postData) {
-                            if (!data.is_deleted && data.user_id.toString()==session.user["id"]) {
-                                    postAll.add(data)
-                                    post.add(data)
-                            }
-
-                        }
-                        adapterPost.notifyDataSetChanged()
-                        showProgress(false)
-
-                    } else {
-                        toast(it.message.toString())
-                        showProgress(false)
+    }
+    private fun postResult(){
+        viewModel.postResult.observe({ lifecycle }, {
+            if (it.success) {
+                post.clear()
+                postAll.clear()
+                postData.clear()
+                postData.addAll(it.post!!)
+                postData.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                for (data in postData) {
+                    if (!data.is_deleted && data.user_id.toString()==session.user["id"]) {
+                        postAll.add(data)
+                        post.add(data)
                     }
-                })
-            } else {
-                s.let {
-                    toast(it)
+
                 }
+                adapterPost.notifyDataSetChanged()
+                showProgress(false)
+
+            } else {
+                toast(it.message.toString())
                 showProgress(false)
             }
         })

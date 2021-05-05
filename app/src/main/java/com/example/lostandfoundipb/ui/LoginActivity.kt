@@ -45,6 +45,7 @@ class   LoginActivity : AppCompatActivity() {
             finish()
         }
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        loginResult()
         onClick()
     }
 
@@ -96,37 +97,23 @@ class   LoginActivity : AppCompatActivity() {
 
     private fun attemptLogin(email: String, password: String) {
         showProgress(true)
-        var count = 0
         viewModel.login(apiService, email, password)
-        viewModel.loginString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.loginResult.observe({lifecycle},{
-                    Log.d("CEK", it.success.toString())
-                    if(it.success){
-                        showProgress(false)
-                        count++
-                        session.createLogin(it.token, password)
-                        startActivity<MainActivity>()
-                        finish()
-                    }
-                    else{
-                        if(count<1){
-                            Log.d("MASUK GAGAL", "MASUK SINI ")
-                            toast(it.message)
-                        }
-                        count++
-                        showProgress(false)
-                    }
-                })
+    }
+
+    private fun loginResult(){
+        viewModel.loginResult.observe({lifecycle},{result ->
+            if(result.success){
+                showProgress(false)
+                session.createLogin(result.token!!, password)
+                startActivity<MainActivity>()
+                finish()
             }
             else{
                 showProgress(false)
-                if(count<1){
-                    s.let {
-                        alert(it){
-                            yesButton {  }
-                        }.show()
-                    }
+                result.let {
+                    alert(it.message!!){
+                        yesButton {  }
+                    }.show()
                 }
             }
         })

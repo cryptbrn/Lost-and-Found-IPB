@@ -3,6 +3,7 @@ package com.example.lostandfoundipb.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Confirmation
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,42 +15,24 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 
 class CreatePostViewModel : ViewModel() {
-    private var disposable: Disposable? = null
-    private var job = Job()
-    private var mainScope = CoroutineScope(job + Dispatchers.Main)
+    val createPostResult = MutableLiveData<Confirmation.Result>()
+    lateinit var errorAuth: Confirmation.Result
 
+    fun post(api: ApiService, picture: MultipartBody.Part, update: Map<String, @JvmSuppressWildcards RequestBody>) = viewModelScope.launch {
+        val response = api.post(picture,update)
+        createPostResult.postValue(handleCreatePostResponse(response)!!)
+    }
 
-    private val create_post_result = MutableLiveData<Confirmation.Result>()
-    val createPostResult: LiveData<Confirmation.Result> = create_post_result
-
-    private val create_post_string = MutableLiveData<String>()
-    val createPostString: LiveData<String> = create_post_string
-
-
-    fun post(apiService: ApiService, picture: MultipartBody.Part, update: Map<String, @JvmSuppressWildcards RequestBody>){
-        mainScope.launch {
-            disposable = apiService.post(picture,update)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                    create_post_result.value = result
-                    create_post_string.value = "Success"
-                }, { error ->
-                    create_post_string.value= error.toString()
-                })
+    private fun handleCreatePostResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
+        return if(response.isSuccessful){
+            response.body()
         }
-    }
-
-
-
-    fun onPaused(){
-        disposable?.dispose()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
+        else{
+            errorAuth = Confirmation.Result(false,response.message())
+            errorAuth
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.lostandfoundipb.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,40 +13,28 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class LoginViewModel : ViewModel() {
-    private var disposable: Disposable? = null
-    private var job = Job()
-    private var mainScope = CoroutineScope(job + Dispatchers.Main)
 
+    val loginResult = MutableLiveData<User.Result>()
+    lateinit var errorLogin: User.Result
 
-    private val login_result = MutableLiveData<User.Result>()
-    val loginResult: LiveData<User.Result> = login_result
+    fun login(api: ApiService, email: String, password: String) = viewModelScope.launch {
+        val response = api.login(email,password)
+        loginResult.postValue(handleLoginResponse(response)!!)
+    }
 
-    private val login_string = MutableLiveData<String>()
-    val loginString: LiveData<String> = login_string
-
-    fun login(apiService: ApiService, email: String, password: String){
-        mainScope.launch {
-            disposable = apiService.login(email,password)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result ->
-                        login_result.value = result
-                        login_string.value = "Success"
-                    }, { error ->
-                        login_string.value= error.toString()
-                    })
+    private fun handleLoginResponse(response: Response<User.Result>): User.Result? {
+        return if(response.isSuccessful){
+            response.body()
+        }
+        else{
+            errorLogin = User.Result(false,response.message(),null,null)
+            errorLogin
         }
     }
 
-    fun onPaused(){
-        disposable?.dispose()
-    }
 
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
-    }
 
 }

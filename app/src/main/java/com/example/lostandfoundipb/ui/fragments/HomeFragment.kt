@@ -67,6 +67,7 @@ class HomeFragment : Fragment(){
         viewModel = ViewModelProviders.of(requireActivity()).get(PostViewModel::class.java)
         init(view)
         getPost()
+        postResult()
         onClick()
         return view
     }
@@ -191,51 +192,44 @@ class HomeFragment : Fragment(){
     private fun getPost(){
         showProgress(true)
         viewModel.getPost(apiService!!)
-        viewModel.postString.observe({ lifecycle }, { s ->
-            if (s == "Success") {
-                viewModel.postResult.observe({ lifecycle }, {
-                    if (it.success) {
+    }
 
-                        lost.clear()
-                        found.clear()
-                        post.clear()
-                        post.addAll(it.post!!)
-                        post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
-                        for (data in post) {
-                            if (!data.is_deleted) {
-                                if (data.type) {
-                                    if (found.size < 3) {
-                                        found.add(data)
-                                    }
-                                } else {
-                                    if (lost.size < 3) {
-                                        lost.add(data)
-                                    }
-                                }
+    private fun postResult(){
+        viewModel.postResult.observe({ lifecycle }, { result ->
+            if (result.success) {
+                lost.clear()
+                found.clear()
+                post.clear()
+                post.addAll(result.post!!)
+                post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                for (data in post) {
+                    if (!data.is_deleted) {
+                        if (data.type) {
+                            if (found.size < 3) {
+                                found.add(data)
                             }
-
+                        } else {
+                            if (lost.size < 3) {
+                                lost.add(data)
+                            }
                         }
-                        if (found.size < 1) {
-                            home_recently_found.visibility = View.GONE
-                        }
-                        if (lost.size < 1) {
-                            home_recently_lost.visibility = View.GONE
-                        }
-                        adapterPostLost.notifyDataSetChanged()
-                        adapterPostFound.notifyDataSetChanged()
-                        showProgress(false)
-                    } else {
-                        toast(it.message.toString())
-                        showProgress(false)
                     }
-                })
-            } else {
-                s.let {
-                    toast(it)
                 }
+                if (found.size < 1) {
+                    home_recently_found.visibility = View.GONE
+                }
+                if (lost.size < 1) {
+                    home_recently_lost.visibility = View.GONE
+                }
+                adapterPostLost.notifyDataSetChanged()
+                adapterPostFound.notifyDataSetChanged()
+                showProgress(false)
+            } else {
+                toast(result.message.toString())
                 showProgress(false)
             }
         })
+
     }
 
     private fun showProgress(show: Boolean){

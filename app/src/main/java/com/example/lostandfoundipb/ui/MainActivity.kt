@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         Log.d("test token",session.token)
         authUser()
+        authResult()
 
         navigation.setOnNavigationItemSelectedListener { item ->
             clearFragmentStack()
@@ -78,26 +79,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun authUser(){
+    private fun authUser(){
         viewModel.auth(apiService)
-        viewModel.authString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.authResult.observe({lifecycle},{
-                    if(it.success){
-                        session.createSession(it.user)
-                    }
-                    else{
-                        toast(it.message)
-                    }
-                })
+    }
+
+    private fun authResult(){
+        viewModel.authResult.observe({lifecycle},{result ->
+            if(result.success){
+                session.createSession(result.user!!)
             }
             else{
-                s.let {
-                    toast(it)
-                }
+                toast(result.message!!)
             }
         })
     }
+
+
 
     fun getUserData(): HashMap<String, String> {
         return session.user

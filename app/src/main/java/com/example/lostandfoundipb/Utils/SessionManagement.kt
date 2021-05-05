@@ -155,6 +155,8 @@ class SessionManagement (var context: Context){
             }
         }
 
+        editor.commit()
+
     }
 
     fun checkLogin(): Boolean = this.isLoggedIn

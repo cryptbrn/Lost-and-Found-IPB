@@ -13,6 +13,7 @@ import okhttp3.Interceptor
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,66 +23,66 @@ import java.util.concurrent.TimeUnit
 interface ApiService {
 
     @POST("register")
-    fun register(@Body body: User.SignUp):
-            Observable<Confirmation.Result>
+    suspend fun register(@Body body: User.SignUp):
+            Response<Confirmation.Result>
 
     @FormUrlEncoded
     @POST("login")
-    fun login(
+    suspend fun login(
             @Field("email") email:String,
             @Field("password") password:String
     ):
-            Observable<User.Result>
+            Response<User.Result>
 
     @GET("auth")
-    fun auth():
-            Observable<User.Result>
+    suspend fun auth():
+            Response<User.Result>
 
     @POST("logout")
-    fun logout():
-            Observable<Confirmation.Result>
+    suspend fun logout():
+            Response<Confirmation.Result>
 
     @Multipart
     @POST("user")
-    fun editProfile(@PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
-            Observable<Confirmation.Result>
+    suspend fun editProfile(@PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
+            Response<Confirmation.Result>
 
     @Multipart
     @POST("user")
-    fun editProfile(@Part picture: MultipartBody.Part,
+    suspend fun editProfile(@Part picture: MultipartBody.Part,
                     @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
-            Observable<Confirmation.Result>
+            Response<Confirmation.Result>
 
     @GET("post")
-    fun getPost():
-            Observable<Post.Result>
+    suspend fun getPost():
+            Response<Post.Result>
 
     @GET
-    fun getPerson(@Url url: String):
-            Observable<User.Result>
+    suspend fun getPerson(@Url url: String):
+            Response<User.Result>
 
     @Multipart
     @POST("post/create-new")
-    fun post(@Part picture: MultipartBody.Part,
+    suspend fun post(@Part picture: MultipartBody.Part,
              @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
-            Observable<Confirmation.Result>
+            Response<Confirmation.Result>
 
     @DELETE
-    fun deletePost(@Url url:String):
-            Observable<Confirmation.Result>
+    suspend fun deletePost(@Url url:String):
+            Response<Confirmation.Result>
 
     @Multipart
     @POST
-    fun editPost(@Url url: String,
+    suspend fun editPost(@Url url: String,
                  @Part picture: MultipartBody.Part,
                  @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
-            Observable<Confirmation.Result>
+            Response<Confirmation.Result>
 
     @Multipart
     @POST
-    fun editPost(@Url url: String,
+    suspend fun editPost(@Url url: String,
                  @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
-            Observable<Confirmation.Result>
+            Response<Confirmation.Result>
 
 
     companion object{

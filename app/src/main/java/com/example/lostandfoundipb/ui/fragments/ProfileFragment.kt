@@ -63,6 +63,7 @@ class ProfileFragment : Fragment() {
         session = SessionManagement(requireContext())
         requireActivity().setTitle(getString(R.string.profile))
         init(view)
+        logoutResult()
         return view
     }
 
@@ -119,30 +120,20 @@ class ProfileFragment : Fragment() {
     private fun logout(){
         showProgress(true)
         viewModel.logout(apiService!!)
-        viewModel.logoutString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.logoutResult.observe({lifecycle},{
-                    if(it.success){
-                        showProgress(false)
-                        session.clearSession()
-                        session.logout()
-                        (activity as MainActivity).finish()
-                    }
-                    else{
-                        toast(it.message)
-                        showProgress(false)
-                    }
-                })
+    }
+    private fun logoutResult(){
+        viewModel.logoutResult.observe({lifecycle},{result ->
+            if(result.success){
+                showProgress(false)
+                session.clearSession()
+                session.logout()
+                (activity as MainActivity).finish()
             }
             else{
-                s.let {
-                    toast(it)
-
-                }
+                toast(result.message)
                 showProgress(false)
             }
         })
-
     }
 
     private fun showProgress(show: Boolean){

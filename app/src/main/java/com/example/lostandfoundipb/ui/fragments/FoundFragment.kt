@@ -54,6 +54,7 @@ class FoundFragment : Fragment(){
         init(view)
         onClick()
         getPost()
+        postResult()
         return view
     }
 
@@ -111,38 +112,31 @@ class FoundFragment : Fragment(){
     private fun getPost(){
         showProgress(true)
         viewModel.getPost(apiService!!)
-        viewModel.postString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.postResult.observe({lifecycle},{
-                    if(it.success){
-                        found.clear()
-                        foundAll.clear()
-                        post.clear()
-                        post.addAll(it.post!!)
-                        post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
-                        for (data in post){
-                            if(!data.is_deleted){
-                                if(data.type){
-                                    foundAll.add(data)
-                                    found.add(data)
-                                }
-                            }
+    }
 
+    private fun postResult(){
+        viewModel.postResult.observe({lifecycle},{result ->
+            if(result.success){
+                found.clear()
+                foundAll.clear()
+                post.clear()
+                post.addAll(result.post!!)
+                post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                for (data in post){
+                    if(!data.is_deleted){
+                        if(data.type){
+                            foundAll.add(data)
+                            found.add(data)
                         }
-                        adapterPost.notifyDataSetChanged()
-                        showProgress(false)
+                    }
 
-                    }
-                    else{
-                        toast(it.message.toString())
-                        showProgress(false)
-                    }
-                })
+                }
+                adapterPost.notifyDataSetChanged()
+                showProgress(false)
+
             }
             else{
-                s.let {
-                    toast(it)
-                }
+                toast(result.message.toString())
                 showProgress(false)
             }
         })

@@ -21,6 +21,7 @@ import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.viewmodel.CreatePostViewModel
 import kotlinx.android.synthetic.main.activity_form_post.*
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.alert
@@ -70,6 +71,7 @@ class CreatePostActivity : AppCompatActivity() {
         init()
         setData()
         onClick()
+        createPostResult()
     }
 
     private fun setData() {
@@ -202,7 +204,7 @@ class CreatePostActivity : AppCompatActivity() {
         category = itemCategory.selectedItem.toString()
         location = form_post_location.text.toString()
 
-        val file = RequestBody.create(MediaType.parse("image/jpeg"), picture)
+        val file = RequestBody.create("image/jpeg".toMediaTypeOrNull(), picture)
         val pictureReq = MultipartBody.Part.createFormData("item[picture]", picture.name, file)
 
 
@@ -236,7 +238,7 @@ class CreatePostActivity : AppCompatActivity() {
             focusView = form_post_location
             cancel = true
         }
-        if(pictureReq.body().contentLength()<1){
+        if(pictureReq.body.contentLength()<1){
             toast("Please insert Item Image first")
             focusView = form_post_picture_layout
             cancel = true
@@ -249,12 +251,12 @@ class CreatePostActivity : AppCompatActivity() {
             val map: HashMap<String, RequestBody> = HashMap()
             map["title"] = createPart(title)
             map["description"] = createPart(description)
-            map["type"] = createPart("0")
+            map["status"] = createPart("0")
             if(type=="Found"){
-                map["status"] = createPart("true")
+                map["type"] = createPart("true")
             }
             else if(type=="Lost"){
-                map["status"] = createPart("false")
+                map["type"] = createPart("false")
             }
 
             map["item[name]"] = createPart(name)
@@ -268,32 +270,22 @@ class CreatePostActivity : AppCompatActivity() {
     private fun attemptPost(map: HashMap<String, RequestBody>, pictureReq: MultipartBody.Part) {
         showProgress(true)
         viewModel.post(apiService,pictureReq,map)
-        viewModel.createPostString.observe({lifecycle},{s ->
-            if(s == "Success"){
-                viewModel.createPostResult.observe({lifecycle},{
-                    if(it.success){
-                        startActivity<MainActivity>("goto" to "home")
-                        finish()
-                        showProgress(false)
-                    }
-                    else{
-                        alert(it.message){
-                            yesButton {  }
-                        }.show()
-                        showProgress(false)
-                    }
-                })
+    }
+
+    private fun createPostResult(){
+        viewModel.createPostResult.observe({lifecycle},{
+            if(it.success){
+                startActivity<MainActivity>("goto" to "home")
+                finish()
+                showProgress(false)
             }
             else{
-                s.let {
-                    alert(it){
-                        yesButton {  }
-                    }.show()
-                }
+                alert(it.message){
+                    yesButton {  }
+                }.show()
                 showProgress(false)
             }
         })
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

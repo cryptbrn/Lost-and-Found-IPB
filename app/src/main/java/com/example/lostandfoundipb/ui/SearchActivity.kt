@@ -50,6 +50,7 @@ class SearchActivity : AppCompatActivity() {
         init()
         onClick()
         getPost()
+        postResult()
     }
 
     private fun onClick() {
@@ -116,45 +117,39 @@ class SearchActivity : AppCompatActivity() {
     private fun getPost(){
         showProgress(true)
         viewModel.getPost(apiService!!)
-        viewModel.postString.observe({ lifecycle }, { s ->
-            if (s == "Success") {
-                viewModel.postResult.observe({ lifecycle }, {
-                    if (it.success) {
-                        post.clear()
-                        postAll.clear()
-                        postData.clear()
-                        postData.addAll(it.post!!)
-                        postData.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
-                        for (data in postData) {
-                            if (!data.is_deleted) {
-                                if(type){
-                                    if(!data.type && data.item.category==category){
-                                        postAll.add(data)
-                                        post.add(data)
-                                    }
-                                }
-                                else {
-                                    if(data.type && data.item.category==category){
-                                        postAll.add(data)
-                                        post.add(data)
-                                    }
-                                }
+    }
 
+    private fun postResult(){
+        viewModel.postResult.observe({ lifecycle }, {
+            if (it.success) {
+                post.clear()
+                postAll.clear()
+                postData.clear()
+                postData.addAll(it.post!!)
+                postData.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
+                for (data in postData) {
+                    if (!data.is_deleted) {
+                        if(type){
+                            if(!data.type && data.item.category==category){
+                                postAll.add(data)
+                                post.add(data)
                             }
-
                         }
-                        adapterPost.notifyDataSetChanged()
-                        showProgress(false)
+                        else {
+                            if(data.type && data.item.category==category){
+                                postAll.add(data)
+                                post.add(data)
+                            }
+                        }
 
-                    } else {
-                        toast(it.message.toString())
-                        showProgress(false)
                     }
-                })
-            } else {
-                s.let {
-                    toast(it)
+
                 }
+                adapterPost.notifyDataSetChanged()
+                showProgress(false)
+
+            } else {
+                toast(it.message.toString())
                 showProgress(false)
             }
         })

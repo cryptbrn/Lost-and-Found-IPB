@@ -53,6 +53,8 @@ class PostDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setData()
         onClick()
+        personDataResult()
+        deleteResult()
         checkUser()
     }
 
@@ -78,22 +80,16 @@ class PostDetailActivity : AppCompatActivity() {
     private fun getPersonData(id: String){
         showProgress(true)
         viewModel.getPerson(apiService, id)
-        viewModel.personString.observe({ lifecycle }, { s ->
-            if (s == "Success") {
-                viewModel.personResult.observe({ lifecycle }, {
-                    if (it.success) {
-                        setPerson(it.user)
-                        user = it.user
-                        showProgress(false)
-                    } else {
-                        toast(it.message)
-                        showProgress(false)
-                    }
-                })
+    }
+
+    private fun personDataResult(){
+        viewModel.personResult.observe({ lifecycle }, {
+            if (it.success) {
+                setPerson(it.user!!)
+                user = it.user
+                showProgress(false)
             } else {
-                s.let {
-                    toast(it)
-                }
+                toast(it.message!!)
                 showProgress(false)
             }
         })
@@ -221,52 +217,43 @@ class PostDetailActivity : AppCompatActivity() {
     private fun updateStatus(type: String) {
         showProgress(true)
         val map: HashMap<String, RequestBody> = HashMap()
-        map["type"] = RequestBody.create(MultipartBody.FORM, type)
+        map["status"] = RequestBody.create(MultipartBody.FORM, type)
         viewModel.editPost(apiService, map, post.id.toString())
-        viewModel.editPostString.observe({ lifecycle }, { s ->
-            if (s == "Success") {
-                viewModel.editPostResult.observe({ lifecycle }, {
-                    if (it.success) {
-                        if (post.type) {
-                            when (type.toInt()) {
-                                0 -> {
-                                    detail_status_btn.text = getString(R.string.at_discoverer)
-                                    detail_status_btn.setBackgroundResource(R.drawable.rounded_red)
-                                }
-                                1 -> {
-                                    detail_status_btn.text = getString(R.string.at_ukk)
-                                    detail_status_btn.setBackgroundResource(R.drawable.rounded_darkblue)
-
-                                }
-                                else -> {
-                                    detail_status_btn.text = getString(R.string.claimed)
-                                    detail_status_btn.setBackgroundResource(R.drawable.rounded_green)
-
-                                }
-                            }
-                        } else {
-                            when (type.toInt()) {
-                                0 -> {
-                                    detail_status_btn.text = getString(R.string.item_not_found)
-                                    detail_status_btn.setBackgroundResource(R.drawable.rounded_red)
-                                }
-                                else -> {
-                                    detail_status_btn.text = getString(R.string.item_found)
-                                    detail_status_btn.setBackgroundResource(R.drawable.rounded_green)
-
-                                }
-                            }
+        viewModel.editPostResult.observe({ lifecycle }, {
+            if (it.success) {
+                if (post.type) {
+                    when (type.toInt()) {
+                        0 -> {
+                            detail_status_btn.text = getString(R.string.at_discoverer)
+                            detail_status_btn.setBackgroundResource(R.drawable.rounded_red)
                         }
-                        showProgress(false)
-                    } else {
-                        toast(it.message)
-                        showProgress(false)
+                        1 -> {
+                            detail_status_btn.text = getString(R.string.at_ukk)
+                            detail_status_btn.setBackgroundResource(R.drawable.rounded_darkblue)
+
+                        }
+                        else -> {
+                            detail_status_btn.text = getString(R.string.claimed)
+                            detail_status_btn.setBackgroundResource(R.drawable.rounded_green)
+
+                        }
                     }
-                })
-            } else {
-                s.let {
-                    toast(it)
+                } else {
+                    when (type.toInt()) {
+                        0 -> {
+                            detail_status_btn.text = getString(R.string.item_not_found)
+                            detail_status_btn.setBackgroundResource(R.drawable.rounded_red)
+                        }
+                        else -> {
+                            detail_status_btn.text = getString(R.string.item_found)
+                            detail_status_btn.setBackgroundResource(R.drawable.rounded_green)
+
+                        }
+                    }
                 }
+                showProgress(false)
+            } else {
+                toast(it.message)
                 showProgress(false)
             }
         })
@@ -276,22 +263,16 @@ class PostDetailActivity : AppCompatActivity() {
     private fun deletePost() {
         showProgress(true)
         viewModel.deletePost(apiService, post.id.toString())
-        viewModel.deleteString.observe({ lifecycle }, { s ->
-            if (s == "Success") {
-                viewModel.deleteResult.observe({ lifecycle }, {
-                    if (it.success) {
-                        startActivity<MainActivity>("goto" to "home")
-                        finish()
-                        showProgress(false)
-                    } else {
-                        toast(it.message)
-                        showProgress(false)
-                    }
-                })
+    }
+
+    private fun deleteResult(){
+        viewModel.deleteResult.observe({ lifecycle }, {
+            if (it.success) {
+                startActivity<MainActivity>("goto" to "home")
+                finish()
+                showProgress(false)
             } else {
-                s.let {
-                    toast(it)
-                }
+                toast(it.message)
                 showProgress(false)
             }
         })

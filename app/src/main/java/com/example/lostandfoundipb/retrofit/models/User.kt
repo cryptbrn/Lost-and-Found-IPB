@@ -7,9 +7,9 @@ object User {
     @Parcelize
     data class Result(
             var success: Boolean,
-            val message: String,
-            val token: String,
-            val user: User
+            val message: String?,
+            val token: String?,
+            val user: User?
     ):Parcelable
 
     @Parcelize

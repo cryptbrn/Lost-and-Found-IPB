@@ -143,7 +143,6 @@
     <string name="tv_pass_lama">Password Lama</string>
     <string name="tv_pass_baru">Password Baru</string>
     <string name="tv_konfirm_pass">Konfirmasi Password Baru</string>
-    <string name="btn_simpan">Simpan</string>
-    <string name="btn_batal">Batal</string>
+    <string name="btn_save">Save</string>
 
 </resources>

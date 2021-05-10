@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.SearchView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +24,7 @@ import com.example.lostandfoundipb.ui.CreatePostActivity
 import com.example.lostandfoundipb.ui.MainActivity
 import com.example.lostandfoundipb.ui.viewmodel.PostViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_found.view.*
 import kotlinx.android.synthetic.main.fragment_lost.view.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
@@ -37,6 +41,8 @@ class LostFragment : Fragment(){
     lateinit var session: SessionManagement
     lateinit var lostSv: SearchView
     lateinit var createPost: FloatingActionButton
+    lateinit var btnFilter: ImageView
+    lateinit var tvCategory: TextView
     private lateinit var refresh: SwipeRefreshLayout
     private val apiService by lazy {
         context?.let { ApiService.create(it) }
@@ -48,7 +54,7 @@ class LostFragment : Fragment(){
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_lost,container,false)
+        val view = inflater.inflate(R.layout.fragment_lost, container, false)
         session = SessionManagement(requireContext())
         viewModel = ViewModelProviders.of(requireActivity()).get(PostViewModel::class.java)
         init(view)
@@ -66,6 +72,8 @@ class LostFragment : Fragment(){
         lostSv = view.lost_sv
         progress = view.lost_progress
         lostRv = view.lost_rv
+        btnFilter = view.lost_filter
+        tvCategory = view.lost_tv_category
         refresh = view.findViewById(R.id.lost_swipe_refresh)
         adapterPost = PostAdapter(lost, this.context!!)
         lostRv.adapter = adapterPost
@@ -74,6 +82,7 @@ class LostFragment : Fragment(){
         refresh.onRefresh {
             refresh.isRefreshing = false
             getPost()
+            tvCategory.visibility = View.GONE
         }
 
     }
@@ -82,6 +91,7 @@ class LostFragment : Fragment(){
         createPost.setOnClickListener {
             startActivity<CreatePostActivity>("type" to 2)
         }
+        btnFilter.setOnClickListener { showDialogFilter() }
     }
 
 
@@ -109,22 +119,89 @@ class LostFragment : Fragment(){
         })
     }
 
+    private fun showDialogFilter() {
+        val alertDialog = AlertDialog.Builder(activity as MainActivity)
+        alertDialog.setTitle(getString(R.string.choose_status))
+        val category = arrayOf(
+                getString(R.string.important_documents),
+                getString(R.string.gadgets_amp_electronics),
+                getString(R.string.lunch_box_amp_bottles),
+                getString(R.string.clothes_amp_accessories),
+                getString(R.string.stationary_amp_module_book),
+                getString(R.string.others)
+        )
+
+        val checkedCategory = booleanArrayOf(
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+        )
+
+        val categoryList: List<String> = category.toList()
+
+        alertDialog.setMultiChoiceItems(category, checkedCategory){ _, which, isChecked ->
+            checkedCategory[which] = isChecked
+        }
+        alertDialog.setPositiveButton(
+                "Show"
+        ) { _, _ ->
+            updateStatus(checkedCategory, categoryList)
+        }
+        alertDialog.setNegativeButton(
+                "Cancel"
+        ){ _, _ ->
+
+        }
+        val alert = alertDialog.create()
+        alert.setCanceledOnTouchOutside(true)
+        alert.show()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateStatus(checkedCategory: BooleanArray, categoryList: List<String>) {
+        lost.clear()
+        lateinit var category: String
+        var j = 0
+        for(i in checkedCategory.indices) {
+            val checked = checkedCategory[i]
+            if(checked) {
+                j++
+                for(data in lostAll) {
+                    if(data.item.category.toLowerCase().contains(categoryList[i].toLowerCase())) {
+                        lost.add(data)
+                    }
+                }
+                category = if(j==1) {
+                    categoryList[i]
+                } else {
+                    category + ", " + categoryList[i]
+                }
+            }
+        }
+        tvCategory.visibility = View.VISIBLE
+        tvCategory.text = "Filtered by: $category"
+        adapterPost.notifyDataSetChanged()
+    }
+
     private fun getPost(){
         showProgress(true)
         viewModel.getPost(apiService!!)
     }
 
     private fun postResult(){
-        viewModel.postResult.observe({lifecycle},{result ->
-            if(result.success){
+        viewModel.postResult.observe({ lifecycle },{ result ->
+            if (result.success) {
                 lost.clear()
                 lostAll.clear()
                 post.clear()
                 post.addAll(result.post!!)
-                post.sortWith{c1, c2 -> c2.updated_at.compareTo(c1.updated_at)}
-                for (data in post){
-                    if(!data.is_deleted){
-                        if(!data.type){
+                post.sortWith { c1, c2 -> c2.updated_at.compareTo(c1.updated_at) }
+                for (data in post) {
+                    if (!data.is_deleted) {
+                        if (!data.type) {
                             lostAll.add(data)
                             lost.add(data)
                         }
@@ -134,8 +211,7 @@ class LostFragment : Fragment(){
                 adapterPost.notifyDataSetChanged()
                 showProgress(false)
 
-            }
-            else{
+            } else {
                 toast(result.message.toString())
                 showProgress(false)
             }

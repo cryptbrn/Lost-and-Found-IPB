@@ -40,8 +40,8 @@ class FoundFragment : Fragment(){
     lateinit var foundSv: SearchView
     lateinit var session: SessionManagement
     lateinit var createPost: FloatingActionButton
-    lateinit var btnFilter: ImageView
-    lateinit var tvCategory: TextView
+    private lateinit var btnFilter: ImageView
+    private lateinit var tvCategory: TextView
     private lateinit var refresh: SwipeRefreshLayout
     private val apiService by lazy {
         context?.let { ApiService.create(it) }

@@ -11,20 +11,13 @@ import okhttp3.RequestBody
 import okhttp3.Response
 
 class ChangePasswordViewModel : ViewModel() {
-    val changePasswordAuthResult = MutableLiveData<Confirmation.Result>()
     lateinit var changePasswordErrorAuth: Confirmation.Result
-
     val changePasswordResult = MutableLiveData<Confirmation.Result>()
     lateinit var changePasswordDetail: Confirmation.Result
 
-    fun auth(api: ApiService, password: String, old_password: String) = viewModelScope.launch {
-        val response = api.auth(password, old_password)
-        changePasswordAuthResult.postValue(handleChangePasswordResponse(response)!!)
-    }
-
     fun changePassword(api: ApiService, password: String, old_password: String) = viewModelScope.launch {
         val response = api.changePassword(password, old_password)
-        changePasswordResult.postValue(handleChangeDetailResponse(response)!!)
+        changePasswordResult.postValue(handleChangePasswordResponse(response)!!)
     }
 
     private fun handleChangePasswordResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
@@ -32,18 +25,8 @@ class ChangePasswordViewModel : ViewModel() {
             response.body()
         }
         else {
-            changePasswordErrorAuth = Confirmation.Result( false, response.message(), null, null)
+            changePasswordErrorAuth = Confirmation.Result( false, response.message())
             changePasswordErrorAuth
-        }
-    }
-
-    private fun handleChangeDetailResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
-        return if(response.isSuccessful) {
-            response.body()
-        }
-        else {
-            changePasswordDetail = Confirmation.Result( false, response.message())
-            changePasswordDetail
         }
     }
 }

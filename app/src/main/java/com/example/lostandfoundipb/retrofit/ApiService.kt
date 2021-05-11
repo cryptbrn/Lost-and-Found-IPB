@@ -82,8 +82,9 @@ interface ApiService {
                  @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
             Response<Confirmation.Result>
 
+    @FormUrlEncoded
     @POST("password/change")
-    suspend fun changePassword(@Url url: String,
+    suspend fun changePassword(
                 @Field("password") password: String,
                 @Field("old_password") old_password: String
     ):

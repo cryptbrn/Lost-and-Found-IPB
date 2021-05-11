@@ -13,14 +13,16 @@ import com.example.lostandfoundipb.Utils.passwordValidator
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.viewmodel.ChangePasswordViewModel
 import kotlinx.android.synthetic.main.activity_change_password.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.yesButton
 
 class ChangePasswordActivity : AppCompatActivity() {
-    lateinit var passLama = String
-    lateinit var passBaru = String
-    lateinit var konfirmPassBaru = String
-    lateinit var viewModel = ChangePasswordViewModel
-    lateinit var session = SessionManagement
+    lateinit var oldPassword: String
+    lateinit var password: String
+    lateinit var confirmPassword: String
+    lateinit var session: SessionManagement
 
+    lateinit var viewModel: ChangePasswordViewModel
     private val apiService by lazy {
         this.let { ApiService.create(this) }
     }
@@ -31,6 +33,8 @@ class ChangePasswordActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
         supportActionBar?.title = getString(R.string.change_password)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        updatePasswordResult()
+        onClick()
     }
 
     private fun onClick() {
@@ -38,54 +42,82 @@ class ChangePasswordActivity : AppCompatActivity() {
     }
 
     private fun updatePassword() {
-        change_password_pass_lama.error = null
-        change_password_pass_baru.error = null
-        change_password_konfirm_pass.error = null
+        change_password_old.error = null
+        change_password_new.error = null
+        change_password_confirm.error = null
 
         var cancel = false
         var focusView: View? = null
 
-        passLama = change_password_pass_lama.text.toString()
-        passBaru = change_password_pass_baru.text.toString()
-        konfirmPassBaru = change_password_konfirm_pass.text.toString()
+        oldPassword = change_password_old.text.toString()
+        password = change_password_new.text.toString()
+        confirmPassword = change_password_confirm.text.toString()
 
-        if(TextUtils.isEmpty(passLama)) {
-            change_password_pass_lama.error = getString(R.string.error_empty)
-            focusView = change_password_pass_lama
+        if(TextUtils.isEmpty(oldPassword)) {
+            change_password_old.error = getString(R.string.error_empty)
+            focusView = change_password_old
             cancel = true
         }
-        else if(!passwordValidator(passLama)) {
-            change_password_pass_lama.error = getString(R.string.password_error)
-            focusView = change_password_pass_lama
-            cancel = true
-        }
-
-        if(TextUtils.isEmpty(passBaru)) {
-            change_password_pass_baru.error = getString(R.string.error_empty)
-            focusView = change_password_pass_baru
+        else if(!passwordValidator(oldPassword)) {
+            change_password_old.error = getString(R.string.password_error)
+            focusView = change_password_old
             cancel = true
         }
 
-        if(TextUtils.isEmpty(konfirmPassBaru)) {
-            change_password_konfirm_pass.error = getString(R.string.error_empty)
-            focusView = change_password_konfirm_pass
+        if(TextUtils.isEmpty(password)) {
+            change_password_new.error = getString(R.string.error_empty)
+            focusView = change_password_new
             cancel = true
         }
 
-        if(passBaru != passLama) {
-            if(passBaru != konfirmPassBaru) {
-                change_password_pass_baru.error = getString(R.string.password_not_match)
-                focusView = change_password_pass_baru
-                focusView = change_password_konfirm_pass
+        if(TextUtils.isEmpty(confirmPassword)) {
+            change_password_confirm.error = getString(R.string.error_empty)
+            focusView = change_password_confirm
+            cancel = true
+        }
+
+        if(password != oldPassword) {
+            if(password != confirmPassword) {
+                change_password_new.error = getString(R.string.password_not_match)
+                focusView = change_password_new
+                focusView = change_password_confirm
                 cancel = true
             } else {
-                change_password_pass_baru.error = getString(R.string.password_error)
-                focusView = change_password_pass_baru
+                change_password_new.error = getString(R.string.password_error)
+                focusView = change_password_new
                 cancel = true
             }
         } else {
-            change_password_pass_baru.error = getString(R.string.password_error)
+            change_password_new.error = getString(R.string.password_error)
         }
+
+        if (cancel) {
+            focusView?.requestFocus()
+        } else {
+            attemptUpdatePassword(password, oldPassword)
+        }
+    }
+
+    private fun attemptUpdatePassword(password: String, old_password: String) {
+        showProgress(true)
+        viewModel.changePassword(apiService, password, old_password)
+    }
+
+    private fun updatePasswordResult(){
+        viewModel.changePasswordResult.observe({lifecycle}, {result ->
+            if(result.success) {
+                showProgress(false)
+                session.updatePassword(result.password)
+                finish()
+            } else {
+                showProgress(false)
+                result.let {
+                    alert(it.message!!) {
+                        yesButton { }
+                    }.show()
+                }
+            }
+        })
     }
 
     private fun showProgress(show: Boolean){

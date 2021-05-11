@@ -187,4 +187,11 @@ class SessionManagement (var context: Context){
         context.startActivity(intent)
     }
 
+    fun updatePassword(password: String){
+        editor.remove(KEY_PASS)
+        editor.commit()
+        editor.putString(KEY_PASS,password)
+        editor.commit()
+    }
+
 }

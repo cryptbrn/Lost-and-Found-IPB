@@ -82,6 +82,13 @@ interface ApiService {
                  @PartMap form: Map<String, @JvmSuppressWildcards RequestBody>):
             Response<Confirmation.Result>
 
+    @POST("password/change")
+    suspend fun changePassword(@Url url: String,
+                @Field("password") password: String,
+                @Field("old_password") old_password: String
+    ):
+            Response<Confirmation.Result>
+
 
     companion object{
         lateinit var session: SessionManagement

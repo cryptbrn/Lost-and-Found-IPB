@@ -11,39 +11,39 @@ import okhttp3.RequestBody
 import okhttp3.Response
 
 class ChangePasswordViewModel : ViewModel() {
-    val authResult = MutableLiveData<User.Result>()
-    lateinit var errorAuth: User.Result
+    val changePasswordAuthResult = MutableLiveData<Confirmation.Result>()
+    lateinit var changePasswordErrorAuth: Confirmation.Result
 
-    val editDetailResult = MutableLiveData<Confirmation.Result>()
-    lateinit var errorEditDetail: Confirmation.Result
+    val changePasswordResult = MutableLiveData<Confirmation.Result>()
+    lateinit var changePasswordDetail: Confirmation.Result
 
-    fun auth(api: ApiService) = viewModelScope.launch {
-        val response = api.auth()
-        authResult.postValue(handleAuthResponse(response)!!)
+    fun auth(api: ApiService, password: String, old_password: String) = viewModelScope.launch {
+        val response = api.auth(password, old_password)
+        changePasswordAuthResult.postValue(handleChangePasswordResponse(response)!!)
     }
 
-    fun changePassword(api: ApiService, update: Map<String, @JvmSuppressWildcards RequestBody>) = viewModelScope.launch {
-        val response = api.editProfile(update)
-        editDetailResult.postValue(handleEditDetailResponse(response)!!)
+    fun changePassword(api: ApiService, password: String, old_password: String) = viewModelScope.launch {
+        val response = api.changePassword(password, old_password)
+        changePasswordResult.postValue(handleChangeDetailResponse(response)!!)
     }
 
-    private fun handleAuthResponse(response: Response<User.Result>): User.Result? {
+    private fun handleChangePasswordResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
         return if(response.isSuccessful) {
             response.body()
         }
         else {
-            errorAuth = User.Result( false, response.message(), null, null)
-            errorAuth
+            changePasswordErrorAuth = Confirmation.Result( false, response.message(), null, null)
+            changePasswordErrorAuth
         }
     }
 
-    private fun handleEditDetailResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
+    private fun handleChangeDetailResponse(response: Response<Confirmation.Result>): Confirmation.Result? {
         return if(response.isSuccessful) {
             response.body()
         }
         else {
-            errorEditDetail = Confirmation.Result( false, response.message())
-            errorEditDetail
+            changePasswordDetail = Confirmation.Result( false, response.message())
+            changePasswordDetail
         }
     }
 }

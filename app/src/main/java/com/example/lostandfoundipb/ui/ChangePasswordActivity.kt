@@ -55,7 +55,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         password = change_password_new.text.toString()
         confirmPassword = change_password_confirm.text.toString()
 
-        if(oldPassword != session.user["password"]) {
+        if(oldPassword != session.password) {
             change_password_old.error = getString(R.string.old_password_error)
             focusView = change_password_old
             cancel = true

@@ -50,6 +50,10 @@ class SessionManagement (var context: Context){
             return pref.getString(KEY_NAME, "").toString()
         }
 
+    val password: String
+        get() {
+            return pref.getString(KEY_PASS, "").toString()
+        }
 
     val user: HashMap<String,String>
         get() {

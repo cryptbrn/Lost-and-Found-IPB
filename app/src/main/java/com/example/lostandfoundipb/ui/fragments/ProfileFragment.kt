@@ -10,15 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.lostandfoundipb.ui.AboutApplicationActivity
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.Utils.Global.Companion.URL_PICT
-import com.example.lostandfoundipb.ui.EditProfileActivity
-import com.example.lostandfoundipb.ui.HistoryPostActivity
-import com.example.lostandfoundipb.ui.MainActivity
+import com.example.lostandfoundipb.ui.*
+import com.example.lostandfoundipb.ui.viewmodel.ChangePasswordViewModel
 import com.example.lostandfoundipb.ui.viewmodel.ProfileViewModel
+import kotlinx.android.synthetic.main.activity_change_password.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import org.jetbrains.anko.noButton
@@ -42,6 +41,7 @@ class ProfileFragment : Fragment() {
     lateinit var editProfile: TextView
     lateinit var postHistory: TextView
     lateinit var aboutApplication: TextView
+    lateinit var changePassword: TextView
 
 
 
@@ -74,6 +74,7 @@ class ProfileFragment : Fragment() {
         editProfile = view.tv_edit
         postHistory = view.profile_tv_history
         aboutApplication = view.profile_tv_about
+        changePassword = view.tv_edit_password
         onClick()
         setView()
     }
@@ -111,6 +112,7 @@ class ProfileFragment : Fragment() {
         editProfile.setOnClickListener { startActivity<EditProfileActivity>() }
         postHistory.setOnClickListener { startActivity<HistoryPostActivity>() }
         aboutApplication.setOnClickListener { startActivity<AboutApplicationActivity>() }
+        changePassword.setOnClickListener { startActivity<ChangePasswordActivity>() }
     }
 
     private fun logout(){

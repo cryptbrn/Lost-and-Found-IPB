@@ -33,6 +33,8 @@ class ChangePasswordActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
         supportActionBar?.title = getString(R.string.change_password)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        session = SessionManagement(this)
+
         updatePasswordResult()
         onClick()
     }
@@ -52,6 +54,12 @@ class ChangePasswordActivity : AppCompatActivity() {
         oldPassword = change_password_old.text.toString()
         password = change_password_new.text.toString()
         confirmPassword = change_password_confirm.text.toString()
+
+        if(oldPassword != session.user["password"]) {
+            change_password_old.error = getString(R.string.old_password_error)
+            focusView = change_password_old
+            cancel = true
+        }
 
         if(TextUtils.isEmpty(oldPassword)) {
             change_password_old.error = getString(R.string.error_empty)
@@ -78,17 +86,15 @@ class ChangePasswordActivity : AppCompatActivity() {
 
         if(password != oldPassword) {
             if(password != confirmPassword) {
-                change_password_new.error = getString(R.string.password_not_match)
+                change_password_new.error = getString(R.string.password_not_same)
                 focusView = change_password_new
                 focusView = change_password_confirm
                 cancel = true
-            } else {
-                change_password_new.error = getString(R.string.password_error)
-                focusView = change_password_new
-                cancel = true
             }
         } else {
-            change_password_new.error = getString(R.string.password_error)
+            change_password_new.error = getString(R.string.old_password_same)
+            focusView = change_password_new
+            cancel = true
         }
 
         if (cancel) {
@@ -107,7 +113,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         viewModel.changePasswordResult.observe({lifecycle}, {result ->
             if(result.success) {
                 showProgress(false)
-                session.updatePassword(result.password)
+                session.updatePassword(password)
                 finish()
             } else {
                 showProgress(false)

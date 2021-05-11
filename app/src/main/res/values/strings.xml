@@ -145,4 +145,8 @@
     <string name="tv_konfirm_pass">Konfirmasi Password Baru</string>
     <string name="btn_save">Save</string>
 
+    <string name="old_password_error">This is not your old password</string>
+    <string name="password_not_same">Your new password and confirmation is not the same</string>
+    <string name="old_password_same">You can\'t use your old password as your new password</string>
+
 </resources>

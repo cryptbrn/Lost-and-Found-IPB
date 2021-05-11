@@ -13,7 +13,6 @@ import okhttp3.Response
 class ChangePasswordViewModel : ViewModel() {
     lateinit var changePasswordErrorAuth: Confirmation.Result
     val changePasswordResult = MutableLiveData<Confirmation.Result>()
-    lateinit var changePasswordDetail: Confirmation.Result
 
     fun changePassword(api: ApiService, password: String, old_password: String) = viewModelScope.launch {
         val response = api.changePassword(password, old_password)

@@ -5,10 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.retrofit.models.Confirmation
-import com.example.lostandfoundipb.retrofit.models.User
 import kotlinx.coroutines.launch
-import okhttp3.RequestBody
-import okhttp3.Response
+import retrofit2.Response
 
 class ChangePasswordViewModel : ViewModel() {
     lateinit var changePasswordErrorAuth: Confirmation.Result
@@ -28,4 +26,6 @@ class ChangePasswordViewModel : ViewModel() {
             changePasswordErrorAuth
         }
     }
+
+
 }

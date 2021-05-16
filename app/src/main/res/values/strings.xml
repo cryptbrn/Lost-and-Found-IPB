@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Lost and Found IPB</string>
     <string name="txtTogether">Together, We Help Each Other.</string>
     <string name="txtUsername">E-mail/Username</string>
@@ -48,6 +48,7 @@
     <string name="account_deactivation">Deactivation Account</string>
     <string name="myitem_found">Item That I Found</string>
     <string name="myitem_lost">My Lost Item</string>
+    <string name="deactivate_account">Deactivate Account</string>
 
     <string name="about">About</string>
     <string name="help_center">Help Center</string>
@@ -66,9 +67,9 @@
     <string name="from_camera">Take photo from camera</string>
     <string name="from_gallery">Select from gallery</string>
 
-    <string name="btnMencari">Saya ingin mencari barang</string>
-    <string name="btnMengembalikan">Saya ingin mengembalikan barang yang ditemukan</string>
-    <string name="btnMemposting">Saya ingin memposting pencarian/penemuan barang</string>
+    <string name="btnMencari">I want to find my item</string>
+    <string name="btnMengembalikan">I want to retrieve the item i\'ve found</string>
+    <string name="btnMemposting">I want to create a post of the Item i\'ve Lost/Found</string>
     <string name="txtKosong">You don\'t have any post for now. Stay hydrated and have a wonderful day\!</string>
     <string name="imgKosong">Image</string>
     <string name="what_happened">What happened?</string>
@@ -139,14 +140,19 @@
         <item>Others</item>
     </string-array>
 
-    <string name="tv_about_application">Lost and Found IPB merupakan sebuah aplikasi berbasis mobile yang berguna untuk mempertemukan orang-orang yang mengalami kehilangan barang dan orang-orang yang menemukan barang-barang tercecer yang terjadi di sekitar wilayah kampus IPB. Aplikasi ini akan memiliki fitur untuk memposting barang-barang yang hilang, memposting barang-barang tercecer yang ditemukan, memberikan komentar terhadap postingan tersebut, dan informasi dalam bentuk koordinat tempat barang itu ditemukan.</string>
-    <string name="tv_pass_lama">Password Lama</string>
-    <string name="tv_pass_baru">Password Baru</string>
-    <string name="tv_konfirm_pass">Konfirmasi Password Baru</string>
+    <string name="tv_about_application">Lost and Found IPB is a mobile application that serves as a platform to help people who lost their items and the ones who found them met in IPB University Campus area. This application has a feature to create posts about the item that they\'ve found or the item that they\'ve lost.</string>
+    <string name="tv_pass_lama">Old Password</string>
+    <string name="tv_pass_baru">New Password</string>
+    <string name="tv_konfirm_pass">Confirm New Password</string>
     <string name="btn_save">Save</string>
 
     <string name="old_password_error">This is not your old password</string>
     <string name="password_not_same">Your new password and confirmation is not the same</string>
     <string name="old_password_same">You can\'t use your old password as your new password</string>
 
+    <string name="confirm_deactivation">Complete your deactivation request by write \'deactivate\' in the given box below</string>
+    <string name="deactivate_password">Your password</string>
+    <string name="btn_deactivate">Deactivate Account</string>
+    <string name="deact_confirm_error">Please fill with \'deactivate\'</string>
+    <string name="deact_password_error">Invalid Password, please try again</string>
 </resources>

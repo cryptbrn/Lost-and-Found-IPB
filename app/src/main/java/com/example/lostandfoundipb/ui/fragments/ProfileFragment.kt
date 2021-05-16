@@ -42,6 +42,7 @@ class ProfileFragment : Fragment() {
     lateinit var postHistory: TextView
     lateinit var aboutApplication: TextView
     lateinit var changePassword: TextView
+    lateinit var deactivateAccount: TextView
 
 
 
@@ -75,6 +76,7 @@ class ProfileFragment : Fragment() {
         postHistory = view.profile_tv_history
         aboutApplication = view.profile_tv_about
         changePassword = view.tv_edit_password
+        deactivateAccount = view.tv_deactivate_account
         onClick()
         setView()
     }
@@ -113,6 +115,7 @@ class ProfileFragment : Fragment() {
         postHistory.setOnClickListener { startActivity<HistoryPostActivity>() }
         aboutApplication.setOnClickListener { startActivity<AboutApplicationActivity>() }
         changePassword.setOnClickListener { startActivity<ChangePasswordActivity>() }
+        deactivateAccount.setOnClickListener { startActivity<ChangePasswordActivity>() }
     }
 
     private fun logout(){

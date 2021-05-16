@@ -90,6 +90,9 @@ interface ApiService {
     ):
             Response<Confirmation.Result>
 
+    @DELETE("user")
+    suspend fun deactivateAccount():
+            Response<Confirmation.Result>
 
     companion object{
         lateinit var session: SessionManagement

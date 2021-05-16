@@ -18,6 +18,7 @@ import com.example.lostandfoundipb.ui.*
 import com.example.lostandfoundipb.ui.viewmodel.ChangePasswordViewModel
 import com.example.lostandfoundipb.ui.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_change_password.view.*
+import kotlinx.android.synthetic.main.activity_deactivate_account.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import org.jetbrains.anko.noButton
@@ -115,7 +116,7 @@ class ProfileFragment : Fragment() {
         postHistory.setOnClickListener { startActivity<HistoryPostActivity>() }
         aboutApplication.setOnClickListener { startActivity<AboutApplicationActivity>() }
         changePassword.setOnClickListener { startActivity<ChangePasswordActivity>() }
-        deactivateAccount.setOnClickListener { startActivity<ChangePasswordActivity>() }
+        deactivateAccount.setOnClickListener { startActivity<DeactivateAccountActivity>() }
     }
 
     private fun logout(){

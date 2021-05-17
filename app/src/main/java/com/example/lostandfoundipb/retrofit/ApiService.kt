@@ -94,6 +94,7 @@ interface ApiService {
     suspend fun deactivateAccount():
             Response<Confirmation.Result>
 
+    @FormUrlEncoded
     @POST("password/email")
     suspend fun forgotPassword(
                 @Field("email") email: String

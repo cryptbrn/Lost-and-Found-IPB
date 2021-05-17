@@ -13,7 +13,9 @@ import com.example.lostandfoundipb.Utils.passwordValidator
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.viewmodel.DeactivateAccountViewModel
 import kotlinx.android.synthetic.main.activity_deactivate_account.*
+import org.jetbrains.anko.AlertDialogBuilder
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
 class DeactivateAccountActivity: AppCompatActivity() {
@@ -92,9 +94,13 @@ class DeactivateAccountActivity: AppCompatActivity() {
         viewModel.deactivateAccountResult.observe({lifecycle}, {result ->
             if(result.success) {
                 showProgress(false)
-                session.clearSession()
-                session.logout()
-                finish()
+                alert("Your account has been successfully deactivated."){
+                    title = "Account Deactivation Complete"
+                    yesButton{
+                        session.clearSession()
+                        session.logout()
+                        finish()}
+                }.show()
             } else {
                 showProgress(false)
                 result.let {

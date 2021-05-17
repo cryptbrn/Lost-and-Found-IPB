@@ -118,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:maxLines="1"
                     android:padding="16dp"
                     android:singleLine="true"

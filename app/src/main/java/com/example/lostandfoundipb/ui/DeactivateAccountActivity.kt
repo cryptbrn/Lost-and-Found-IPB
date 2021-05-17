@@ -2,20 +2,16 @@ package com.example.lostandfoundipb.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.se.omapi.Session
 import android.text.TextUtils
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProviders
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
-import com.example.lostandfoundipb.Utils.passwordValidator
 import com.example.lostandfoundipb.retrofit.ApiService
 import com.example.lostandfoundipb.ui.viewmodel.DeactivateAccountViewModel
 import kotlinx.android.synthetic.main.activity_deactivate_account.*
-import org.jetbrains.anko.AlertDialogBuilder
 import org.jetbrains.anko.alert
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
 class DeactivateAccountActivity: AppCompatActivity() {

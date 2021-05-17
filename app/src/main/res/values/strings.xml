@@ -155,4 +155,8 @@
     <string name="btn_deactivate">Deactivate Account</string>
     <string name="deact_confirm_error">Please fill with \'deactivate\'</string>
     <string name="deact_password_error">Invalid Password, please try again</string>
+
+    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password_email">Please input your registered email account and we will send you an email to reset your Password</string>
+    <string name="btn_forgot_password">Reset Password</string>
 </resources>

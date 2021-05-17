@@ -41,6 +41,7 @@ class   LoginActivity : AppCompatActivity() {
     }
 
     private fun onClick() {
+        login_forgot_password.setOnClickListener { startActivity<ForgotPasswordActivity>() }
         login_register.setOnClickListener { startActivity<RegisterActivity>() }
         login_btn_login.setOnClickListener { checkLogin() }
     }

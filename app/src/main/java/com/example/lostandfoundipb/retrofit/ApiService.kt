@@ -94,6 +94,12 @@ interface ApiService {
     suspend fun deactivateAccount():
             Response<Confirmation.Result>
 
+    @POST("password/email")
+    suspend fun forgotPassword(
+                @Field("email") email: String
+    ):
+            Response<Confirmation.Result>
+
     companion object{
         lateinit var session: SessionManagement
 

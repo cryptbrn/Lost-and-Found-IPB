@@ -45,7 +45,7 @@
     <string name="edit_profile_detail">Edit Profile Detail</string>
     <string name="edit_profile_picture">Edit Profile Picture</string>
     <string name="change_password">Change Password</string>
-    <string name="account_deactivation">Deactivation Account</string>
+    <string name="account_deactivation">Deactivate Account</string>
     <string name="myitem_found">Item That I Found</string>
     <string name="myitem_lost">My Lost Item</string>
     <string name="deactivate_account">Deactivate Account</string>

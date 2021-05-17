@@ -77,7 +77,7 @@ class ProfileFragment : Fragment() {
         postHistory = view.profile_tv_history
         aboutApplication = view.profile_tv_about
         changePassword = view.tv_edit_password
-        deactivateAccount = view.tv_deactivate_account
+        deactivateAccount = view.tv_deactivation
         onClick()
         setView()
     }

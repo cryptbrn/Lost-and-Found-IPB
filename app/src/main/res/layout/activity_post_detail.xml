@@ -38,6 +38,7 @@
                     android:text="Title"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textStyle="bold" />
 
                 <TextView
@@ -47,6 +48,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/mediumDarkGrey"
                     android:textSize="12sp"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textStyle="bold" />
 
                 <View
@@ -73,6 +75,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textColor="@color/mediumDarkGrey"
+                            android:fontFamily="@font/product_sans_regular"
                             android:textStyle="bold" />
 
                         <TextView
@@ -81,6 +84,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textColor="@color/black"
+                            android:fontFamily="@font/product_sans_regular"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -98,6 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="@string/post_date"
+                            android:fontFamily="@font/product_sans_regular"
                             android:textColor="@color/mediumDarkGrey"
                             android:textStyle="bold" />
 
@@ -106,6 +111,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/product_sans_regular"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -119,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="@string/description"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textColor="@color/mediumDarkGrey"
                     android:textStyle="bold" />
 
@@ -128,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textStyle="bold" />
 
                 <TextView
@@ -137,6 +145,7 @@
                     android:layout_marginTop="15dp"
                     android:text="Status"
                     android:textColor="@color/mediumDarkGrey"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textStyle="bold" />
 
                 <Button
@@ -148,6 +157,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textStyle="bold" />
 
 
@@ -158,6 +168,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="15dp"
                     android:textColor="@color/mediumDarkGrey"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -173,6 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/product_sans_regular"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -219,6 +231,7 @@
             android:drawablePadding="-40dp"
             android:paddingStart="40dp"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/product_sans_regular"
             android:layout_marginEnd="10dp"/>
 
         <Button
@@ -235,6 +248,7 @@
             android:drawablePadding="-25dp"
             android:paddingStart="25dp"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/product_sans_regular"
             android:layout_marginEnd="10dp"/>
 
 

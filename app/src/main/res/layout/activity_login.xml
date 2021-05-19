@@ -31,6 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/txtTogether"
             android:textColor="#092AA5"
+            android:fontFamily="@font/product_sans_regular"
             android:textSize="14sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +47,7 @@
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@id/login_username"
                 app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/product_sans_regular"
                 android:text="@string/txtUsername" />
 
 
@@ -88,6 +90,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="@id/login_username"
                 app:layout_constraintTop_toBottomOf="@id/login_username"
+                android:fontFamily="@font/product_sans_regular"
                 android:text="@string/password" />
 
 
@@ -142,6 +145,7 @@
             android:text="@string/btnLogin"
             android:textColor="@color/white"
             android:background="@drawable/rounded_darkblue"
+            android:fontFamily="@font/product_sans_regular"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
@@ -153,6 +157,7 @@
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/product_sans_regular"
             app:layout_constraintStart_toStartOf="@+id/btnLogin"
             app:layout_constraintTop_toBottomOf="@+id/txtForgot" />
 
@@ -169,6 +174,7 @@
                 android:text="@string/txtDont"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/btnLogin"
+                android:fontFamily="@font/product_sans_regular"
                 app:layout_constraintTop_toBottomOf="@+id/txtForgot" />
 
             <TextView
@@ -178,6 +184,7 @@
                 android:text="@string/txtRegister"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
 

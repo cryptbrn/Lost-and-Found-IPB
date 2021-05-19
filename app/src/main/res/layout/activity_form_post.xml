@@ -28,6 +28,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Post Detail"
+                android:fontFamily="@font/montserrat_regular"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -38,6 +39,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Post Type"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -58,6 +60,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Post Title"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -86,6 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Post Description"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -114,6 +118,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Item Detail"
+                android:fontFamily="@font/product_sans_regular"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -125,6 +130,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Item Name"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -154,6 +160,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Item Category"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -175,6 +182,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Item Last Location"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -204,6 +212,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="33dp"
                 android:text="Item Picture"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/colorPrimary" />
 
             <androidx.cardview.widget.CardView
@@ -235,6 +244,7 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/rounded_darkblue"
                 android:text="Post"
+                android:fontFamily="@font/product_sans_regular"
                 android:textColor="@color/white" />
 
 

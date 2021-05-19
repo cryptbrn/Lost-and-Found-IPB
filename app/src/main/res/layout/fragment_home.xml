@@ -29,8 +29,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:layout_marginStart="20dp"
-                    android:text="Hallo, User"
+                    android:text="Hello, User"
                     android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"/>
                 <TextView
@@ -39,6 +40,7 @@
                     android:layout_marginStart="20dp"
                     android:text="@string/what_happened"
                     android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"/>
                 <LinearLayout
@@ -58,6 +60,7 @@
                         android:textAllCaps="false"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/product_sans_regular"
                         android:background="@drawable/button_rounded_green"/>
                     <Button
                         android:id="@+id/home_btn_lost"
@@ -69,6 +72,7 @@
                         android:textAllCaps="false"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="15dp"
+                        android:fontFamily="@font/product_sans_regular"
                         android:background="@drawable/button_rounded_red"/>
                 </LinearLayout>
             </LinearLayout>
@@ -83,6 +87,7 @@
                 android:text="@string/my_post"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:fontFamily="@font/product_sans_regular"
                 android:textStyle="bold"/>
 
 
@@ -106,6 +111,7 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:fontFamily="@font/product_sans_regular"
                         app:layout_constraintStart_toStartOf="parent"/>
 
 
@@ -119,6 +125,7 @@
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:fontFamily="@font/product_sans_regular"
                         tools:ignore="SmallSp" />
 
 
@@ -131,6 +138,7 @@
                     android:layout_marginEnd="80dp"
                     android:text="The following items have recently been found, maybe the item you are looking for is one of them"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="12sp"/>
 
 
@@ -162,6 +170,7 @@
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"
                         android:textSize="14sp"
+                        android:fontFamily="@font/product_sans_regular"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -173,6 +182,7 @@
                         android:background="@drawable/button_rounded_primary"
                         android:text="SHOW ALL"
                         android:textSize="10sp"
+                        android:fontFamily="@font/product_sans_regular"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -188,6 +198,7 @@
                     android:layout_marginEnd="80dp"
                     android:text="The following items are recently lost, maybe the items you find are one of them "
                     android:textColor="@color/black"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="12sp"/>
 
 

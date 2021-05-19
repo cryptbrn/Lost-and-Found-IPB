@@ -43,6 +43,7 @@
                     android:layout_marginTop="7sp"
                     android:text="Name"
                     android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -52,9 +53,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relative"
                     android:layout_centerHorizontal="true"
-                    android:text="Userame"
+                    android:text="Username"
                     android:textStyle="bold"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="16sp" />
 
 
@@ -63,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="mail@mail.com"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -78,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/relative"
                     android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/product_sans_regular"
                     android:layout_marginTop="7sp"
                     android:text="Status"
                     android:textStyle="bold"
@@ -94,6 +98,7 @@
                     android:layout_marginTop="2dp"
                     android:text="Status"
                     android:textStyle="bold"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -106,6 +111,7 @@
                     android:text="Phone Number"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="15sp" />
 
 
@@ -119,6 +125,7 @@
                     android:text="+62-000-0000-0000"
                     android:textStyle="bold"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="15sp" />
 
 
@@ -132,6 +139,7 @@
                     android:text="@string/post_history"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="15sp" />
 
                 <TextView
@@ -144,6 +152,7 @@
                     android:text="@string/about_app"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/product_sans_regular"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -167,6 +176,7 @@
                     android:text="@string/account"
                     android:textStyle="bold"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textSize="20sp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -194,6 +204,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginStart="35dp"
+                        android:fontFamily="@font/product_sans_regular"
                         app:layout_constraintStart_toStartOf="@id/iv_edit"
                         app:layout_constraintTop_toTopOf="@id/iv_edit"/>
 
@@ -226,6 +237,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginStart="35dp"
+                        android:fontFamily="@font/product_sans_regular"
                         app:layout_constraintStart_toStartOf="@id/iv_edit_password"
                         app:layout_constraintTop_toTopOf="@id/iv_edit_password"/>
 
@@ -257,6 +269,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginStart="35dp"
+                        android:fontFamily="@font/product_sans_regular"
                         app:layout_constraintStart_toStartOf="@id/iv_deactivation"
                         app:layout_constraintTop_toTopOf="@id/iv_deactivation"/>
 
@@ -288,6 +301,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginStart="35dp"
+                        android:fontFamily="@font/product_sans_regular"
                         app:layout_constraintStart_toStartOf="@id/iv_logout"
                         app:layout_constraintTop_toTopOf="@id/iv_logout"/>
 

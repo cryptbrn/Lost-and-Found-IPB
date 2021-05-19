@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/tv_about_application"
-        android:layout_width="334dp"
-        android:layout_height="331dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/product_sans_regular"
         android:textAlignment="center"
         android:padding="40dp"

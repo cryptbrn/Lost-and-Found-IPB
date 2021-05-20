@@ -11,6 +11,7 @@ import com.example.lostandfoundipb.Utils.SessionManagement
 import com.example.lostandfoundipb.Utils.emailValidator
 import com.example.lostandfoundipb.Utils.passwordValidator
 import com.example.lostandfoundipb.retrofit.ApiService
+import com.example.lostandfoundipb.retrofit.models.User
 import com.example.lostandfoundipb.ui.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.alert
@@ -53,6 +54,9 @@ class   LoginActivity : AppCompatActivity() {
         var cancel = false
         var focusView: View? = null
 
+        var isEmail = true
+
+
         email = login_username.text.toString()
         password = login_password.text.toString()
 
@@ -62,9 +66,7 @@ class   LoginActivity : AppCompatActivity() {
             cancel = true
         }
         else if (!TextUtils.isEmpty(email) && !emailValidator(email)) {
-            login_username.error = getString(R.string.email_error)
-            focusView = login_username
-            cancel = true
+            isEmail = false
         }
 
         if (TextUtils.isEmpty(password)) {
@@ -81,14 +83,19 @@ class   LoginActivity : AppCompatActivity() {
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            attemptLogin(email, password)
+            if (isEmail){
+                attemptLogin(User.LogIn(null,email,password))
+            }
+            else {
+                attemptLogin(User.LogIn(email,null,password))
+            }
         }
 
     }
 
-    private fun attemptLogin(email: String, password: String) {
+    private fun attemptLogin(body: User.LogIn) {
         showProgress(true)
-        viewModel.login(apiService, email, password)
+        viewModel.login(apiService, body)
     }
 
     private fun loginResult(){

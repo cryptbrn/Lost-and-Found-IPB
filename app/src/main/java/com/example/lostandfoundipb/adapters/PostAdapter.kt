@@ -10,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.formatDate
 import com.example.lostandfoundipb.Utils.Global.Companion.URL_POST
+import com.example.lostandfoundipb.Utils.relativeTime
 import com.example.lostandfoundipb.retrofit.models.Post
 import com.example.lostandfoundipb.ui.PostDetailActivity
 import kotlinx.android.synthetic.main.item_post.view.*
@@ -57,7 +58,7 @@ class PostViewHolder(view: View) : RecyclerView.ViewHolder(view){
         lostBadge.visibility = View.GONE
         title.text = post.title
         description.text = post.description
-        time.text = formatDate(post.updated_at, context)
+        time.text = relativeTime(post.updated_at)
         if(post.type){
             foundBadge.visibility = View.VISIBLE
         }

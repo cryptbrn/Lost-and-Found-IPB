@@ -24,12 +24,8 @@ interface ApiService {
     suspend fun register(@Body body: User.SignUp):
             Response<Confirmation.Result>
 
-    @FormUrlEncoded
     @POST("login")
-    suspend fun login(
-            @Field("email") email:String,
-            @Field("password") password:String
-    ):
+    suspend fun login(@Body body: User.LogIn):
             Response<User.Result>
 
     @GET("auth")

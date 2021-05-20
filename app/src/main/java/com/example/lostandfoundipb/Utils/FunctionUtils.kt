@@ -2,6 +2,7 @@ package com.example.lostandfoundipb.Utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.format.DateUtils
 import com.example.lostandfoundipb.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,9 +29,8 @@ fun emailValidator(email: String?): Boolean {
 
 @SuppressLint("SimpleDateFormat")
 fun formatDate(date: String?, context: Context?): String{
-    val dateTemp = date.toString()
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-    val dateParsed= dateFormat.parse(dateTemp)
+    val dateParsed= dateFormat.parse(date.toString())
     val dayOfWeek = dateParsed.day
     var dayOfWeekStr = ""
     when (dayOfWeek) {
@@ -42,5 +42,14 @@ fun formatDate(date: String?, context: Context?): String{
         5 -> { dayOfWeekStr = context!!.getString(R.string.fri) }
         6 -> { dayOfWeekStr = context!!.getString(R.string.sat) }
     }
-    return dayOfWeekStr+", "+ SimpleDateFormat("dd MMM yyyy").format(dateFormat.parse(dateTemp) as Date)
+    return dayOfWeekStr+", "+ SimpleDateFormat("dd MMM yyyy").format(dateFormat.parse(date.toString()) as Date)
+}
+
+fun relativeTime(date: String): String {
+    val dateFormat = SimpleDateFormat ("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    dateFormat.timeZone = TimeZone.getTimeZone("GMT")
+    val dateParsed = dateFormat.parse(date).time
+    val dateCurrent = System.currentTimeMillis()
+
+    return DateUtils.getRelativeTimeSpanString(dateParsed,dateCurrent,DateUtils.MINUTE_IN_MILLIS).toString()
 }

@@ -25,22 +25,30 @@ object User {
         val lecturer: Lecturer.Lecturer?,
         val student: Student.Student?
     ):Parcelable
+    
 
     @Parcelize
     data class SignUp(
-        val name: String,
-        val username: String,
-        val email: String,
-        val telephone: String,
-        val password: String,
-        val role: String,
-        val nim: String?,
-        val nip: String?,
-        val faculty: String?,
-        val department: String?,
-        val unit: String?,
-        val batch: Int?
-        ): Parcelable
+            val name: String,
+            val username: String,
+            val email: String,
+            val telephone: String,
+            val password: String,
+            val role: String,
+            val nim: String?,
+            val nip: String?,
+            val faculty: String?,
+            val department: String?,
+            val unit: String?,
+            val batch: Int?
+    ): Parcelable
+    
+    @Parcelize
+    data class LogIn(
+            var username: String?,
+            var email: String?,
+            var password: String
+    ): Parcelable
 
     @Parcelize
     data class Update(

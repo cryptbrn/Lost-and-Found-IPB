@@ -20,6 +20,7 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
+import java.util.*
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -132,13 +133,13 @@ class RegisterActivity : AppCompatActivity() {
         var focusView: View? = null
 
         name = register_name.text.toString()
-        username = register_username.text.toString()
+        username = register_username.text.toString().toLowerCase()
         email = register_email.text.toString()
         telephone = register_telephone.text.toString()
         password = register_password.text.toString()
         confirmPassword = register_confirm_password.text.toString()
-        nim = register_nim.text.toString()
-        nip = register_nip.text.toString()
+        nim = register_nim.text.toString().toUpperCase()
+        nip = register_nip.text.toString().toUpperCase()
         faculty = register_faculty.text.toString()
         department = register_department.text.toString()
         batch = register_batch.text.toString()

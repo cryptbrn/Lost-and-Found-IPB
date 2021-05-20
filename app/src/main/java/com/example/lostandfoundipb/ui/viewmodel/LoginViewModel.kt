@@ -13,8 +13,8 @@ class LoginViewModel : ViewModel() {
     val loginResult = MutableLiveData<User.Result>()
     lateinit var errorLogin: User.Result
 
-    fun login(api: ApiService, email: String, password: String) = viewModelScope.launch {
-        val response = api.login(email,password)
+    fun login(api: ApiService, body: User.LogIn) = viewModelScope.launch {
+        val response = api.login(body)
         loginResult.postValue(handleLoginResponse(response)!!)
     }
 

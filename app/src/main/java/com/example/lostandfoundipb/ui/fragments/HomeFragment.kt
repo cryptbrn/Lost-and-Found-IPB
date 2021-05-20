@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lostandfoundipb.R
 import com.example.lostandfoundipb.Utils.SessionManagement
@@ -178,8 +179,8 @@ class HomeFragment : Fragment(){
         adapterPostLost = PostAdapter(lost, this.context!!)
         lostRv.adapter = adapterPostLost
 
-        foundRv.layoutManager = GridLayoutManager(context,3,GridLayoutManager.HORIZONTAL,false)
-        lostRv.layoutManager = GridLayoutManager(context,3,GridLayoutManager.HORIZONTAL,false)
+        foundRv.layoutManager = LinearLayoutManager(context)
+        lostRv.layoutManager = LinearLayoutManager(context)
 
         myPost = view.home_btn_my_post
 

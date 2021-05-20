@@ -50,10 +50,6 @@
             android:fontFamily="@font/product_sans_regular"
             android:layout_marginBottom="10dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/found_swipe_refresh"
             android:layout_width="match_parent"

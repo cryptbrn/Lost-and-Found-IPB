@@ -2,6 +2,7 @@ package com.example.lostandfoundipb.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -206,6 +207,7 @@ class FoundFragment : Fragment(){
                         if (data.type) {
                             foundAll.add(data)
                             found.add(data)
+                            Log.d("FoundFragment", data.toString())
                         }
                     }
 

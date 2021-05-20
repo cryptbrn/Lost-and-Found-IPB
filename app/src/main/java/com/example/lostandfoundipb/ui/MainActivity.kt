@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
         when{
+            intent.getStringExtra("goto") == "lost" -> navigation.selectedItemId = R.id.nav_lost
             intent.getStringExtra("goto") == "found" -> navigation.selectedItemId = R.id.nav_found
-            intent.getStringExtra("goto") == "search" -> navigation.selectedItemId = R.id.nav_lost
             intent.getStringExtra("goto") == "profile" -> navigation.selectedItemId = R.id.nav_profile
             else -> navigation.selectedItemId = R.id.nav_home
         }

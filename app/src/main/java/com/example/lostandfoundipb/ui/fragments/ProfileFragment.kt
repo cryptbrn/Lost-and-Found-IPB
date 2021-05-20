@@ -88,7 +88,7 @@ class ProfileFragment : Fragment() {
         if (userData["picture"].toString() != "") setImage(userData["picture"].toString())
         profileName.text = userData["name"]
         profileEmail.text = userData["email"]
-        profileUsername.text = userData["username"]
+        profileUsername.text = userData["username"]!!.capitalize()
         profileRole.text = userData["role"]
         profilePhone.text = userData["telephone"]
     }

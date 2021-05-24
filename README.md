@@ -46,6 +46,10 @@ Target dari aplikasi ini adalah anggota civitas IPB yang melakukan banyak aktivi
 
 ## User Story
 
+- Sebagai pengguna yang terdaftar, agar dapat menemukan barang yang hilang, saya dapat mem-posting kehilangan barang.
+- Sebagai pengguna yang terdaftar, ketika saya menemukan barang seseorang, saya dapat melaporkan penemuan barang.
+- Sebagai pengguna yang telah log out, agar dapat menggunakan aplikasi, saya perlu melakukan login dengan memasukkan username dan password.
+
 ## Use Case Diagram
 
 ![ERD   Usecase Lost and Found  IPB-Usecase](https://user-images.githubusercontent.com/70255413/119362585-0f8fb980-bcd7-11eb-9d64-8ac92a7bb177.png)

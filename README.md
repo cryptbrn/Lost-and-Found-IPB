@@ -20,6 +20,22 @@ Setelah menyadari akan pentingnya kehadiran aplikasi Lost and Found, kelompok ka
 
 ## Ruang Lingkup
 
+Perangkat Keras:
+Prosesor	: AMD A8 7410 APU
+Memori	: 8 GB DDR3
+Penyimpanan	: 120GB SSD dan 500GB HDD
+Kartu Grafis	: Radeon R5
+
+Perangkat Lunak :
+Sistem Operasi : Ubuntu LTS 20 dan Windows 10
+Mobile Front-End
+IDE		 : Android Studio
+Back-End
+Text Editor	: Visual Studio Code
+Database	: PostgreSql
+Server		: Apache (Development)
+Framework	: Laravel
+
 
 ## Deskripsi Aplikasi
 

@@ -177,7 +177,7 @@ class EditPostActivity : AppCompatActivity() {
     }
 
     private fun createTempFile(bitmap: Bitmap): File {
-        val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), session.user["id"] +"_" + System.currentTimeMillis().toString() + ".JPEG")
+        val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "post" + "_" + System.currentTimeMillis().toString() + ".JPEG")
         var compressionConstant = 100
         var bitmapData = getByteArray(bitmap, compressionConstant)
         while ((bitmapData.size) > 500000) {

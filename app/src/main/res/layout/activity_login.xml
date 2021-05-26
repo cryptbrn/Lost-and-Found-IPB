@@ -199,11 +199,11 @@
                 android:id="@+id/imgLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/imgLogin"
                 android:layout_gravity="bottom|end"
+                android:contentDescription="@string/imgLogin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/img_login" />
+                app:srcCompat="@drawable/login_picture" />
         </LinearLayout>
 
     </LinearLayout>

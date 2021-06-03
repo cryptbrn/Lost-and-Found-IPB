@@ -2,9 +2,9 @@
 
 ## Nama sistem, Paralel, Kelompok, Nama Asisten Praktikum
 
-Nama Sistem             : Lost and Found IPB
-Paralel                 : P2
-Kelompok                : 15
+Nama Sistem             : Lost and Found IPB <br>
+Paralel                 : P2 <br>
+Kelompok                : 15 <br>
 Nama Asisten Praktikum  : 1. G64180019 Levina Siatono
                           2. G64180080 Ali Naufal Ammarullah
                           3. G64180117 M. Fauzan Ramadhan

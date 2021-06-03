@@ -22,17 +22,16 @@ Target dari aplikasi ini adalah anggota civitas IPB yang melakukan banyak aktivi
 
 
 ## Spesifikasi Teknis Lingkungan Pengembangan
-
-###Perangkat Keras (Hardware):  
+### Perangkat Keras (Hardware):  
 Prosesor	: AMD A8 7410 APU  
 Memori	: 8 GB DDR3  
 Penyimpanan	: 120GB SSD dan 500GB HDD  
 Kartu Grafis	: Radeon R5  
 
-###Perangkat Lunak (Software):  
+### Perangkat Lunak (Software):  
 Sistem Operasi : Ubuntu LTS 20 dan Windows 10  
 
-###Tech Stack:
+### Tech Stack:
 Mobile Front-End  
 IDE		 : Android Studio  
 Back-End  

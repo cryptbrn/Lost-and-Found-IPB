@@ -1,6 +1,7 @@
 # Lost and Found IPB
 
 ## Nama sistem, Paralel, Kelompok, Nama Asisten Praktikum
+
 Nama Sistem             : Lost and Found IPB
 Paralel                 : P2
 Kelompok                : 15

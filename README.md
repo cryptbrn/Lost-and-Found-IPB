@@ -22,6 +22,7 @@ Target dari aplikasi ini adalah anggota civitas IPB yang melakukan banyak aktivi
 
 
 ## Spesifikasi Teknis Lingkungan Pengembangan
+
 ###Perangkat Keras (Hardware):  
 Prosesor	: AMD A8 7410 APU  
 Memori	: 8 GB DDR3  

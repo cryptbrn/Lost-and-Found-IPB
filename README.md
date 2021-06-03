@@ -1,14 +1,18 @@
 # Lost and Found IPB
 
 ## Nama sistem, Paralel, Kelompok, Nama Asisten Praktikum
-1. G14190047 Alvin Christian  : UI Designer & Android Developer
-2. G64190064 Nabil Abidi      : Android Developer & UI Designer
-3. G64190083 Muhammad Reyhan  : Backend Developer & Android Developer
+Nama Sistem : Lost and Found IPB
+Paralel : P2
+Kelompok : 15
+Nama Asisten Praktikum : 
+1. G64180019 Levina Siatono
+2. G64180080 Ali Naufal Ammarullah
+3. G64180117 M. Fauzan Ramadhan
 
 ## Anggota Kelompok 15
-1. G14190047 Alvin Christian  : UI Designer & Android Developer
-2. G64190064 Nabil Abidi      : Android Developer & UI Designer
-3. G64190083 Muhammad Reyhan  : Backend Developer & Android Developer
+1. G14190047 Alvin Christian : UI Designer & Android Developer
+2. G64190064 Nabil Abidi : Android Developer & UI Designer
+3. G64190083 Muhammad Reyhan : Backend Developer & Android Developer
 
 ## Deskripsi Singkat aplikasi
 Lost and Found IPB merupakan sebuah aplikasi berbasis mobile yang berguna untuk mempertemukan orang-orang yang mengalami kehilangan barang dan orang-orang yang menemukan barang-barang tercecer yang terjadi di sekitar wilayah kampus IPB. Aplikasi ini akan memiliki fitur untuk memposting barang-barang yang hilang, memposting barang-barang tercecer yang ditemukan, memberikan komentar terhadap postingan tersebut, dan informasi dalam bentuk koordinat tempat barang itu ditemukan.

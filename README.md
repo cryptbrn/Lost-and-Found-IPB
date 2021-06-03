@@ -1,13 +1,9 @@
 # Lost and Found IPB
 
 ## Nama sistem, Paralel, Kelompok, Nama Asisten Praktikum
-
-Nama Sistem            : Lost and Found IPB <br>
-Paralel                : P2 <br>
-Kelompok               : 15 <br>
-Nama Asisten Praktikum : 1. G64180019 Levina Siatono <br>
-                         2. G64180080 Ali Naufal Ammarullah <br>
-                         3. G64180117 M. Fauzan Ramadhan <br>
+1. G14190047 Alvin Christian  : UI Designer & Android Developer
+2. G64190064 Nabil Abidi      : Android Developer & UI Designer
+3. G64190083 Muhammad Reyhan  : Backend Developer & Android Developer
 
 ## Anggota Kelompok 15
 1. G14190047 Alvin Christian  : UI Designer & Android Developer

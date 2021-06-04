@@ -50,21 +50,19 @@ Framework	: Laravel
 ## Hasil dan Pembahasan
 
 ### Use Case Diagram
-
 ![ERD   Usecase Lost and Found  IPB-Usecase](https://user-images.githubusercontent.com/70255413/119362585-0f8fb980-bcd7-11eb-9d64-8ac92a7bb177.png)
 
 ### Activity Diagram
-
 ![Activity Diagram Lost and Found IPB](https://user-images.githubusercontent.com/70255413/119362738-38b04a00-bcd7-11eb-85e2-3c1be514bcb9.png)
 
 ### Class Diagram
+![Class Diagram Lost and Found IPB](https://user-images.githubusercontent.com/70255413/120824350-91f36580-c582-11eb-9f59-01546f253a34.png)
+
 
 ### Entity Relationship Diagram
-
 ![ERD   Usecase Lost and Found  IPB-ERD](https://user-images.githubusercontent.com/70255413/119362506-f8e96280-bcd6-11eb-9d16-91341b1b2269.png)
 
 ### System Architecture
-
 ![Architecture_Diagram](https://user-images.githubusercontent.com/70255413/120635707-fc2edc00-c496-11eb-8d31-a2cc68462d67.png)
 
 ### Fungsi Utama yang Dikembangkan

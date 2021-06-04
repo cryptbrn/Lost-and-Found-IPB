@@ -15,7 +15,7 @@ Nama Asisten Praktikum :
 3. G64190083 Muhammad Reyhan : Backend Developer & Android Developer
 
 ## Deskripsi Singkat aplikasi
-Lost and Found IPB merupakan sebuah aplikasi berbasis mobile yang berguna untuk mempertemukan orang-orang yang mengalami kehilangan barang dan orang-orang yang menemukan barang-barang tercecer yang terjadi di sekitar wilayah kampus IPB. Aplikasi ini akan memiliki fitur untuk memposting barang-barang yang hilang, memposting barang-barang tercecer yang ditemukan, memberikan komentar terhadap postingan tersebut, dan informasi dalam bentuk koordinat tempat barang itu ditemukan.
+Lost and Found IPB merupakan sebuah aplikasi berbasis mobile yang berguna untuk mempertemukan orang-orang yang mengalami kehilangan barang dan orang-orang yang menemukan barang-barang tercecer yang terjadi di sekitar wilayah kampus IPB. Aplikasi ini akan memiliki fitur untuk memposting barang-barang yang hilang, memposting barang-barang tercecer yang ditemukan, dan menghubungi penemu/pencari barang.
 
 ## User Analysis
 Target dari aplikasi ini adalah anggota civitas IPB yang melakukan banyak aktivitas sehari-hari di lingkungan kampus IPB. Banyaknya aktivitas yang dilakukan terkadang membuat kita mengalami kehilangan barang atau bahkan menemukan barang milik orang lain. Aplikasi ini bertujuan untuk mempertemukan kedua pihak sehingga para civitas IPB dapat saling membantu satu sama lain dalam mencari barang yang terhilang.

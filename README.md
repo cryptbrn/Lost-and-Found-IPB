@@ -1,6 +1,6 @@
 # Lost and Found IPB
 
-## Nama sistem, Paralel, Kelompok, Nama Asisten Praktikum
+## Nama Sistem, Paralel, Kelompok, Nama Asisten Praktikum
 Nama Sistem : Lost and Found IPB <br>
 Paralel : P2 <br>
 Kelompok : 15 <br>
@@ -14,7 +14,7 @@ Nama Asisten Praktikum :
 2. G64190064 Nabil Abidi : Android Developer & UI Designer
 3. G64190083 Muhammad Reyhan : Backend Developer & Android Developer
 
-## Deskripsi Singkat aplikasi
+## Deskripsi Singkat Aplikasi
 Lost and Found IPB merupakan sebuah aplikasi berbasis mobile yang berguna untuk mempertemukan orang-orang yang mengalami kehilangan barang dan orang-orang yang menemukan barang-barang tercecer yang terjadi di sekitar wilayah kampus IPB. Aplikasi ini akan memiliki fitur untuk memposting barang-barang yang hilang, memposting barang-barang tercecer yang ditemukan, dan menghubungi penemu/pencari barang.
 
 ## User Analysis

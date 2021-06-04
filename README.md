@@ -68,22 +68,22 @@ Framework	: Laravel
 
 ## Hasil Implementasi Perangkat Lunak
 ### Screenshot Sistem
-Login Page
+Login Page<br>
 ![login](https://user-images.githubusercontent.com/70255413/120833209-b869ce80-c58b-11eb-898e-70b35092566c.jpg)
 
-Register Page
+Register Page<br>
 ![regist](https://user-images.githubusercontent.com/70255413/120833254-c4559080-c58b-11eb-9681-29b429a75090.jpg)
 
-Home
+Home<br>
 ![home](https://user-images.githubusercontent.com/70255413/120833321-d59e9d00-c58b-11eb-8353-58a47bf949eb.png)
 
-Formulir Pembuatan Post
+Formulir Pembuatan Post<br>
 ![form](https://user-images.githubusercontent.com/70255413/120833341-dd5e4180-c58b-11eb-9a4d-bd2a7048e2f3.jpg)
 
-Contoh Halaman Postingan Barang
+Contoh Halaman Postingan Barang<br>
 ![post](https://user-images.githubusercontent.com/70255413/120833353-e3542280-c58b-11eb-8ea1-b0246bacc928.png)
 
-Profile Page
+Profile Page<br>
 ![profile](https://user-images.githubusercontent.com/70255413/120833368-e8b16d00-c58b-11eb-9ffb-faed34ae0287.jpg)
 
 ### Link Aplikasi

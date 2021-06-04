@@ -69,22 +69,22 @@ Framework	: Laravel
 ## Hasil Implementasi Perangkat Lunak
 ### Screenshot Sistem
 Login Page<br>
-![login](https://user-images.githubusercontent.com/70255413/120833209-b869ce80-c58b-11eb-898e-70b35092566c.jpg)
+![login_360x640](https://user-images.githubusercontent.com/70255413/120834410-2b277980-c58d-11eb-8db2-4521995d09e9.jpg)
 
 Register Page<br>
-![regist](https://user-images.githubusercontent.com/70255413/120833254-c4559080-c58b-11eb-9681-29b429a75090.jpg)
+![regist_360x640](https://user-images.githubusercontent.com/70255413/120834418-2f539700-c58d-11eb-94e0-c8e925db2057.jpg)
 
 Home<br>
 ![home](https://user-images.githubusercontent.com/70255413/120833321-d59e9d00-c58b-11eb-8353-58a47bf949eb.png)
 
 Formulir Pembuatan Post<br>
-![form](https://user-images.githubusercontent.com/70255413/120833341-dd5e4180-c58b-11eb-9a4d-bd2a7048e2f3.jpg)
+![form_360x640](https://user-images.githubusercontent.com/70255413/120834430-337fb480-c58d-11eb-9d44-e1d7ab3bcb2e.jpg)
 
 Contoh Halaman Postingan Barang<br>
-![post](https://user-images.githubusercontent.com/70255413/120833353-e3542280-c58b-11eb-8ea1-b0246bacc928.png)
+![post_360x640](https://user-images.githubusercontent.com/70255413/120834445-37abd200-c58d-11eb-9659-d93a0f2d9c0e.png)
 
 Profile Page<br>
-![profile](https://user-images.githubusercontent.com/70255413/120833368-e8b16d00-c58b-11eb-9ffb-faed34ae0287.jpg)
+![profile_360x640](https://user-images.githubusercontent.com/70255413/120834456-3aa6c280-c58d-11eb-87ab-9df406c90850.jpg)
 
 ### Link Aplikasi
 https://lostandfoundipb.herokuapp.com/

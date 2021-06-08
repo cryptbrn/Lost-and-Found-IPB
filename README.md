@@ -108,16 +108,19 @@ https://lostandfoundipb.herokuapp.com/
 ### Positive Cases
 | Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Pass/Fail |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| P1 | Membuat akun baru | 1. Buka aplikasi 2. Klik “register here” 3. Isi form pendaftaran 4. Klik daftar 5. Verifikasi email | Email: blackanalogman@gmail.com Pass: 123123 | Berhasil membuat akun | Berhasil membuat akun | Pass |
+| P2 | Login dengan akun yang telah dibuat | 1. Buka aplikasi 2. Masukkan email/ username 3. Masukkan password 4. Klik log in | Email: blackanalogman@gmail.com | Pass: 123123 | Berhasil login dengan akun yang telah dibuat | Berhasil login dengan akun yang telah dibuat | Pass |
+| P3 | Mengubah data-data profil user | 1. Klik profile page 2. Pilih “Edit Profile” 3. Ubah beberapa data 4. Klik simpan | Name: Edited User Username: edited_username Phone: 085811223344 NIM: G100 Faculty: FMIPA Department: Computer Science Batch: 58 | Berhasil mengubah data user | Berhasil mengubah data user | Pass |
+| P4 | Mengganti foto profile user  | 1. Klik profile page 2. Pilih “Edit Profile” 3. Pilih “Edit Profile Picture” 4. Klik “Select Picture from Gallery” 5. Pilih Gambar 6. Klik “Save” | Foto: new_photo.jpg | Berhasil mengubah foto profile user | Berhasil mengubah foto profile user | Pass |
+| P5 | Membuat postingan baru | 1. Klik “I found something” atau “I lost something” 2. Pilih kategori item 3. Klik “Create a new post” 4. Isi form postingan 5. Klik “Post” | Post Type: Lost Post Title: Buku Pengantar Sosiologi Umum Post Description: Buku Pengantar Sosiologi Umum, Hilang di sekitar CCR hari Senin, ada nama “Venti” di halaman pertama Item Name: Sosiologi Umum Item Category: Important Documents Item Last Location: CCR | Berhasil membuat postingan baru | Berhasil membuat postingan baru | Pass |
+| P6 | Mengubah detail postingan | 1. Klik “My Post” 2. Pilih salah satu post yang dimiliki 3. Klik “Edit Post” 4. Pilih “Edit Post Detail” 5. Ubah data yang diinginkan 6. Klik “Edit Post” | Post Type: Lost Post Title: Edited_Buku Pengantar Sosiologi Umum Post Description: Edited_Buku Pengantar Sosiologi Umum, Hilang di sekitar CCR hari Senin, ada nama “Venti” di halaman pertama Item Name: Edited_Sosiologi Umum Item Category: Stationery and Module Book Item Last Location: Edited_CCR | Berhasil mengubah detail postingan | Berhasil mengubah detail postingan | Pass |
+| P7 | Mengubah status postingan jika barang sudah kembali ke pemiliknya | 1. Klik “My Post” 2. Klik postingan barang yang telah kembali ke pemiliknya 3. Klik “Edit Post” 4. Pilih “Edit Post Status” 5. Pilih “Item Found” 6. Klik “Submit” | Post: Edited_Buku Pengantar Sosiologi Umum, Status: “Item Found” | Berhasil mengubah status postingan | Berhasil mengubah status postingan | Pass |
+| P8 | Menghubungi user lain melalui whatsapp  | Klik sebuah post | 1. Klik “Message” 2. Pilih “Whatsapp” | Post: Edited_Buku Pengantar Sosiologi Umum | Berhasil menghubungi user lain melalui whatsapp | Berhasil menghubungi user lain melalui whatsapp | Pass |
+| P9 | Menghapus postingan | Klik “My Post” | Pilih postingan yang ingin dihapus | Klik “Delete Post” | Klik “Yes” | Post: Edited_Buku Pengantar Sosiologi Umum | Postingan berhasil dihapus | Postingan berhasil dihapus | Pass |
+| P10 | Mencari dengan menggunakan filter kategori barang | Klik “I found something” atau “I lost something” | Pilih kategori item
+Klik “See existing posts” | I found Something, Stationery and Module Book | Berhasil mencari barang (filter) berdasarkan kategori | Berhasil mencari barang (filter) berdasarkan kategori | Pass |
+
+
 
 ### Negative Cases
 

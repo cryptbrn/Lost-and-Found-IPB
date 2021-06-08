@@ -63,8 +63,23 @@ Framework	: Laravel
 ![AD](https://user-images.githubusercontent.com/70255413/120831952-4e9cf500-c58a-11eb-83a1-a6e41772c84d.jpeg)
 
 ### Fungsi Utama yang Dikembangkan
+Pengguna dapat membuat postingan baru yang mengenai barang yang sedang ia cari atau barang yang ia temukan. Pengguna lainnya dapat melihat postingan yang ada dan menghubungi pengguna yang membuat postingan tersebut. 
 
 ### Fungsi CRUD
+- Create:
+  - pengguna dapat membuat akun
+  - pengguna dapat membuat postingan baru
+- Read:
+  - pengguna dapat melihat postingan kehilangan barang yang tersedia
+  - pengguna dapat melihat postingan penemuan barang yang tersedia
+  - pengguna dapat melihat detail postingan
+- Update:
+  - pengguna dapat mengubah data diri
+  - pengguna dapat mengubah detail postingan
+  - pengguna dapat mengubah status barang (belum/sudah ditemukan)
+- Delete:
+  - pengguna dapat menghapus postingan
+  - pengguna dapat melaukan deaktivasi akun
 
 ## Hasil Implementasi Perangkat Lunak
 ### Screenshot Sistem
@@ -84,13 +99,26 @@ Contoh Halaman Postingan Barang<br>
 ![post_360x640](https://user-images.githubusercontent.com/70255413/120834445-37abd200-c58d-11eb-9659-d93a0f2d9c0e.png)
 
 Profile Page<br>
-![profile_360x640](https://user-images.githubusercontent.com/70255413/120834456-3aa6c280-c58d-11eb-87ab-9df406c90850.jpg)
+![profil_360x640](https://user-images.githubusercontent.com/70255413/121228430-f0884e80-c8b6-11eb-916b-5c65b881680e.jpeg)
 
 ### Link Aplikasi
 https://lostandfoundipb.herokuapp.com/
 
 ## Testing (Test Cases)
 ### Positive Cases
+| Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Pass/Fail |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+
 ### Negative Cases
 
 ## Saran untuk Pengembangan Selanjutnya

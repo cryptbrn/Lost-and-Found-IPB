@@ -119,9 +119,15 @@ https://lostandfoundipb.herokuapp.com/
 | P9 | Menghapus postingan | 1. Klik “My Post”<br> 2. Pilih postingan yang ingin dihapus<br> 3. Klik “Delete Post”<br> 4. Klik “Yes” | Post: Edited_Buku Pengantar Sosiologi Umum | Postingan berhasil dihapus | Postingan berhasil dihapus | Pass |
 | P10 | Mencari dengan menggunakan filter kategori barang | 1. Klik “I found something” atau “I lost something”<br> 2. Pilih kategori item<br> 3. Klik “See existing posts” | I found Something<br> Stationery and Module Book | Berhasil mencari barang (filter) berdasarkan kategori | Berhasil mencari barang (filter) berdasarkan kategori | Pass |
 
-
-
 ### Negative Cases
+| Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Success/ Fail |
+| ------------ | ------------- | ---------- | --------- | --------------- | ------------- | ------------- |
+| N1 | Membuat sebuah akun dengan mengosongkan email | 1. Buka aplikasi<br> 2. Klik “register here”<br> 3. Isi form kecuali email <br> 4. Klik “register now”<br> | Name: nabil abidi<br> Username: nabilabidi<br> Email:<br> Telephone: 08123456789<br> Role: Student<br> NIM: G64190000<br> Faculty: fmipa<br> Department: ilkom<br> Batch: 56 | Muncul pesan “This field is required” pada kolom email | Sesuai expected result | Success |
+| N2 | Membuat sebuah akun dengan mengisi password dan confirm password berbeda | 1. Buka aplikasi<br> 2. Klik “register here”<br> 3. Isi form<br> 4. Klik “register now” | Name: nabil abidi<br> Username: nabilabidi<br> Email: nabilabidi@apps.ipb.ac.id<br> Telephone: 08123456789<br> Password: password<br> Confirm Password: passw0rd <br> Role: Student<br> NIM: G64190000<br> Faculty: fmipa<br> Department: ilkom<br> Batch: 56 | Muncul pesan “Password doesn’t match” pada kolom Confirm Password | Sesuai expected result | Success |
+| N3 | Mencoba login tanpa melakukan verifikasi email | 1. Buka aplikasi<br> 2. Masukkan email/username<br> 3. Masukkan password<br> 4. Klik “log in” | Username: nabilabidi<br> Password: password | Muncul pesan “You need to validate your email address first, we have sent your verification link, please check your email. | Sesuai expected result | Success |
+| N4 | Membuat post tanpa memasukkan judul | 1. Buka dan login ke aplikasi<br> 2. Klik menu lost<br> 3. Pilih category<br> 4. Klik create new post<br> 5. Isi detail post kecuali judul | Post type: Lost<br> Post title:<br> Post Description: telah ditemukan tumblr tuppleware<br> Item Name: botol<br> Item Category: Lunch Box & Bottles<br> Item Last Location<br> Item Picture: botol.jpg | Muncul pesan “This field is required” | Sesuai expected result | Success |
+| N5 | Membuat post tanpa mengunggah gambar | 1. Buka dan login ke aplikasi<br> 2. Klik menu lost<br> 3. Pilih category<br> 4. Klik create new post<br> 5. Isi detail post kecuali gambar | Post Type: Lost<br> Post Title: Buku Perilaku Konsumen<br> Post Description: telah ditemukan buku perilaku konsumen di komlong<br> Item Name: Buku Perilaku Konsumen<br> Item Category: Stationary & Module Book<br> Item Last Location: komlong<br> Item picture: | Muncul alert “Please insert Item Image first” | Sesuai expected result | Success |
+
 
 ## Saran untuk Pengembangan Selanjutnya
 - Jika Mendeploy Backend Service ke heroku, ada baiknya menyiapkan Amazon S3 untuk penyimpanan file atau bisa mengubah penyimpanan file ke public/database pada laravel (namun hal ini akan membebani storage pada heroku)

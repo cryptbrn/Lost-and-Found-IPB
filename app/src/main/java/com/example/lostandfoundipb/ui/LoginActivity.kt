@@ -57,7 +57,7 @@ class   LoginActivity : AppCompatActivity() {
         var isEmail = true
 
 
-        email = login_username.text.toString()
+        email = login_username.text.toString().toLowerCase()
         password = login_password.text.toString()
 
         if (TextUtils.isEmpty(email)) {

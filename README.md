@@ -51,7 +51,12 @@ Framework	: Laravel
 ![ERD   Usecase Lost and Found  IPB-Usecase](https://user-images.githubusercontent.com/70255413/119362585-0f8fb980-bcd7-11eb-9d64-8ac92a7bb177.png)
 
 ### Activity Diagram
-![Activity Diagram Lost and Found IPB](https://user-images.githubusercontent.com/70255413/119362738-38b04a00-bcd7-11eb-85e2-3c1be514bcb9.png)
+![AD alur utama](https://github.com/nabilabidi/hello-world/blob/main/Activity%20Diagram%20Lost%20and%20Found%20IPB-alur%20utama.png)
+![AD alur membuat akun](https://github.com/nabilabidi/hello-world/blob/main/alur%20membuat%20akun)
+![AD alur menemukan barang](https://github.com/nabilabidi/hello-world/blob/main/alur%20menemukan%20barang)
+![AD alur mencari barang](https://github.com/nabilabidi/hello-world/blob/main/alur%20mencari%20barang)
+![AD alur deaktivasi akun](https://github.com/nabilabidi/hello-world/blob/main/alur%20deaktivasi%20akun)
+![AD alur ganti password](https://github.com/nabilabidi/hello-world/blob/main/alur%20ganti%20password)
 
 ### Class Diagram
 ![Class Diagram Lost and Found IPB](https://user-images.githubusercontent.com/70255413/120824350-91f36580-c582-11eb-9f59-01546f253a34.png)
